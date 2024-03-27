@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vitoll on Rift Hacking</title>
+    <link>https://example.org/authors/vitoll/</link>
+    <description>Recent content in Vitoll on Rift Hacking</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
+    <lastBuildDate>Thu, 26 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/authors/vitoll/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>lfi</title>
+      <link>https://example.org/posts/lfi/</link>
+      <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/posts/lfi/</guid>
+      <description>Hola esto es un post de prueba</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://example.org/posts/lfi/featured.png" />
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://example.org/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/about/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>
