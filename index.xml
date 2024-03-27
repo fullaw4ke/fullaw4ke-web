@@ -7,17 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 27 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>PC Writeup</title>
-      <link>https://example.org/writeups/pc/</link>
-      <pubDate>Fri, 27 Jan 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://example.org/writeups/pc/</guid>
-      <description>Resolucion de maquina Keeper</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://example.org/writeups/pc/featured.png" />
-    </item>
-    
+    <lastBuildDate>Thu, 26 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Keeper Writeup</title>
       <link>https://example.org/writeups/keeper/</link>
@@ -29,13 +19,23 @@
     </item>
     
     <item>
-      <title>lfi</title>
+      <title>Local File Inclusion</title>
       <link>https://example.org/posts/lfi/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
       <guid>https://example.org/posts/lfi/</guid>
-      <description>Hola</description>
+      <description>Local File Inclusion (LFI) and Path Traversal are critical vulnerabilities in web applications that can lead to severe security breaches if left unaddressed.</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://example.org/posts/lfi/featured.png" />
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://example.org/team/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/team/</guid>
+      <description></description>
+      
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://example.org/about/</guid>
-      <description></description>
+      <description>About Us # At Rift Hacking, we are dedicated to promoting knowledge and practice of ethical hacking.</description>
       
     </item>
     

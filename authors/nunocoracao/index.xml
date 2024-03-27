@@ -7,15 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 26 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/authors/nunocoracao/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/authors/nunocoracao/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>lfi</title>
-      <link>http://localhost:1313/web/lfi/</link>
-      <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/web/lfi/</guid>
-      <description>Hola esto es un post de prueba</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/web/lfi/featured.png" />
+      <guid>http://localhost:1313/about/</guid>
+      <description>holaaaa</description>
+      
     </item>
     
   </channel>

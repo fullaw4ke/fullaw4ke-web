@@ -8,11 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>lfi &middot; Rift Hacking</title>
-  <meta name="title" content="lfi &middot; Rift Hacking" />
+  <title>Local File Inclusion &middot; Rift Hacking</title>
+  <meta name="title" content="Local File Inclusion &middot; Rift Hacking" />
   
   <meta name="description" content="All WriteUps" />
-  
+  <meta name="keywords" content="web, " />
   
   
   <link rel="canonical" href="https://example.org/posts/lfi/" />
@@ -26,8 +26,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.ca97dc2dbe733d645b96ff08c3fb23dbf91348f27759a51151e4735e811d281a0d2ad180ea95cd2ff511b632598700585ef87884285b81658c22ce82ca30f9c4.css"
-    integrity="sha512-ypfcLb5zPWRblv8Iw/sj2/kTSPJ3WaURUeRzXoEdKBoNKtGA6pXNL/URtjJZhwBYXvh4hChbgWWMIs6CyjD5xA==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.fd3d87fd720bf5d79964744f02d90e26851773a8c317198a40933c8afea57936ad0ba652b90d786c2bd9e93c3a18fac58553570798444f0a6f073ad57571a79b.css"
+    integrity="sha512-/T2H/XIL9deZZHRPAtkOJoUXc6jDFxmKQJM8iv6leTatC6ZSuQ14bCvZ6Tw6GPrFhVNXB5hETwpvBzrVdXGnmw==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -63,7 +63,7 @@
   
   
   
-  <meta property="og:title" content="lfi" />
+  <meta property="og:title" content="Local File Inclusion" />
 <meta property="og:description" content="All WriteUps" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.org/posts/lfi/" /><meta property="og:image" content="https://example.org/posts/lfi/featured.png" /><meta property="article:section" content="posts" />
@@ -71,7 +71,7 @@
 <meta property="article:modified_time" content="2023-01-26T00:00:00+00:00" />
 
   <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://example.org/posts/lfi/featured.png" /><meta name="twitter:title" content="lfi"/>
+<meta name="twitter:image" content="https://example.org/posts/lfi/featured.png" /><meta name="twitter:title" content="Local File Inclusion"/>
 <meta name="twitter:description" content="All WriteUps"/>
 
   
@@ -80,15 +80,15 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Post",
-    "name": "lfi",
-    "headline": "lfi",
+    "name": "Local File Inclusion",
+    "headline": "Local File Inclusion",
     "description": "All WriteUps",
-    "abstract": "Hola",
+    "abstract": "Local File Inclusion (LFI) and Path Traversal are critical vulnerabilities in web applications that can lead to severe security breaches if left unaddressed.",
     "inLanguage": "en",
     "url" : "https:\/\/example.org\/posts\/lfi\/",
     "author" : {
       "@type": "Person",
-      "name": "Albelto (Aka. Byt3Nu1l)"
+      "name": "Rift Hacking"
     },
     "copyrightYear": "2023",
     "dateCreated": "2023-01-26T00:00:00\u002b00:00",
@@ -96,28 +96,17 @@
     
     "dateModified": "2023-01-26T00:00:00\u002b00:00",
     
-    
+    "keywords": ["web"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1"
+    "wordCount": "405"
   }]
   </script>
 
 
   
   
-  <meta name="author" content="Albelto (Aka. Byt3Nu1l)" />
-  
-  
-  
-  <link href="https://link-to-some-website.com/" rel="me" />
-  
-  
-  <link href="https://github.com/byt3nu1l" rel="me" />
-  
-  
-  <link href="https://linkedin.com/in/username" rel="me" />
-  
+  <meta name="author" content="Rift Hacking" />
   
   
   
@@ -226,17 +215,17 @@
     <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
       <div class="flex flex-col space-y-3">
         
-        <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-          
-          <p class="text-sm font-sm" title="">
-            Active Directory
-          </p>
-        </a>
-        
-        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        <a href="/tags/web/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
           
           <p class="text-sm font-sm" title="">
             Web
+          </p>
+        </a>
+        
+        <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Windows
           </p>
         </a>
         
@@ -293,6 +282,16 @@
   </div>
 </div>
 
+
+
+            
+            
+  <a href="/team/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        Team
+    </p>
+</a>
 
 
             
@@ -422,19 +421,19 @@
 </li>
 
 <li class="mt-1">
-    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a href="/tags/web/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-sm font-small" title="">
-            Active Directory
+            Web
         </p>
     </a>
 </li>
 
 <li class="mt-1">
-    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-sm font-small" title="">
-            Web
+            Windows
         </p>
     </a>
 </li>
@@ -486,6 +485,20 @@
 </li>
 
 <li class="mb-2"></li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/team/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Team
+        </p>
+    </a>
+</li>
 
 
 
@@ -552,7 +565,7 @@
   
   
         
-            <div class="w-full h-36 md:h-56 lg:h-72 single_hero_basic nozoom" style="background-image:url(/posts/lfi/featured_hu624d807dc6bbed4897e80b3bad8805ef_450265_1200x0_resize_box_3.png);"></div>
+            <div class="w-full h-36 md:h-56 lg:h-72 single_hero_basic nozoom" style="background-image:url(/posts/lfi/featured_hufd80922f9eec547f843086cbab420bf9_4247815_1200x0_resize_box_3.png);"></div>
         
     
   
@@ -563,8 +576,45 @@
     <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
     <link rel="manifest" href="static/site.webmanifest">
     
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/"
+      >Rift Hacking</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/posts/"
+      >Post</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/posts/lfi/"
+      >Local File Inclusion</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
     <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-      lfi
+      Local File Inclusion
     </h1>
     <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
@@ -609,7 +659,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-01-26 00:00:00 &#43;0000 UTC">26 January 2023</time><span class="px-2 text-primary-500">&middot;</span><span>1 word</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span>
+  <time datetime="2023-01-26 00:00:00 &#43;0000 UTC">26 January 2023</time><span class="px-2 text-primary-500">&middot;</span><span>405 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">2 mins</span>
   
 
   
@@ -650,7 +700,7 @@
           
         
         <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
-          src="/mimi_hu30b2563078f09aa29e58a1d322639e82_198139_192x192_fill_box_center_3.png" />
+          src="/a_hubec408c9d9c6bf7db59f115058e32289_123866_192x192_fill_box_center_3.png" />
       
   
   <div class="place-self-center">
@@ -659,12 +709,12 @@
     <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
       Author
     </div>
-    <a  href="https://example.org//authors/vitoll"  class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
-      Vitoll (Aka. Viksant)
+    <a  href="https://example.org//authors/jose"  class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Jose Milane (Aka. Byt3Nu1l)
     </a>
     
     
-    <div class="text-sm text-neutral-700 dark:text-neutral-400">Writer</div>
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">Founder</div>
     
     <div class="text-2xl sm:text-lg">
       <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
@@ -778,7 +828,89 @@
   
   <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
     
-    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+         <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#understanding-local-file-inclusion-lfi-and-path-traversal">Understanding Local File Inclusion (LFI) and Path Traversal:</a></li>
+    <li><a href="#exploring-advanced-lfi-and-path-traversal-techniques">Exploring Advanced LFI and Path Traversal Techniques:</a></li>
+    <li><a href="#real-world-examples">Real-World Examples:</a></li>
+    <li><a href="#mitigating-lfi-and-path-traversal">Mitigating LFI and Path Traversal:</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#understanding-local-file-inclusion-lfi-and-path-traversal">Understanding Local File Inclusion (LFI) and Path Traversal:</a></li>
+    <li><a href="#exploring-advanced-lfi-and-path-traversal-techniques">Exploring Advanced LFI and Path Traversal Techniques:</a></li>
+    <li><a href="#real-world-examples">Real-World Examples:</a></li>
+    <li><a href="#mitigating-lfi-and-path-traversal">Mitigating LFI and Path Traversal:</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = e.attr('id');
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+           
+            $(e).removeClass('active').siblings('ul').hide();
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+         
+          $toc.find('a').parent('li').find('ul').hide();
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+   </div>
+      </div>
+      
 
       <div class="min-w-0 min-h-0 max-w-fit">
         
@@ -786,14 +918,248 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <p>Hola</p>
+          <p>Local File Inclusion (LFI) and Path Traversal are critical vulnerabilities in web applications that can lead to severe security breaches if left unaddressed. In this guide, we&rsquo;ll delve into the advanced aspects of LFI and Path Traversal, exploring real-world examples and learning how to effectively mitigate these risks.</p>
+
+
+<h2 class="relative group">Understanding Local File Inclusion (LFI) and Path Traversal: 
+    <div id="understanding-local-file-inclusion-lfi-and-path-traversal" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#understanding-local-file-inclusion-lfi-and-path-traversal" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Local File Inclusion (LFI) is a vulnerability that allows an attacker to include files from the server&rsquo;s file system. Path Traversal, on the other hand, involves manipulating file paths to access files outside the web root directory. These vulnerabilities can be exploited to disclose sensitive information, execute arbitrary code, or even compromise the entire system.</p>
+
+
+<h2 class="relative group">Exploring Advanced LFI and Path Traversal Techniques: 
+    <div id="exploring-advanced-lfi-and-path-traversal-techniques" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#exploring-advanced-lfi-and-path-traversal-techniques" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<ol>
+<li>
+<p><strong>Directory Traversal Attack:</strong> In this scenario, the attacker manipulates input parameters to traverse directories and access files outside the web root directory. For example, by appending &ldquo;../&rdquo; to a file path, the attacker can navigate to parent directories and access sensitive files.</p>
+</li>
+<li>
+<p><strong>Null Byte Injection:</strong> Null byte injection exploits the use of null terminators in file paths to bypass security measures. By appending a null byte (%00) to the end of a file path, the attacker can truncate the path and access files that would otherwise be restricted.</p>
+</li>
+<li>
+<p><strong>Double Encoding:</strong> Double encoding involves encoding special characters multiple times to bypass input validation mechanisms. For instance, the attacker may encode &ldquo;../&rdquo; as &ldquo;%252e%252e%252f&rdquo; to bypass filters and execute a directory traversal attack.</p>
+</li>
+</ol>
+
+
+<h2 class="relative group">Real-World Examples: 
+    <div id="real-world-examples" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#real-world-examples" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Consider a web application vulnerable to LFI and Path Traversal. The attacker could exploit these vulnerabilities to access sensitive configuration files, such as &ldquo;/etc/passwd&rdquo; or &ldquo;/etc/shadow&rdquo;, leading to unauthorized access to user credentials.</p>
+
+
+<h2 class="relative group">Mitigating LFI and Path Traversal: 
+    <div id="mitigating-lfi-and-path-traversal" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#mitigating-lfi-and-path-traversal" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>To mitigate LFI and Path Traversal vulnerabilities, it&rsquo;s essential to implement robust input validation and access controls:</p>
+<ul>
+<li>Sanitize user input to prevent directory traversal attacks.</li>
+<li>Implement proper file path validation to restrict access to authorized directories.</li>
+<li>Use secure coding practices, such as parameterized queries and output encoding, to prevent injection attacks.</li>
+<li>Regularly update and patch web servers and applications to address known vulnerabilities.</li>
+</ul>
+<p>##Conclusion:
+Local File Inclusion (LFI) and Path Traversal are serious security risks that require careful attention and mitigation strategies. By understanding the advanced techniques used by attackers and implementing effective security measures, organizations can protect their web applications and prevent unauthorized access to sensitive data. Stay vigilant, stay informed, and stay secure in the ever-evolving landscape of web security.</p>
 
         </div>
                 
         
         
 
+        
+
+
+<h2 class="mt-8 text-2xl font-extrabold mb-10">Related</h2>
+<section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/writeups/keeper/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/writeups/keeper/featured_hu4ab5fe33aae27ae57169153f07804a8a_4090438_600x0_resize_box_3.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/writeups/keeper/">Keeper Writeup</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
           
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-01-26 00:00:00 &#43;0000 UTC">26 January 2023</time><span class="px-2 text-primary-500">&middot;</span><span>850 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">4 mins</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+  
+  
+
+  <a href="/about/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/about/">About</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">1 January 0001</time><span class="px-2 text-primary-500">&middot;</span><span>151 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">1 min</span>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+  
+</section>
+
+  
       </div>
      
       
@@ -833,14 +1199,6 @@
             title="">
             
             Tags
-          </a>
-        </li>
-        
-        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/categories/"
-            title="">
-            
-            Categories
           </a>
         </li>
         
