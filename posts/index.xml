@@ -14,7 +14,7 @@
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
       <guid>https://example.org/posts/lfi/</guid>
-      <description>Hola esto es un post de prueba</description>
+      <description>Hola</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://example.org/posts/lfi/featured.png" />
     </item>
     
