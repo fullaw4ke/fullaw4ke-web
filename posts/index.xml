@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Post on Rift Hacking</title>
-    <link>https://example.org/posts/</link>
+    <link>https://rifthacking.pages.dev/posts/</link>
     <description>Recent content in Post on Rift Hacking</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 26 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Local File Inclusion</title>
-      <link>https://example.org/posts/lfi/</link>
+      <link>https://rifthacking.pages.dev/posts/lfi/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/posts/lfi/</guid>
+      <guid>https://rifthacking.pages.dev/posts/lfi/</guid>
       <description>Local File Inclusion (LFI) and Path Traversal are critical vulnerabilities in web applications that can lead to severe security breaches if left unaddressed.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://example.org/posts/lfi/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/lfi/featured.png" />
     </item>
     
   </channel>

@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>HackTheBox on Rift Hacking</title>
-    <link>https://example.org/tags/hackthebox/</link>
+    <link>https://rifthacking.pages.dev/tags/hackthebox/</link>
     <description>Recent content in HackTheBox on Rift Hacking</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 27 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/tags/hackthebox/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/tags/hackthebox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Keeper Writeup</title>
-      <link>https://example.org/writeups/keeper/</link>
+      <link>https://rifthacking.pages.dev/writeups/keeper/</link>
       <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/writeups/keeper/</guid>
+      <guid>https://rifthacking.pages.dev/writeups/keeper/</guid>
       <description>Resolucion de maquina Keeper</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://example.org/writeups/keeper/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/keeper/featured.png" />
     </item>
     
     <item>
       <title>Sauna Writeup</title>
-      <link>https://example.org/writeups/sauna/</link>
+      <link>https://rifthacking.pages.dev/writeups/sauna/</link>
       <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/writeups/sauna/</guid>
+      <guid>https://rifthacking.pages.dev/writeups/sauna/</guid>
       <description>Resolucion de maquina Keeper</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://example.org/writeups/sauna/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/sauna/featured.png" />
     </item>
     
   </channel>

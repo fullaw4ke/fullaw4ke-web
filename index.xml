@@ -2,60 +2,60 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rift Hacking</title>
-    <link>https://example.org/</link>
+    <link>https://rifthacking.pages.dev/</link>
     <description>Recent content on Rift Hacking</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 27 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
-      <link>https://example.org/about/</link>
+      <link>https://rifthacking.pages.dev/about/</link>
       <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/about/</guid>
+      <guid>https://rifthacking.pages.dev/about/</guid>
       <description>About Us # At Rift Hacking, we are dedicated to promoting knowledge and practice of ethical hacking.</description>
       
     </item>
     
     <item>
       <title>Keeper Writeup</title>
-      <link>https://example.org/writeups/keeper/</link>
+      <link>https://rifthacking.pages.dev/writeups/keeper/</link>
       <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/writeups/keeper/</guid>
+      <guid>https://rifthacking.pages.dev/writeups/keeper/</guid>
       <description>Resolucion de maquina Keeper</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://example.org/writeups/keeper/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/keeper/featured.png" />
     </item>
     
     <item>
       <title>Sauna Writeup</title>
-      <link>https://example.org/writeups/sauna/</link>
+      <link>https://rifthacking.pages.dev/writeups/sauna/</link>
       <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/writeups/sauna/</guid>
+      <guid>https://rifthacking.pages.dev/writeups/sauna/</guid>
       <description>Resolucion de maquina Keeper</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://example.org/writeups/sauna/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/sauna/featured.png" />
     </item>
     
     <item>
       <title>Team</title>
-      <link>https://example.org/team/</link>
+      <link>https://rifthacking.pages.dev/team/</link>
       <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/team/</guid>
+      <guid>https://rifthacking.pages.dev/team/</guid>
       <description>Founder # Jose Milane (Aka.</description>
       
     </item>
     
     <item>
       <title>Local File Inclusion</title>
-      <link>https://example.org/posts/lfi/</link>
+      <link>https://rifthacking.pages.dev/posts/lfi/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/posts/lfi/</guid>
+      <guid>https://rifthacking.pages.dev/posts/lfi/</guid>
       <description>Local File Inclusion (LFI) and Path Traversal are critical vulnerabilities in web applications that can lead to severe security breaches if left unaddressed.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://example.org/posts/lfi/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/lfi/featured.png" />
     </item>
     
   </channel>
