@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://rifthacking.pages.dev/posts/cve-20243094/</loc>
+    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/posts/</loc>
+    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/</loc>
+    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/sau/</loc>
+    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/</loc>
+    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://rifthacking.pages.dev/about/</loc>
     <lastmod>2024-03-27T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -15,13 +45,13 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rifthacking.pages.dev/</loc>
+    <loc>https://rifthacking.pages.dev/writeups/sauna/</loc>
     <lastmod>2024-03-27T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rifthacking.pages.dev/writeups/sauna/</loc>
+    <loc>https://rifthacking.pages.dev/writeups/shared/</loc>
     <lastmod>2024-03-27T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -33,19 +63,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rifthacking.pages.dev/writeups/</loc>
-    <lastmod>2024-03-27T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://rifthacking.pages.dev/posts/lfi/</loc>
-    <lastmod>2023-01-26T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://rifthacking.pages.dev/posts/</loc>
     <lastmod>2023-01-26T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>

@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 26 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CVE-2024–3094 Mitigating and Understanding </title>
+      <link>https://rifthacking.pages.dev/posts/cve-20243094/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/posts/cve-20243094/</guid>
+      <description>CVE-2024–3094</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/cve-20243094/featured.png" />
+    </item>
+    
     <item>
       <title>Local File Inclusion</title>
       <link>https://rifthacking.pages.dev/posts/lfi/</link>
