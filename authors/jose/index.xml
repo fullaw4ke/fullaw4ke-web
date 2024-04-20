@@ -7,25 +7,175 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/authors/jose/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/authors/jose/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Archangel Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/1.-archangel/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/1.-archangel/</guid>
+      <description>Resolucion de Maquina Archangel</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/1.-archangel/featured.png" />
+    </item>
+    
+    <item>
+      <title>Blue Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/2.-blue/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/2.-blue/</guid>
+      <description>Resolucion de Maquina Blue</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/2.-blue/featured.png" />
+    </item>
+    
+    <item>
+      <title>Broker Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/3.-broker/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/3.-broker/</guid>
+      <description>Resolucion de Maquina Broker</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/3.-broker/featured.png" />
+    </item>
+    
+    <item>
+      <title>Inject Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/4.-inject/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/4.-inject/</guid>
+      <description>Resolucion de Maquina Inject</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/4.-inject/featured.png" />
+    </item>
+    
+    <item>
+      <title>Kenobi Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/6-kenobi/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/6-kenobi/</guid>
+      <description>Resolucion de Maquina Kenobi</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/6-kenobi/featured.png" />
+    </item>
+    
+    <item>
+      <title>Kiba Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/7.-kiba/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/7.-kiba/</guid>
+      <description>Resolucion de Maquina Kiba</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/7.-kiba/featured.png" />
+    </item>
+    
+    <item>
+      <title>Momentum: 2 Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/8.-momentum2/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/8.-momentum2/</guid>
+      <description>Resolucion de Maquina Momentum: 2</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/8.-momentum2/featured.png" />
+    </item>
+    
+    <item>
+      <title>MonitorsTwo Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/9.-monitorstwo/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/9.-monitorstwo/</guid>
+      <description>Resolucion de Maquina Blue</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/9.-monitorstwo/featured.png" />
+    </item>
+    
+    <item>
+      <title>Pickle Rick Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/10.-picklerick/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/10.-picklerick/</guid>
+      <description>Resolucion de Maquina Blue</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/10.-picklerick/featured.png" />
+    </item>
+    
+    <item>
+      <title>Precious Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/11.-precious/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/11.-precious/</guid>
+      <description>Precious is an easy linux machine created by Nauten on Hack the Box that features a web server that uses a version of PDFKit that is vulnerable to CVE-2022-25765, which can be exploited to execute commands as the user ruby.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/11.-precious/featured.png" />
+    </item>
+    
+    <item>
+      <title>Rootme Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/12.-rootme/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/12.-rootme/</guid>
+      <description>Skills: # Upload Shell.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/12.-rootme/featured.png" />
+    </item>
+    
+    <item>
+      <title>Simple CTF Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/16.-simplectf/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/16.-simplectf/</guid>
+      <description>Skills: # Fuzzing with Feroxbuster CVE-2019-9053 Vim Binary Abuse with sudo permissions.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/16.-simplectf/featured.png" />
+    </item>
+    
+    <item>
+      <title>Soccer Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/17.-soccer/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/17.-soccer/</guid>
+      <description>Resolucion de Maquina Blue</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/17.-soccer/featured.png" />
+    </item>
+    
+    <item>
+      <title>TwoMillion Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/18.-twomillion/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/18.-twomillion/</guid>
+      <description>Resolucion de Maquina Blue</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/18.-twomillion/featured.png" />
+    </item>
+    
+    <item>
+      <title>Wifinetic Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/19.-wifinetic/</link>
+      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/19.-wifinetic/</guid>
+      <description>Resolucion de Maquina Blue</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/19.-wifinetic/featured.png" />
+    </item>
+    
     <item>
       <title>CVE-2024–3094 Mitigating and Understanding </title>
-      <link>https://rifthacking.pages.dev/posts/cve-20243094/</link>
+      <link>https://rifthacking.pages.dev/posts/2.-cve-20243094/</link>
       <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/posts/cve-20243094/</guid>
+      <guid>https://rifthacking.pages.dev/posts/2.-cve-20243094/</guid>
       <description>CVE-2024–3094</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/cve-20243094/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/2.-cve-20243094/featured.png" />
     </item>
     
     <item>
       <title>Sau Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/sau/</link>
+      <link>https://rifthacking.pages.dev/writeups/13.-sau/</link>
       <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/sau/</guid>
-      <description>Resolucion de maquina Sau</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/sau/featured.png" />
+      <guid>https://rifthacking.pages.dev/writeups/13.-sau/</guid>
+      <description>Sau is an easy Linux-based Hack the Box machine created by sau123 that involves web exploitation, Server Side Request Forgery (SSRF), Common Vulnerabilities and Exposures (CVEs), and Sudo policy exploitation.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/13.-sau/featured.png" />
     </item>
     
     <item>
@@ -40,42 +190,42 @@
     
     <item>
       <title>Keeper Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/keeper/</link>
+      <link>https://rifthacking.pages.dev/writeups/5.-keeper/</link>
       <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/keeper/</guid>
+      <guid>https://rifthacking.pages.dev/writeups/5.-keeper/</guid>
       <description>Resolucion de maquina Keeper</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/keeper/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/5.-keeper/featured.png" />
     </item>
     
     <item>
       <title>Sauna Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/sauna/</link>
+      <link>https://rifthacking.pages.dev/writeups/14.-sauna/</link>
       <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/sauna/</guid>
+      <guid>https://rifthacking.pages.dev/writeups/14.-sauna/</guid>
       <description>Resolucion de maquina Keeper</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/sauna/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/14.-sauna/featured.png" />
     </item>
     
     <item>
       <title>Shared Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/shared/</link>
+      <link>https://rifthacking.pages.dev/writeups/15.-shared/</link>
       <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/shared/</guid>
+      <guid>https://rifthacking.pages.dev/writeups/15.-shared/</guid>
       <description>Resolucion de Maquina Shared</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/shared/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/15.-shared/featured.png" />
     </item>
     
     <item>
       <title>Local File Inclusion</title>
-      <link>https://rifthacking.pages.dev/posts/lfi/</link>
+      <link>https://rifthacking.pages.dev/posts/1.-lfi/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/posts/lfi/</guid>
+      <guid>https://rifthacking.pages.dev/posts/1.-lfi/</guid>
       <description>Local File Inclusion (LFI) and Path Traversal are critical vulnerabilities in web applications that can lead to severe security breaches if left unaddressed.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/lfi/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/1.-lfi/featured.png" />
     </item>
     
   </channel>

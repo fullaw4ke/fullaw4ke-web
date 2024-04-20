@@ -3,7 +3,109 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://rifthacking.pages.dev/posts/cve-20243094/</loc>
+    <loc>https://rifthacking.pages.dev/writeups/1.-archangel/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/2.-blue/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/3.-broker/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/4.-inject/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/6-kenobi/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/7.-kiba/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/8.-momentum2/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/9.-monitorstwo/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/10.-picklerick/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/11.-precious/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/12.-rootme/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/16.-simplectf/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/17.-soccer/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/18.-twomillion/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/19.-wifinetic/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/writeups/</loc>
+    <lastmod>2024-04-19T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rifthacking.pages.dev/posts/2.-cve-20243094/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -15,19 +117,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rifthacking.pages.dev/</loc>
-    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://rifthacking.pages.dev/writeups/sau/</loc>
-    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://rifthacking.pages.dev/writeups/</loc>
+    <loc>https://rifthacking.pages.dev/writeups/13.-sau/</loc>
     <lastmod>2024-03-31T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -39,19 +129,19 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rifthacking.pages.dev/writeups/keeper/</loc>
+    <loc>https://rifthacking.pages.dev/writeups/5.-keeper/</loc>
     <lastmod>2024-03-27T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rifthacking.pages.dev/writeups/sauna/</loc>
+    <loc>https://rifthacking.pages.dev/writeups/14.-sauna/</loc>
     <lastmod>2024-03-27T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rifthacking.pages.dev/writeups/shared/</loc>
+    <loc>https://rifthacking.pages.dev/writeups/15.-shared/</loc>
     <lastmod>2024-03-27T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -63,7 +153,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rifthacking.pages.dev/posts/lfi/</loc>
+    <loc>https://rifthacking.pages.dev/posts/1.-lfi/</loc>
     <lastmod>2023-01-26T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>

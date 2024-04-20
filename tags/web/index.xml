@@ -10,12 +10,12 @@
     <lastBuildDate>Thu, 26 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/tags/web/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Local File Inclusion</title>
-      <link>https://rifthacking.pages.dev/posts/lfi/</link>
+      <link>https://rifthacking.pages.dev/posts/1.-lfi/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/posts/lfi/</guid>
+      <guid>https://rifthacking.pages.dev/posts/1.-lfi/</guid>
       <description>Local File Inclusion (LFI) and Path Traversal are critical vulnerabilities in web applications that can lead to severe security breaches if left unaddressed.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/lfi/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/1.-lfi/featured.png" />
     </item>
     
   </channel>

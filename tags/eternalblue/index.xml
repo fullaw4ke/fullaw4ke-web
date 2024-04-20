@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>EternalBlue on Rift Hacking</title>
+    <link>http://localhost:1313/tags/eternalblue/</link>
+    <description>Recent content in EternalBlue on Rift Hacking</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
+    <atom:link href="http://localhost:1313/tags/eternalblue/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blue Writeup - THM</title>
+      <link>http://localhost:1313/writeups/blue/2023-12-04-blue/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/writeups/blue/2023-12-04-blue/</guid>
+      <description>Skills: # Metasploit Eternal Blue (ms17-010) Migrate Process Machine Info: # OS &amp;ndash;&amp;gt; Windows IP &amp;ndash;&amp;gt; 10.</description>
+      
+    </item>
+    
+  </channel>
+</rss>
