@@ -7,14 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 19 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/tags/vulnhub/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/tags/vulnhub/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Momentum: 2 Writeup</title>
       <link>https://rifthacking.pages.dev/writeups/8.-momentum2/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
       
       <guid>https://rifthacking.pages.dev/writeups/8.-momentum2/</guid>
-      <description>Resolucion de Maquina Momentum: 2</description>
+      <description>Skills: # Web Enumeration Information Leakage - We find a backup file stored on the server We create a specially designed request to ajax.</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/8.-momentum2/featured.png" />
     </item>
     

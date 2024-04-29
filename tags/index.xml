@@ -7,37 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 19 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>HackTheBox</title>
-      <link>https://rifthacking.pages.dev/tags/hackthebox/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://rifthacking.pages.dev/tags/hackthebox/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>TryHackme</title>
-      <link>https://rifthacking.pages.dev/tags/tryhackme/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://rifthacking.pages.dev/tags/tryhackme/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>VulnHub</title>
-      <link>https://rifthacking.pages.dev/tags/vulnhub/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://rifthacking.pages.dev/tags/vulnhub/</guid>
-      <description></description>
-      
-    </item>
-    
+    <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CVE</title>
       <link>https://rifthacking.pages.dev/tags/cve/</link>
@@ -49,11 +19,41 @@
     </item>
     
     <item>
+      <title>HackTheBox</title>
+      <link>https://rifthacking.pages.dev/tags/hackthebox/</link>
+      <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/tags/hackthebox/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>TryHackme</title>
+      <link>https://rifthacking.pages.dev/tags/tryhackme/</link>
+      <pubDate>Fri, 05 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/tags/tryhackme/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Web</title>
       <link>https://rifthacking.pages.dev/tags/web/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
       <guid>https://rifthacking.pages.dev/tags/web/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>VulnHub</title>
+      <link>https://rifthacking.pages.dev/tags/vulnhub/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/tags/vulnhub/</guid>
       <description></description>
       
     </item>

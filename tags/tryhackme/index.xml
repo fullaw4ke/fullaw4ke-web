@@ -7,61 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 19 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/tags/tryhackme/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/tags/tryhackme/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Archangel Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/1.-archangel/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      <title>Simple CTF Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/16.-simplectf/</link>
+      <pubDate>Fri, 05 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/1.-archangel/</guid>
-      <description>Resolucion de Maquina Archangel</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/1.-archangel/featured.png" />
-    </item>
-    
-    <item>
-      <title>Blue Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/2.-blue/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://rifthacking.pages.dev/writeups/2.-blue/</guid>
-      <description>Resolucion de Maquina Blue</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/2.-blue/featured.png" />
-    </item>
-    
-    <item>
-      <title>Kenobi Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/6-kenobi/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://rifthacking.pages.dev/writeups/6-kenobi/</guid>
-      <description>Resolucion de Maquina Kenobi</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/6-kenobi/featured.png" />
-    </item>
-    
-    <item>
-      <title>Kiba Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/7.-kiba/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://rifthacking.pages.dev/writeups/7.-kiba/</guid>
-      <description>Resolucion de Maquina Kiba</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/7.-kiba/featured.png" />
-    </item>
-    
-    <item>
-      <title>Pickle Rick Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/10.-picklerick/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://rifthacking.pages.dev/writeups/10.-picklerick/</guid>
-      <description>Resolucion de Maquina Blue</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/10.-picklerick/featured.png" />
+      <guid>https://rifthacking.pages.dev/writeups/16.-simplectf/</guid>
+      <description>Skills: # Fuzzing with Feroxbuster CVE-2019-9053 Vim Binary Abuse with sudo permissions.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/16.-simplectf/featured.png" />
     </item>
     
     <item>
       <title>Rootme Writeup</title>
       <link>https://rifthacking.pages.dev/writeups/12.-rootme/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://rifthacking.pages.dev/writeups/12.-rootme/</guid>
       <description>Skills: # Upload Shell.</description>
@@ -69,13 +29,53 @@
     </item>
     
     <item>
-      <title>Simple CTF Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/16.-simplectf/</link>
-      <pubDate>Fri, 19 Apr 2024 00:00:00 +0000</pubDate>
+      <title>Pickle Rick Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/10.-picklerick/</link>
+      <pubDate>Thu, 20 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/16.-simplectf/</guid>
-      <description>Skills: # Fuzzing with Feroxbuster CVE-2019-9053 Vim Binary Abuse with sudo permissions.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/16.-simplectf/featured.png" />
+      <guid>https://rifthacking.pages.dev/writeups/10.-picklerick/</guid>
+      <description>Resolucion de Maquina Blue</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/10.-picklerick/featured.png" />
+    </item>
+    
+    <item>
+      <title>Kiba Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/7.-kiba/</link>
+      <pubDate>Sun, 19 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/7.-kiba/</guid>
+      <description>Resolucion de Maquina Kiba</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/7.-kiba/featured.png" />
+    </item>
+    
+    <item>
+      <title>Kenobi Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/6-kenobi/</link>
+      <pubDate>Fri, 10 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/6-kenobi/</guid>
+      <description>Skills: # 1.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/6-kenobi/featured.png" />
+    </item>
+    
+    <item>
+      <title>Blue Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/2.-blue/</link>
+      <pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/2.-blue/</guid>
+      <description>Skills: # Metasploit Eternal Blue (ms17-010) Migrate Process 1.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/2.-blue/featured.png" />
+    </item>
+    
+    <item>
+      <title>Archangel Writeup</title>
+      <link>https://rifthacking.pages.dev/writeups/1.-archangel/</link>
+      <pubDate>Tue, 10 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://rifthacking.pages.dev/writeups/1.-archangel/</guid>
+      <description>Resolucion de Maquina Archangel</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/1.-archangel/featured.png" />
     </item>
     
   </channel>
