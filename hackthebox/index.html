@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
-  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  data-auto-appearance="true"><head>
   <meta charset="utf-8" />
   
   <meta http-equiv="content-language" content="en" />
@@ -8,18 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
-  <title>WriteUps &middot; Rift Hacking</title>
-  <meta name="title" content="WriteUps &middot; Rift Hacking" />
+  <title>HTB Writeups &middot; Mil4ne&#39;s Blog</title>
+  <meta name="title" content="HTB Writeups &middot; Mil4ne&#39;s Blog" />
   
   <meta name="description" content="All WriteUps" />
   
   
   
-  <link rel="canonical" href="http://localhost:1313/hackthebox/" />
+  <link rel="canonical" href="https://rifthacking.pages.dev/hackthebox/" />
   
-  <link rel="alternate" type="application/rss+xml" href="/hackthebox/index.xml" title="Rift Hacking" />
-  
-  
+  <link rel="alternate" type="application/rss+xml" href="/hackthebox/index.xml" title="Mil4ne's Blog" />
   
   
   
@@ -28,8 +26,10 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.ca97dc2dbe733d645b96ff08c3fb23dbf91348f27759a51151e4735e811d281a0d2ad180ea95cd2ff511b632598700585ef87884285b81658c22ce82ca30f9c4.css"
-    integrity="sha512-ypfcLb5zPWRblv8Iw/sj2/kTSPJ3WaURUeRzXoEdKBoNKtGA6pXNL/URtjJZhwBYXvh4hChbgWWMIs6CyjD5xA==" />
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.fd3d87fd720bf5d79964744f02d90e26851773a8c317198a40933c8afea57936ad0ba652b90d786c2bd9e93c3a18fac58553570798444f0a6f073ad57571a79b.css"
+    integrity="sha512-/T2H/XIL9deZZHRPAtkOJoUXc6jDFxmKQJM8iv6leTatC6ZSuQ14bCvZ6Tw6GPrFhVNXB5hETwpvBzrVdXGnmw==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -46,8 +46,8 @@
   
   
   
-  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.17ffe617e664d257760ee5f71869a6d9328d3613601c03a2eb7a194bbfb06ddc629a70f7b348e6e9446e81d0789555aebce09d27debd0329fc297601a1ee6a77.js"
-    integrity="sha512-F//mF&#43;Zk0ld2DuX3GGmm2TKNNhNgHAOi63oZS7&#43;wbdximnD3s0jm6URugdB4lVWuvOCdJ969Ayn8KXYBoe5qdw==" data-copy="" data-copied=""></script>
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.d6c35110b5d7df8014403fbb81cd21a9d89daf9eb586c936e585e9d04adc204dce554aa737f81e8c902b9dea9e67bd63a977b77dedefb8a39430581ebc519207.js"
+    integrity="sha512-1sNRELXX34AUQD&#43;7gc0hqdidr561hsk25YXp0ErcIE3OVUqnN/gejJArneqeZ71jqXe3fe3vuKOUMFgevFGSBw==" data-copy="" data-copied=""></script>
   
   
   <script src="/js/zoom.min.js"></script>
@@ -65,31 +65,22 @@
   
   
   
-  <meta property="og:title" content="WriteUps" />
-<meta property="og:description" content="All WriteUps" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://localhost:1313/hackthebox/" />
+  <meta property="og:url" content="https://rifthacking.pages.dev/hackthebox/">
+  <meta property="og:site_name" content="Mil4ne&#39;s Blog">
+  <meta property="og:title" content="HTB Writeups">
+  <meta property="og:description" content="All WriteUps">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
 
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="WriteUps"/>
-<meta name="twitter:description" content="All WriteUps"/>
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="HTB Writeups">
+<meta name="twitter:description" content="All WriteUps">
 
   
   
 
   
   
-  <meta name="author" content="Albelto (Aka. Byt3Nu1l)" />
-  
-  
-  
-  <link href="https://link-to-some-website.com/" rel="me" />
-  
-  
-  <link href="https://github.com/byt3nu1l" rel="me" />
-  
-  
-  <link href="https://linkedin.com/in/username" rel="me" />
-  
+  <meta name="author" content="Mil4ne" />
   
   
   
@@ -141,23 +132,11 @@
     <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
     class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
     
-    
-    
-    <div>
-        <a href="/" class="flex">
-            <span class="sr-only">Rift Hacking</span>
-
-            <img src="/banner.png" width="96" height="117"
-                class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="Rift Hacking" />
-
-        </a>
-    </div>
-    
     <div class="flex flex-1 items-center justify-between">
         <nav class="flex space-x-3">
 
             
-            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">Rift Hacking</a>
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">Mil4ne&rsquo;s Blog</a>
             
 
         </nav>
@@ -169,8 +148,8 @@
   <div>
   <div class="cursor-pointer flex items-center nested-menu">
     
-    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
-      Blog
+    <a  class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      Articles
     </a>
     <span>
       
@@ -201,14 +180,28 @@
         <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
           
           <p class="text-sm font-sm" title="">
-            Active Directory
+            All
           </p>
         </a>
         
-        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        <a href="/tags/web/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
           
           <p class="text-sm font-sm" title="">
             Web
+          </p>
+        </a>
+        
+        <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Windows
+          </p>
+        </a>
+        
+        <a href="/tags/cve/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            CVE
           </p>
         </a>
         
@@ -220,51 +213,23 @@
 
 
             
-             
-  <div>
-  <div class="cursor-pointer flex items-center nested-menu">
+            
+  <a href="/hackthebox/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
     
-    <a  class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
-      Writeups
-    </a>
-    <span>
-      
-
-  <span class="relative block icon">
-    <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-
-  </span>
+    <p class="text-base font-medium" title="">
+        HTB Writeups
+    </p>
+</a>
 
 
-    </span>
-  </div>
-  <div class="absolute menuhide">
-    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
-      <div class="flex flex-col space-y-3">
-        
-        <a href="/tags/hackthebox/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-          
-          <p class="text-sm font-sm" title="">
-            HackTheBox
-          </p>
-        </a>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
+            
+            
+  <a href="/projects/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        Projects
+    </p>
+</a>
 
 
             
@@ -367,7 +332,7 @@
     <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-bg font-bg" title="">
-            Blog
+            Articles
         </p>
         <span>
             
@@ -397,16 +362,34 @@
     <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-sm font-small" title="">
-            Active Directory
+            All
         </p>
     </a>
 </li>
 
 <li class="mt-1">
-    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a href="/tags/web/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-sm font-small" title="">
             Web
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Windows
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/cve/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            CVE
         </p>
     </a>
 </li>
@@ -417,47 +400,29 @@
 
                     
 
-                     
+                    
   <li class="mt-1">
-    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a href="/hackthebox/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-bg font-bg" title="">
-            Writeups
+            HTB Writeups
         </p>
-        <span>
-            
-
-  <span class="relative block icon">
-    <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-
-  </span>
-
-
-        </span>
     </a>
 </li>
 
-<li class="mt-1">
-    <a href="/tags/hackthebox/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/projects/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
-        <p class="text-sm font-small" title="">
-            HackTheBox
+        <p class="text-bg font-bg" title="">
+            Projects
         </p>
     </a>
 </li>
-
-<li class="mb-2"></li>
 
 
 
@@ -521,16 +486,12 @@
 
 
  
-  
-   
-  
- 
 
 
 
  <header>
   
-  <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">WriteUps</h1>
+  <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">HTB Writeups</h1>
   <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
     
 
@@ -573,7 +534,7 @@
   </script>
   
   
-  <script type="text/javascript" src="/js/page.min.b06a29d42a4ed16787978e2eee1e8c797b7698db2bc14ccee78f5c80ac566fc996190a73ad80a5e987558474b20b96fa38f7d85b405f165ff72b7b163c5ad11b.js" integrity="sha512-sGop1CpO0WeHl44u7h6MeXt2mNsrwUzO549cgKxWb8mWGQpzrYCl6YdVhHSyC5b6OPfYW0BfFl/3K3sWPFrRGw=="></script>
+  <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
   </header>
   <section class="mt-0 prose flex max-w-full flex-col dark:prose-invert lg:flex-row">
     
@@ -597,17 +558,17 @@
 
       
         <h2 class="mt-12 mb-3 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
-          2023
+          2024
         </h2>
         <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           
           
 
-  <a href="/hackthebox/pc/" class="min-w-full">
+  <a href="/hackthebox/8.-shared/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/pc/featured_hua01911aa0fc206b1ad03d79f5b73e201_461698_600x0_resize_box_3.png);"></div>
+        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/8.-shared/featured_hu4ab5fe33aae27ae57169153f07804a8a_4125134_600x0_resize_box_3.png);"></div>
         
       
 
@@ -615,7 +576,7 @@
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/hackthebox/pc/">PC Writeup</div>
+          href="/hackthebox/8.-shared/">Shared Writeup</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -637,11 +598,7 @@
 
 
 
-  
 
-
-
-  
 
 
 
@@ -658,7 +615,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-01-27 00:00:00 &#43;0000 UTC">27 January 2023</time><span class="px-2 text-primary-500">&middot;</span><span>986 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">5 mins</span>
+  <time datetime="2024-03-27 00:00:00 &#43;0000 UTC">27 March 2024</time>
   
 
   
@@ -683,11 +640,11 @@
           
           
 
-  <a href="/hackthebox/keeper/" class="min-w-full">
+  <a href="/hackthebox/11.-wifinetic/" class="min-w-full">
     
     <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
         
-        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/keeper/featured_hu624d807dc6bbed4897e80b3bad8805ef_450265_600x0_resize_box_3.png);"></div>
+        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/11.-wifinetic/featured_hu4ab5fe33aae27ae57169153f07804a8a_4116943_600x0_resize_box_3.png);"></div>
         
       
 
@@ -695,7 +652,7 @@
 
         
         <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
-          href="/hackthebox/keeper/">Keeper Writeup</div>
+          href="/hackthebox/11.-wifinetic/">Wifinetic Writeup</div>
         
 
         <div class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -717,11 +674,7 @@
 
 
 
-  
 
-
-
-  
 
 
 
@@ -738,7 +691,622 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2023-01-26 00:00:00 &#43;0000 UTC">26 January 2023</time><span class="px-2 text-primary-500">&middot;</span><span>850 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">4 mins</span>
+  <time datetime="2024-02-06 00:00:00 &#43;0000 UTC">6 February 2024</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+          
+          
+
+  <a href="/hackthebox/7.-sauna/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/7.-sauna/featured_hu4ab5fe33aae27ae57169153f07804a8a_4159375_600x0_resize_box_3.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/hackthebox/7.-sauna/">Sauna Writeup</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-01-23 00:00:00 &#43;0000 UTC">23 January 2024</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+          
+          
+
+  <a href="/hackthebox/6.-sau/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/6.-sau/featured_hu4ab5fe33aae27ae57169153f07804a8a_4147869_600x0_resize_box_3.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/hackthebox/6.-sau/">Sau Writeup</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-01-20 00:00:00 &#43;0000 UTC">20 January 2024</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+          
+          
+
+  <a href="/hackthebox/5.-precious/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/5.-precious/featured_hu4ab5fe33aae27ae57169153f07804a8a_4114206_600x0_resize_box_3.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/hackthebox/5.-precious/">Precious Writeup</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-01-19 00:00:00 &#43;0000 UTC">19 January 2024</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+          
+          
+
+  <a href="/hackthebox/10.-twomillion/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/10.-twomillion/featured_hu4ab5fe33aae27ae57169153f07804a8a_4171797_600x0_resize_box_3.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/hackthebox/10.-twomillion/">TwoMillion Writeup</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-01-02 00:00:00 &#43;0000 UTC">2 January 2024</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+          
+        </section>
+      
+        <h2 class="mt-12 mb-3 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
+          2023
+        </h2>
+        <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+          
+          
+
+  <a href="/hackthebox/3.-keeper/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/3.-keeper/featured_hu4ab5fe33aae27ae57169153f07804a8a_4090438_600x0_resize_box_3.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/hackthebox/3.-keeper/">Keeper Writeup</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-12-21 00:00:00 &#43;0000 UTC">21 December 2023</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+          
+          
+
+  <a href="/hackthebox/2.-inject/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/2.-inject/featured_hu4ab5fe33aae27ae57169153f07804a8a_4116753_600x0_resize_box_3.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/hackthebox/2.-inject/">Inject Writeup</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-12-20 00:00:00 &#43;0000 UTC">20 December 2023</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+          
+          
+
+  <a href="/hackthebox/1.-broker/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/1.-broker/featured_hu4ab5fe33aae27ae57169153f07804a8a_4091994_600x0_resize_box_3.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/hackthebox/1.-broker/">Broker Writeup</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-12-19 00:00:00 &#43;0000 UTC">19 December 2023</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+        </div>
+
+        
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+          
+          
+
+  <a href="/hackthebox/4.-monitorstwo/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card nozoom" style="background-image:url(/hackthebox/4.-monitorstwo/featured_hu4ab5fe33aae27ae57169153f07804a8a_4116242_600x0_resize_box_3.png);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/hackthebox/4.-monitorstwo/">MonitorsTwo Writeup</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2023-12-18 00:00:00 &#43;0000 UTC">18 December 2023</time>
   
 
   
@@ -770,7 +1338,28 @@
 
   
 
+    <ul class="flex flex-row mt-8 justify-center"><li>
+          <a
+              href="/hackthebox/"
+              class="
+          bg-primary-200 dark:bg-primary-400 dark:text-neutral-800
+         mx-1 block min-w-[1.8rem] rounded text-center hover:bg-primary-600 hover:text-neutral"
+          >1</a>
+      </li><li>
+          <a
+              href="/hackthebox/page/2/"
+              class=" mx-1 block min-w-[1.8rem] rounded text-center hover:bg-primary-600 hover:text-neutral"
+          >2</a>
+      </li>
+    <li>
+      <a
+          href="/hackthebox/page/2/"
+          class="mx-1 block min-w-[1.8rem] rounded text-center hover:bg-primary-600 hover:text-neutral"
+          rel="next"
+      >&rarr;</a>
+    </li>
     
+  </ul>
 
   
       
@@ -789,14 +1378,6 @@
           </a>
         </li>
         
-        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/categories/"
-            title="">
-            
-            Categories
-          </a>
-        </li>
-        
       </ul>
     </nav>
     
@@ -806,7 +1387,7 @@
     
     
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
-      © 2024 Rift Hacking. All Rights Reserved.
+      © 2023 Rift Hacking. All Rights Reserved.
     </p>
     
 
@@ -825,13 +1406,13 @@
   </script>
   
   
-  <script type="text/javascript" src="/js/process.min.62060bb247f4de2b6dde45903668fefb68d792f365587605177b1227c0cf43588701edaca0cb40e2c8e2789bd5ce67c1d2a215b9fb258c3496a7cd25e7cb5fdf.js" integrity="sha512-YgYLskf03itt3kWQNmj&#43;&#43;2jXkvNlWHYFF3sSJ8DPQ1iHAe2soMtA4sjieJvVzmfB0qIVufsljDSWp80l58tf3w=="></script>
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
   
   
 </footer><div
   id="search-wrapper"
   class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/"
+  data-url="https://rifthacking.pages.dev/"
   style="z-index:500"
 >
   <div

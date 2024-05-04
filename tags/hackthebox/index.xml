@@ -1,121 +1,121 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>HackTheBox on Rift Hacking</title>
+    <title>HackTheBox on Mil4ne&#39;s Blog</title>
     <link>https://rifthacking.pages.dev/tags/hackthebox/</link>
-    <description>Recent content in HackTheBox on Rift Hacking</description>
+    <description>Recent content in HackTheBox on Mil4ne&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2023 Rift Hacking. All Rights Reserved.</copyright>
     <lastBuildDate>Wed, 27 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/tags/hackthebox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Shared Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/15.-shared/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/8.-shared/</link>
       <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/15.-shared/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/8.-shared/</guid>
       <description>Resolucion de Maquina Shared</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/15.-shared/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/8.-shared/featured.png" />
     </item>
     
     <item>
       <title>Wifinetic Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/19.-wifinetic/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/11.-wifinetic/</link>
       <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/19.-wifinetic/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/11.-wifinetic/</guid>
       <description>Skills: # ftp anonymous login Credentials in backup file Enum with linpeas abusing reaver binary [Privilege Escalation] 1.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/19.-wifinetic/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/11.-wifinetic/featured.png" />
     </item>
     
     <item>
       <title>Sauna Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/14.-sauna/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/7.-sauna/</link>
       <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/14.-sauna/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/7.-sauna/</guid>
       <description>Resolucion de maquina Keeper</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/14.-sauna/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/7.-sauna/featured.png" />
     </item>
     
     <item>
       <title>Sau Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/13.-sau/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/6.-sau/</link>
       <pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/13.-sau/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/6.-sau/</guid>
       <description>Sau is an easy Linux-based Hack the Box machine created by sau123 that involves web exploitation, Server Side Request Forgery (SSRF), Common Vulnerabilities and Exposures (CVEs), and Sudo policy exploitation.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/13.-sau/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/6.-sau/featured.png" />
     </item>
     
     <item>
       <title>Precious Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/11.-precious/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/5.-precious/</link>
       <pubDate>Fri, 19 Jan 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/11.-precious/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/5.-precious/</guid>
       <description>Precious is an easy linux machine created by Nauten on Hack the Box that features a web server that uses a version of PDFKit that is vulnerable to CVE-2022-25765, which can be exploited to execute commands as the user ruby.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/11.-precious/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/5.-precious/featured.png" />
     </item>
     
     <item>
       <title>TwoMillion Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/18.-twomillion/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/10.-twomillion/</link>
       <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/18.-twomillion/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/10.-twomillion/</guid>
       <description>Skills: # Abuse API for get invite code Credentials in .</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/18.-twomillion/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/10.-twomillion/featured.png" />
     </item>
     
     <item>
       <title>Keeper Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/5.-keeper/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/3.-keeper/</link>
       <pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/5.-keeper/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/3.-keeper/</guid>
       <description>Keeper is an Easy machine from Hack The Box challenge.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/5.-keeper/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/3.-keeper/featured.png" />
     </item>
     
     <item>
       <title>Inject Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/4.-inject/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/2.-inject/</link>
       <pubDate>Wed, 20 Dec 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/4.-inject/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/2.-inject/</guid>
       <description>Inject is an easy Linux machine created by rajHere on Hack The Box that involves Exploiting a Directory Traversal bug to locate and read local files as frank.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/4.-inject/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/2.-inject/featured.png" />
     </item>
     
     <item>
       <title>Broker Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/3.-broker/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/1.-broker/</link>
       <pubDate>Tue, 19 Dec 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/3.-broker/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/1.-broker/</guid>
       <description>Resolucion de Maquina Broker</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/3.-broker/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/1.-broker/featured.png" />
     </item>
     
     <item>
       <title>MonitorsTwo Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/9.-monitorstwo/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/4.-monitorstwo/</link>
       <pubDate>Mon, 18 Dec 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/9.-monitorstwo/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/4.-monitorstwo/</guid>
       <description>Resolucion de Maquina Blue</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/9.-monitorstwo/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/4.-monitorstwo/featured.png" />
     </item>
     
     <item>
       <title>Soccer Writeup</title>
-      <link>https://rifthacking.pages.dev/writeups/17.-soccer/</link>
+      <link>https://rifthacking.pages.dev/hackthebox/9.-soccer/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/writeups/17.-soccer/</guid>
+      <guid>https://rifthacking.pages.dev/hackthebox/9.-soccer/</guid>
       <description>Resolucion de Maquina Blue</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/writeups/17.-soccer/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/hackthebox/9.-soccer/featured.png" />
     </item>
     
   </channel>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Rift Hacking</title>
+    <title>Tags on Mil4ne&#39;s Blog</title>
     <link>https://rifthacking.pages.dev/tags/</link>
-    <description>Recent content in Tags on Rift Hacking</description>
+    <description>Recent content in Tags on Mil4ne&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2023 Rift Hacking. All Rights Reserved.</copyright>
@@ -29,31 +29,11 @@
     </item>
     
     <item>
-      <title>TryHackme</title>
-      <link>https://rifthacking.pages.dev/tags/tryhackme/</link>
-      <pubDate>Fri, 05 May 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://rifthacking.pages.dev/tags/tryhackme/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>Web</title>
       <link>https://rifthacking.pages.dev/tags/web/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
       <guid>https://rifthacking.pages.dev/tags/web/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>VulnHub</title>
-      <link>https://rifthacking.pages.dev/tags/vulnhub/</link>
-      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://rifthacking.pages.dev/tags/vulnhub/</guid>
       <description></description>
       
     </item>
