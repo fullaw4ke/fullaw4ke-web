@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Mil4ne&#39;s Blog</title>
-    <link>https://rifthacking.pages.dev/tags/</link>
+    <link>https://mil4ne.pages.dev/tags/</link>
     <description>Recent content in Tags on Mil4ne&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2023 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mil4ne.pages.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>CVE</title>
-      <link>https://rifthacking.pages.dev/tags/cve/</link>
-      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <title>HackTheBox</title>
+      <link>https://mil4ne.pages.dev/tags/hackthebox/</link>
+      <pubDate>Sun, 05 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/tags/cve/</guid>
+      <guid>https://mil4ne.pages.dev/tags/hackthebox/</guid>
       <description></description>
       
     </item>
     
     <item>
-      <title>HackTheBox</title>
-      <link>https://rifthacking.pages.dev/tags/hackthebox/</link>
-      <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
+      <title>CVE</title>
+      <link>https://mil4ne.pages.dev/tags/cve/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/tags/hackthebox/</guid>
+      <guid>https://mil4ne.pages.dev/tags/cve/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Web</title>
-      <link>https://rifthacking.pages.dev/tags/web/</link>
+      <link>https://mil4ne.pages.dev/tags/web/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/tags/web/</guid>
+      <guid>https://mil4ne.pages.dev/tags/web/</guid>
       <description></description>
       
     </item>

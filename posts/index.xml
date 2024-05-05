@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Post on Mil4ne&#39;s Blog</title>
-    <link>https://rifthacking.pages.dev/posts/</link>
+    <link>https://mil4ne.pages.dev/posts/</link>
     <description>Recent content in Post on Mil4ne&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2023 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rifthacking.pages.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mil4ne.pages.dev/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CVE-2024–3094 Mitigating and Understanding </title>
-      <link>https://rifthacking.pages.dev/posts/2.-cve-20243094/</link>
+      <link>https://mil4ne.pages.dev/posts/2.-cve-20243094/</link>
       <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/posts/2.-cve-20243094/</guid>
+      <guid>https://mil4ne.pages.dev/posts/2.-cve-20243094/</guid>
       <description>CVE-2024–3094</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/2.-cve-20243094/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://mil4ne.pages.dev/posts/2.-cve-20243094/featured.png" />
     </item>
     
     <item>
       <title>Local File Inclusion</title>
-      <link>https://rifthacking.pages.dev/posts/1.-lfi/</link>
+      <link>https://mil4ne.pages.dev/posts/1.-lfi/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://rifthacking.pages.dev/posts/1.-lfi/</guid>
+      <guid>https://mil4ne.pages.dev/posts/1.-lfi/</guid>
       <description>Local File Inclusion (LFI) and Path Traversal are critical vulnerabilities in web applications that can lead to severe security breaches if left unaddressed.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://rifthacking.pages.dev/posts/1.-lfi/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://mil4ne.pages.dev/posts/1.-lfi/featured.png" />
     </item>
     
   </channel>
