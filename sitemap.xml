@@ -3,19 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/12.-devvortex/</loc>
-    <lastmod>2024-05-05T00:00:00+00:00</lastmod>
+    <loc>https://mil4ne.pages.dev/hackthebox/13.-builder/</loc>
+    <lastmod>2024-05-07T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://mil4ne.pages.dev/hackthebox/</loc>
-    <lastmod>2024-05-05T00:00:00+00:00</lastmod>
+    <lastmod>2024-05-07T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://mil4ne.pages.dev/</loc>
+    <lastmod>2024-05-07T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mil4ne.pages.dev/hackthebox/12.-devvortex/</loc>
     <lastmod>2024-05-05T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
