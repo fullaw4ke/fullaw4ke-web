@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Medium on Rift Hacking</title>
-    <link>http://localhost:1313/tags/medium/</link>
-    <description>Recent content in Medium on Rift Hacking</description>
+    <title>Medium on Mil4ne&#39;s Blog</title>
+    <link>https://your_domain.com/tags/medium/</link>
+    <description>Recent content in Medium on Mil4ne&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>&amp;copy; 2024 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 01 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/medium/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2023 Mil4ne. All Rights Reserved. </copyright>
+    <lastBuildDate>Tue, 25 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://your_domain.com/tags/medium/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Momentum: 2 Writeup - Vulnhub</title>
-      <link>http://localhost:1313/writeups/momentum2/2023-11-26-momentum2/</link>
-      <pubDate>Fri, 01 Sep 2023 00:00:00 +0000</pubDate>
+      <title>Builder Writeup</title>
+      <link>https://your_domain.com/writeups/13.-builder/</link>
+      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/writeups/momentum2/2023-11-26-momentum2/</guid>
-      <description>Skills: # Web Enumeration Information Leakage - We find a backup file stored on the server We create a specially designed request to ajax.</description>
+      <guid>https://your_domain.com/writeups/13.-builder/</guid>
+      <description>Initial Recon # We start our scans with nmap.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/13.-builder/featured.png" />
+    </item>
+    
+    <item>
+      <title>Shared Writeup</title>
+      <link>https://your_domain.com/writeups/8.-shared/</link>
+      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
+      <guid>https://your_domain.com/writeups/8.-shared/</guid>
+      <description>Shared is a medium Linux machine created by Nauten on Hack The Box that features a website with a virtual hostname that is vulnerable to SQL injection.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/8.-shared/featured.png" />
     </item>
     
   </channel>

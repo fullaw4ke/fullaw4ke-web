@@ -3,122 +3,122 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/13.-builder/</loc>
-    <lastmod>2024-05-07T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/1.-broker/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/</loc>
-    <lastmod>2024-05-07T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/13.-builder/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/</loc>
-    <lastmod>2024-05-07T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/12.-devvortex/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/12.-devvortex/</loc>
-    <lastmod>2024-05-05T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/posts/2.-cve-20243094/</loc>
-    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/2.-inject/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/posts/</loc>
-    <lastmod>2024-03-31T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/3.-keeper/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/about/</loc>
-    <lastmod>2024-03-27T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/8.-shared/</loc>
-    <lastmod>2024-03-27T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/4.-monitorstwo/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/11.-wifinetic/</loc>
-    <lastmod>2024-02-06T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/5.-precious/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/7.-sauna/</loc>
-    <lastmod>2024-01-23T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/6.-sau/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/6.-sau/</loc>
-    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/7.-sauna/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/5.-precious/</loc>
-    <lastmod>2024-01-19T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/8.-shared/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/10.-twomillion/</loc>
-    <lastmod>2024-01-02T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/9.-soccer/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/3.-keeper/</loc>
-    <lastmod>2023-12-21T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/10.-twomillion/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/2.-inject/</loc>
-    <lastmod>2023-12-20T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/writeups/11.-wifinetic/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/1.-broker/</loc>
-    <lastmod>2023-12-19T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/malwdev/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/4.-monitorstwo/</loc>
-    <lastmod>2023-12-18T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/posts/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/hackthebox/9.-soccer/</loc>
-    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/toolsdev/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/projects/</loc>
-    <lastmod>2023-01-27T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/about/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://mil4ne.pages.dev/posts/1.-lfi/</loc>
-    <lastmod>2023-01-26T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/exploitdev/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://your_domain.com/webdev/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

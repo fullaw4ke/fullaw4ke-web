@@ -2,38 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Mil4ne&#39;s Blog</title>
-    <link>https://mil4ne.pages.dev/tags/</link>
+    <link>https://your_domain.com/tags/</link>
     <description>Recent content in Tags on Mil4ne&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>&amp;copy; 2023 Rift Hacking. All Rights Reserved.</copyright>
-    <lastBuildDate>Tue, 07 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mil4ne.pages.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2023 Mil4ne. All Rights Reserved. </copyright>
+    <lastBuildDate>Tue, 25 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://your_domain.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>HackTheBox</title>
-      <link>https://mil4ne.pages.dev/tags/hackthebox/</link>
-      <pubDate>Tue, 07 May 2024 00:00:00 +0000</pubDate>
+      <title>Easy</title>
+      <link>https://your_domain.com/tags/easy/</link>
+      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://mil4ne.pages.dev/tags/hackthebox/</guid>
+      <guid>https://your_domain.com/tags/easy/</guid>
       <description></description>
       
     </item>
     
     <item>
-      <title>CVE</title>
-      <link>https://mil4ne.pages.dev/tags/cve/</link>
-      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <title>Medium</title>
+      <link>https://your_domain.com/tags/medium/</link>
+      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://mil4ne.pages.dev/tags/cve/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Web</title>
-      <link>https://mil4ne.pages.dev/tags/web/</link>
-      <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://mil4ne.pages.dev/tags/web/</guid>
+      <guid>https://your_domain.com/tags/medium/</guid>
       <description></description>
       
     </item>

