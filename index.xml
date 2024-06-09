@@ -2,198 +2,198 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mil4ne&#39;s Blog</title>
-    <link>https://your_domain.com/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Mil4ne&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2023 Mil4ne. All Rights Reserved. </copyright>
-    <lastBuildDate>Tue, 25 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://your_domain.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Broker Writeup</title>
-      <link>https://your_domain.com/writeups/1.-broker/</link>
+      <link>http://localhost:1313/writeups/1.-broker/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/1.-broker/</guid>
+      <guid>http://localhost:1313/writeups/1.-broker/</guid>
       <description>Learn more about me and why I am starting this blog.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/1.-broker/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/1.-broker/featured.png" />
     </item>
     
     <item>
       <title>Builder Writeup</title>
-      <link>https://your_domain.com/writeups/13.-builder/</link>
+      <link>http://localhost:1313/writeups/13.-builder/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/13.-builder/</guid>
+      <guid>http://localhost:1313/writeups/13.-builder/</guid>
       <description>Initial Recon # We start our scans with nmap.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/13.-builder/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/13.-builder/featured.png" />
     </item>
     
     <item>
       <title>Devvortex Writeup</title>
-      <link>https://your_domain.com/writeups/12.-devvortex/</link>
+      <link>http://localhost:1313/writeups/12.-devvortex/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/12.-devvortex/</guid>
+      <guid>http://localhost:1313/writeups/12.-devvortex/</guid>
       <description>Initial Recon # We start our scanning with nmap:</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/12.-devvortex/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/12.-devvortex/featured.png" />
     </item>
     
     <item>
       <title>Inject Writeup</title>
-      <link>https://your_domain.com/writeups/2.-inject/</link>
+      <link>http://localhost:1313/writeups/2.-inject/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/2.-inject/</guid>
+      <guid>http://localhost:1313/writeups/2.-inject/</guid>
       <description>.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/2.-inject/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/2.-inject/featured.png" />
     </item>
     
     <item>
       <title>Keeper Writeup</title>
-      <link>https://your_domain.com/writeups/3.-keeper/</link>
+      <link>http://localhost:1313/writeups/3.-keeper/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/3.-keeper/</guid>
+      <guid>http://localhost:1313/writeups/3.-keeper/</guid>
       <description>Keeper is an Easy machine from Hack The Box challenge.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/3.-keeper/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/3.-keeper/featured.png" />
     </item>
     
     <item>
       <title>MonitorsTwo Writeup</title>
-      <link>https://your_domain.com/writeups/4.-monitorstwo/</link>
+      <link>http://localhost:1313/writeups/4.-monitorstwo/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/4.-monitorstwo/</guid>
+      <guid>http://localhost:1313/writeups/4.-monitorstwo/</guid>
       <description>Initial Recon # We check the connection with the victim machine:</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/4.-monitorstwo/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/4.-monitorstwo/featured.png" />
     </item>
     
     <item>
       <title>Pov Writeup</title>
-      <link>https://your_domain.com/writeups/14.-pov/</link>
+      <link>http://localhost:1313/writeups/14.-pov/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/14.-pov/</guid>
+      <guid>http://localhost:1313/writeups/14.-pov/</guid>
       <description>Initial Recon # We start our scans with nmap.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/14.-pov/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/14.-pov/featured.png" />
     </item>
     
     <item>
       <title>Precious Writeup</title>
-      <link>https://your_domain.com/writeups/5.-precious/</link>
+      <link>http://localhost:1313/writeups/5.-precious/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/5.-precious/</guid>
+      <guid>http://localhost:1313/writeups/5.-precious/</guid>
       <description>Precious is an easy linux machine created by Nauten on Hack the Box that features a web server that uses a version of PDFKit that is vulnerable to CVE-2022-25765, which can be exploited to execute commands as the user ruby.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/5.-precious/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/5.-precious/featured.png" />
     </item>
     
     <item>
       <title>Sau Writeup</title>
-      <link>https://your_domain.com/writeups/6.-sau/</link>
+      <link>http://localhost:1313/writeups/6.-sau/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/6.-sau/</guid>
+      <guid>http://localhost:1313/writeups/6.-sau/</guid>
       <description>Sau is an easy Linux-based Hack the Box machine created by sau123 that involves web exploitation, Server Side Request Forgery (SSRF), Common Vulnerabilities and Exposures (CVEs), and Sudo policy exploitation.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/6.-sau/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/6.-sau/featured.png" />
     </item>
     
     <item>
       <title>Sauna Writeup</title>
-      <link>https://your_domain.com/writeups/7.-sauna/</link>
+      <link>http://localhost:1313/writeups/7.-sauna/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/7.-sauna/</guid>
+      <guid>http://localhost:1313/writeups/7.-sauna/</guid>
       <description>Sauna is an easy difficulty Windows machine that features Active Directory enumeration and exploitation.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/7.-sauna/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/7.-sauna/featured.png" />
     </item>
     
     <item>
       <title>Shared Writeup</title>
-      <link>https://your_domain.com/writeups/8.-shared/</link>
+      <link>http://localhost:1313/writeups/8.-shared/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/8.-shared/</guid>
+      <guid>http://localhost:1313/writeups/8.-shared/</guid>
       <description>Shared is a medium Linux machine created by Nauten on Hack The Box that features a website with a virtual hostname that is vulnerable to SQL injection.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/8.-shared/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/8.-shared/featured.png" />
     </item>
     
     <item>
       <title>Soccer Writeup</title>
-      <link>https://your_domain.com/writeups/9.-soccer/</link>
+      <link>http://localhost:1313/writeups/9.-soccer/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/9.-soccer/</guid>
+      <guid>http://localhost:1313/writeups/9.-soccer/</guid>
       <description>Initial Recon # We check the connection with the victim machine:</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/9.-soccer/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/9.-soccer/featured.png" />
     </item>
     
     <item>
       <title>TwoMillion Writeup</title>
-      <link>https://your_domain.com/writeups/10.-twomillion/</link>
+      <link>http://localhost:1313/writeups/10.-twomillion/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/10.-twomillion/</guid>
+      <guid>http://localhost:1313/writeups/10.-twomillion/</guid>
       <description>Initial Recon # First a ping to the victim machine:</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/10.-twomillion/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/10.-twomillion/featured.png" />
     </item>
     
     <item>
       <title>Wifinetic Writeup</title>
-      <link>https://your_domain.com/writeups/11.-wifinetic/</link>
+      <link>http://localhost:1313/writeups/11.-wifinetic/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/writeups/11.-wifinetic/</guid>
+      <guid>http://localhost:1313/writeups/11.-wifinetic/</guid>
       <description>Learn more about me and why I am starting this blog.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/11.-wifinetic/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/11.-wifinetic/featured.png" />
     </item>
     
     <item>
       <title></title>
-      <link>https://your_domain.com/malwdev/</link>
+      <link>http://localhost:1313/malwdev/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/malwdev/</guid>
+      <guid>http://localhost:1313/malwdev/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title></title>
-      <link>https://your_domain.com/toolsdev/</link>
+      <link>http://localhost:1313/toolsdev/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/toolsdev/</guid>
+      <guid>http://localhost:1313/toolsdev/</guid>
       <description>Bswpm Auto INstall Script in c++ to install work environment in kali linux</description>
       
     </item>
     
     <item>
       <title>About</title>
-      <link>https://your_domain.com/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description>Jose Milane (Aka.</description>
       
     </item>
     
     <item>
       <title>Exploit Dev</title>
-      <link>https://your_domain.com/exploitdev/</link>
+      <link>http://localhost:1313/exploitdev/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/exploitdev/</guid>
+      <guid>http://localhost:1313/exploitdev/</guid>
       <description>CVE-2023-23752 - Joomla-v4.</description>
       
     </item>
     
     <item>
       <title>Web Dev</title>
-      <link>https://your_domain.com/webdev/</link>
+      <link>http://localhost:1313/webdev/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/webdev/</guid>
+      <guid>http://localhost:1313/webdev/</guid>
       <description>My Personal Blog Blog Programming and Cybersecurity</description>
       
     </item>

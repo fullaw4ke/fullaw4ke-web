@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Mil4ne&#39;s Blog</title>
-    <link>https://your_domain.com/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Mil4ne&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2023 Mil4ne. All Rights Reserved. </copyright>
-    <lastBuildDate>Tue, 25 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://your_domain.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Easy</title>
-      <link>https://your_domain.com/tags/easy/</link>
+      <link>http://localhost:1313/tags/easy/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/tags/easy/</guid>
+      <guid>http://localhost:1313/tags/easy/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Medium</title>
-      <link>https://your_domain.com/tags/medium/</link>
+      <link>http://localhost:1313/tags/medium/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://your_domain.com/tags/medium/</guid>
+      <guid>http://localhost:1313/tags/medium/</guid>
       <description></description>
       
     </item>
