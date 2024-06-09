@@ -69,6 +69,16 @@
     </item>
     
     <item>
+      <title>Pov Writeup</title>
+      <link>https://your_domain.com/writeups/14.-pov/</link>
+      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://your_domain.com/writeups/14.-pov/</guid>
+      <description>Initial Recon # We start our scans with nmap.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/14.-pov/featured.png" />
+    </item>
+    
+    <item>
       <title>Precious Writeup</title>
       <link>https://your_domain.com/writeups/5.-precious/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
