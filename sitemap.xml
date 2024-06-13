@@ -109,17 +109,17 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://your_domain.com/toolsdev/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://your_domain.com/about/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://your_domain.com/exploitdev/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://your_domain.com/toolsdev/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
