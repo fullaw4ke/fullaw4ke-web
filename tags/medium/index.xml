@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Medium on Mil4ne&#39;s Blog</title>
-    <link>http://localhost:1313/tags/medium/</link>
+    <link>https://your_domain.com/tags/medium/</link>
     <description>Recent content in Medium on Mil4ne&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2023 Mil4ne. All Rights Reserved. </copyright>
-    <lastBuildDate>Tue, 25 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/medium/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://your_domain.com/tags/medium/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Builder Writeup</title>
-      <link>http://localhost:1313/writeups/13.-builder/</link>
-      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+      <title>Pov Writeup</title>
+      <link>https://your_domain.com/writeups/14.-pov/</link>
+      <pubDate>Sun, 09 Jun 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/writeups/13.-builder/</guid>
+      <guid>https://your_domain.com/writeups/14.-pov/</guid>
       <description>Initial Recon # We start our scans with nmap.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/13.-builder/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/14.-pov/featured.png" />
     </item>
     
     <item>
-      <title>Pov Writeup</title>
-      <link>http://localhost:1313/writeups/14.-pov/</link>
-      <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
+      <title>Builder Writeup</title>
+      <link>https://your_domain.com/writeups/13.-builder/</link>
+      <pubDate>Wed, 22 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/writeups/14.-pov/</guid>
+      <guid>https://your_domain.com/writeups/13.-builder/</guid>
       <description>Initial Recon # We start our scans with nmap.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/14.-pov/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/13.-builder/featured.png" />
     </item>
     
     <item>
       <title>Shared Writeup</title>
-      <link>http://localhost:1313/writeups/8.-shared/</link>
+      <link>https://your_domain.com/writeups/8.-shared/</link>
       <pubDate>Tue, 25 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/writeups/8.-shared/</guid>
+      <guid>https://your_domain.com/writeups/8.-shared/</guid>
       <description>Shared is a medium Linux machine created by Nauten on Hack The Box that features a website with a virtual hostname that is vulnerable to SQL injection.</description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/writeups/8.-shared/featured.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/8.-shared/featured.png" />
     </item>
     
   </channel>

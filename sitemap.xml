@@ -3,128 +3,128 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>http://localhost:1313/writeups/1.-broker/</loc>
+    <loc>https://your_domain.com/writeups/</loc>
+    <lastmod>2024-06-09T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://your_domain.com/</loc>
+    <lastmod>2024-06-09T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://your_domain.com/writeups/14.-pov/</loc>
+    <lastmod>2024-06-09T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://your_domain.com/writeups/13.-builder/</loc>
+    <lastmod>2024-05-22T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://your_domain.com/writeups/1.-broker/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/13.-builder/</loc>
+    <loc>https://your_domain.com/writeups/12.-devvortex/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/12.-devvortex/</loc>
+    <loc>https://your_domain.com/writeups/2.-inject/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/</loc>
+    <loc>https://your_domain.com/writeups/3.-keeper/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/2.-inject/</loc>
+    <loc>https://your_domain.com/writeups/4.-monitorstwo/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/3.-keeper/</loc>
+    <loc>https://your_domain.com/writeups/5.-precious/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://your_domain.com/writeups/6.-sau/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/4.-monitorstwo/</loc>
+    <loc>https://your_domain.com/writeups/7.-sauna/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/14.-pov/</loc>
+    <loc>https://your_domain.com/writeups/8.-shared/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/5.-precious/</loc>
+    <loc>https://your_domain.com/writeups/9.-soccer/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/6.-sau/</loc>
+    <loc>https://your_domain.com/writeups/10.-twomillion/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/7.-sauna/</loc>
+    <loc>https://your_domain.com/writeups/11.-wifinetic/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/8.-shared/</loc>
-    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/malwdev/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/9.-soccer/</loc>
-    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/posts/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/10.-twomillion/</loc>
-    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/toolsdev/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/11.-wifinetic/</loc>
-    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+    <loc>https://your_domain.com/about/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/malwdev/</loc>
+    <loc>https://your_domain.com/exploitdev/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/posts/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/toolsdev/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/about/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/exploitdev/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/webdev/</loc>
+    <loc>https://your_domain.com/webdev/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

