@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2023 Mil4ne. All Rights Reserved. </copyright>
-    <lastBuildDate>Sun, 09 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://your_domain.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://your_domain.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Analysis Writeup</title>
+      <link>https://your_domain.com/writeups/15.-analysis/</link>
+      <pubDate>Fri, 14 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://your_domain.com/writeups/15.-analysis/</guid>
+      <description>Initial Recon # We start our scans with nmap.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://your_domain.com/writeups/15.-analysis/featured.png" />
+    </item>
+    
     <item>
       <title>Pov Writeup</title>
       <link>https://your_domain.com/writeups/14.-pov/</link>
